@@ -879,7 +879,31 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
 				avFindDao.queryBuilder();
 			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
-			where.eq(FINDS_LASTNAME, lastname);
+			where.like(FINDS_LASTNAME, lastname);
+			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
+			avFind = avFindDao.queryForFirst(preparedQuery);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL Exception " + e.getMessage());
+			e.printStackTrace();
+		}
+		return avFind;
+	}
+	
+//	7/25/11
+	public AcdiVocaFind fetchBeneficiaryByLastAndFirstname(String lastname, String firstname) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + lastname);
+		Log.i(TAG, "Fetching beneficiary, firstname = " + firstname);
+		Dao<AcdiVocaFind, Integer> avFindDao = null;
+		List<AcdiVocaFind> list = null;
+		AcdiVocaFind avFind = null;
+		try {
+			avFindDao = getAcdiVocaFindDao();
+			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
+				avFindDao.queryBuilder();
+			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
+			where.like(FINDS_LASTNAME, lastname);
+			where.and();
+			where.like(FINDS_FIRSTNAME, firstname);
 			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
 			avFind = avFindDao.queryForFirst(preparedQuery);
 		} catch (SQLException e) {

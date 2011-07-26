@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.hfoss.posit.android.R;
+import org.hfoss.posit.android.R.xml;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaDbHelper;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUser;
 import org.hfoss.posit.android.plugin.acdivoca.AppControlManager;
@@ -45,9 +46,11 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.util.Log;
+import android.view.View;
 
 /**
  * Manages preferences for core POSIT preferences and all plugins.  Plugin preferences are
@@ -243,8 +246,9 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
             }
         }
         // Register this activity as a preference change listener
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);        
         sp.registerOnSharedPreferenceChangeListener(this);
+        
         
         controlSettingsVisibility(sp);
         
@@ -260,11 +264,13 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
     private void controlSettingsVisibility (SharedPreferences sp) {
         // NOTE: This seems to throw an exception for non-string preference values.
         // Initialize the summary strings
-        
+//        SharedPreferences.Editor spe = sp.edit();  										// 7/25/11      
+
         int userTypeOrdinal = sp.getInt(AcdiVocaUser.USER_TYPE_KEY, -1);
         Log.i(TAG, "Control settings, UserTypeKey = " + userTypeOrdinal);
 
         Map<String,?> prefs = sp.getAll();
+//    	PreferenceGroup spg = PreferenceGroup(this, xml.acdivoca_preferences);				// 7/25/11
         Iterator it = prefs.keySet().iterator();
         while (it.hasNext()) {
             try {
@@ -292,15 +298,46 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
                     }
                     
 //                    if (userTypeOrdinal == UserType.USER.ordinal() 
-                    if ((AppControlManager.isRegularUser() || AppControlManager.isAgriUser() || AppControlManager.isAgronUser())
+                    if ((AppControlManager.isRegularUser() || AppControlManager.isAgriUser() /*||  AppControlManager.isAgronUser() **/)
+                    		// 7/25/11 
                             && (key.equals(getString(R.string.smsPhoneKey))
                             || key.equals(getString(R.string.distribution_point_key))
                             || key.equals(getString(R.string.distribution_event_key))
-                            || key.equals(getString(R.string.commune_section_key)))) {
+                            || key.equals(getString(R.string.commune_section_key))
+                            )) {
+                        Log.i(TAG, "############################"); // 7/25/11
+                        p.setEnabled(false);
+//                        onPrepareForRemoval()
+//                        sp.remove(key);
+//                        int id = p.getLayoutResource();
+//                       findViewById(id).setVisibility(false);
+                       
+//                        PreferenceCategory mCategory = (PreferenceCategory) findPreference(getString(R.string.acdivocaprefs));
+//                        Preference mPreference = getPreferenceScreen().findPreference(key);
+//                        if(mCategory==null)
+//                        	Log.i(TAG, "Category not being found");
+//                        int id = p.getLayoutResource();
+//                        Preference mPreference = mCategory.getPreference(id);
+//                        if(mPreference==null)
+//                    	Log.i(TAG, "Preference not being found in category");
+//                        if(!mCategory.remove(mPreference))
+//                        	Log.i(TAG, "Something is wrong with mCategory.removePreference()"); //Doesn't work here
+//                        ListPreference listDistrPoint = (ListPreference) findPreference(key);     
+                        Log.i(TAG, "Disabling USER setting for key = " + key);
+                    }
+// 7/25/11 Allows Agron users to change commune section                   
+                    
+                    if ((AppControlManager.isAgronUser())
+                            && (key.equals(getString(R.string.smsPhoneKey))
+                            || key.equals(getString(R.string.distribution_point_key))
+                            || key.equals(getString(R.string.distribution_event_key))
+                            )) {
                         p.setEnabled(false);
                         //this.getPreferenceScreen().removePreference(p); Doesn't work here
                         Log.i(TAG, "Disabling USER setting for key = " + key);
                     }
+                    
+                    
 //                    if (userTypeOrdinal == UserType.ADMIN.ordinal() 
                     if ((AppControlManager.isAdminUser() || AppControlManager.isAgronUser())
                             && key.equals(getString(R.string.distribution_event_key))) {

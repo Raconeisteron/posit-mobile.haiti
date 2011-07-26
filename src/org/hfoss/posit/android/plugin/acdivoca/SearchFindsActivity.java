@@ -50,6 +50,7 @@ public class SearchFindsActivity extends Activity implements OnClickListener, Te
 	// NOTE: Activity_RESULT_CANCELED = 1
 	public static final int RESULT_SEARCH_LASTNAME = 2;
 	public static final String LAST_NAME = "lastname";
+	public static final String FIRST_NAME = "firstname";
 		
 	/** Called when the activity is first created. */
 	@Override
@@ -92,8 +93,17 @@ public class SearchFindsActivity extends Activity implements OnClickListener, Te
 		if (v.getId() == R.id.search_finds_ok_button) {
 			EditText tv = (EditText)findViewById(R.id.searchString);
 			String searchStr = tv.getText().toString();
-			returnIntent.putExtra(LAST_NAME, searchStr);
-			setResult(Activity.RESULT_OK,returnIntent);
+			tv = (EditText)findViewById(R.id.searchString2);
+			String searchStr2 = tv.getText().toString();
+			if(!searchStr2.equals("")){								// 7/25/11
+				returnIntent.putExtra(LAST_NAME, searchStr + "%");
+				returnIntent.putExtra(FIRST_NAME, searchStr2 + "%");
+				setResult(Activity.RESULT_OK,returnIntent);
+			}
+			else{
+				returnIntent.putExtra(LAST_NAME, searchStr + "%");
+				setResult(Activity.RESULT_OK,returnIntent);
+			}
 		} else {
 			setResult(Activity.RESULT_CANCELED, returnIntent);
 		}

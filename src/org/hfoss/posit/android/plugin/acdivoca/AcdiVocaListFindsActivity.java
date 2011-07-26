@@ -576,8 +576,16 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity
 				break;
 			} else {
 				String lastNameSearch = data.getStringExtra(SearchFindsActivity.LAST_NAME);
+				String firstNameSearch = data.getStringExtra(SearchFindsActivity.FIRST_NAME); // 7/25/11
 				AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-				AcdiVocaFind avFind = db.fetchBeneficiaryByLastname(lastNameSearch);
+				AcdiVocaFind avFind = null;
+				if(firstNameSearch == null){
+					avFind = db.fetchBeneficiaryByLastname(lastNameSearch);
+				}
+				if (firstNameSearch != null){
+					avFind = db.fetchBeneficiaryByLastAndFirstname
+					(lastNameSearch, firstNameSearch);
+				}
 				if (avFind != null)
 					startDisplayFindActivity(avFind);
 				else {
