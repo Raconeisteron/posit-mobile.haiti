@@ -179,7 +179,8 @@
     <string name="refresh">Clear</string>
     <string name="delete_find">Delete</string> 
     <string name="search">Search</string>
-    <string name="search_prompt">Search by last name</string>
+<!--     <string name="search_prompt">Search by last name</string>  -->
+    <string name="search_prompt">Search by last and/or first name</string> <!-- 7/25/11 -->
     <string name="list_messages">Manage SMS Messages</string>
     <string name="sync_messages">Send SMS Messages</string>
   
