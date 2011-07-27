@@ -51,23 +51,7 @@ public class AcdiVocaUser {
 
 	/**
 	 * Default user accounts.
-	 */
-	public static final String USER_DEFAULT_NAME = "b";      // For testing purposes
-	public static final String USER_DEFAULT_PASSWORD = "b";
-	public static final String AGRI_DEFAULT_NAME = "a";      // For testing purposes
-	public static final String AGRI_DEFAULT_PASSWORD = "a";
-	public static final String USER_DEFAULT_NAME_2 = "auxil2";      // For testing purposes
-	public static final String USER_DEFAULT_PASSWORD_2 = "acdivoca";	
-	public static final String USER_DEFAULT_NAME_3 = "auxil3";      // For testing purposes
-	public static final String USER_DEFAULT_PASSWORD_3 = "acdivoca";	
-	public static final String USER_DEFAULT_NAME_4 = "auxil4";      // For testing purposes
-	public static final String USER_DEFAULT_PASSWORD_4 = "acdivoca";		
-	public static final String ADMIN_USER_NAME = "r";
-	public static final String ADMIN_USER_PASSWORD = "a";
-	public static final String AGRON_USER_NAME = "aa";
-	public static final String AGRON_USER_PASSWORD = "aa";
-	public static final String SUPER_USER_NAME = "s";
-	public static final String SUPER_USER_PASSWORD = "a";	
+	 */	
 	public static final String USER_TYPE_STRING = "UserType";
 	public static final String USER_TYPE_KEY= "UserLoginType";
 
@@ -108,23 +92,68 @@ public class AcdiVocaUser {
 			e.printStackTrace();
 		}
 
-		// Create some Users
-		if (!insertUser(avUserDao, SUPER_USER_NAME, SUPER_USER_PASSWORD, UserType.SUPER))
-			Log.e(TAG, "Error adding user = " + SUPER_USER_NAME);
-		if (!insertUser(avUserDao, ADMIN_USER_NAME, ADMIN_USER_PASSWORD, UserType.ADMIN))
-			Log.e(TAG, "Error adding user = " + ADMIN_USER_NAME);
-		if (!insertUser(avUserDao, USER_DEFAULT_NAME, USER_DEFAULT_PASSWORD, UserType.USER))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME);
-		if (!insertUser(avUserDao, USER_DEFAULT_NAME_2, USER_DEFAULT_PASSWORD_2, UserType.USER))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME_2);
-		if (!insertUser(avUserDao, USER_DEFAULT_NAME_3, USER_DEFAULT_PASSWORD_3, UserType.USER))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME_3);
-		if (!insertUser(avUserDao, USER_DEFAULT_NAME_4, USER_DEFAULT_PASSWORD_4, UserType.USER))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME_4);
-		if (!insertUser(avUserDao, AGRI_DEFAULT_NAME, AGRI_DEFAULT_PASSWORD, UserType.AGRI))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME);
-		if (!insertUser(avUserDao, AGRON_USER_NAME, AGRON_USER_PASSWORD, UserType.AGRON))
-			Log.e(TAG, "Error adding user = " + USER_DEFAULT_NAME);
+//		// Create some Users
+		
+		if (!insertUser(avUserDao, "b", "b", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "b");
+		if (!insertUser(avUserDao, "a", "a", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "a");
+		if (!insertUser(avUserDao, "r", "a", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "r");
+		if (!insertUser(avUserDao, "aa", "aa", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "aa");
+		if (!insertUser(avUserDao, "auxa", "abba", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxa");
+		if (!insertUser(avUserDao, "auxb", "achy", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxb");
+		if (!insertUser(avUserDao, "auxc", "acid", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxc");
+		if (!insertUser(avUserDao, "auxd", "akin", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxd");
+		if (!insertUser(avUserDao, "auxe", "arum", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxe");
+		if (!insertUser(avUserDao, "auxf", "ares", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxf");
+		
+		if (!insertUser(avUserDao, "admina", "bake", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "admina");
+		if (!insertUser(avUserDao, "adminb", "bats", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "adminb");
+		if (!insertUser(avUserDao, "adminc", "bins", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "adminc");
+		if (!insertUser(avUserDao, "admind", "bops", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "admind");
+		if (!insertUser(avUserDao, "bnda", "diva", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "bnda");
+		if (!insertUser(avUserDao, "bndb", "dogs", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "bndb");
+		if (!insertUser(avUserDao, "bndc", "dyne", UserType.ADMIN))
+			Log.e(TAG, "Error adding user = " + "bndc");
+		
+		if (!insertUser(avUserDao, "agrona", "cabs", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agrona");
+		if (!insertUser(avUserDao, "agrone", "coma", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agrone");
+		if (!insertUser(avUserDao, "agroni", "cloy", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agroni");
+		if (!insertUser(avUserDao, "agrono", "crab", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agrono");
+		if (!insertUser(avUserDao, "agronu", "coin", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agronu");
+		if (!insertUser(avUserDao, "agrony", "cues", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agrony");
+		if (!insertUser(avUserDao, "agronb", "cuke", UserType.AGRON))
+			Log.e(TAG, "Error adding user = " + "agronb");
+
+		if (!insertUser(avUserDao, "supera", "ergo", UserType.SUPER))
+			Log.e(TAG, "Error adding user = " + "supera");
+		if (!insertUser(avUserDao, "superb", "exon", UserType.SUPER))
+			Log.e(TAG, "Error adding user = " + "superb");
+		if (!insertUser(avUserDao, "superc", "elms", UserType.SUPER))
+			Log.e(TAG, "Error adding user = " + "superc");
+		if (!insertUser(avUserDao, "hfoss", "hack", UserType.SUPER))
+			Log.e(TAG, "Error adding user = " + "hfoss");
+		
 		
 		
 		Log.i(TAG, "Created User Accounts");
@@ -190,65 +219,62 @@ public class AcdiVocaUser {
 	 * Returns true iff a row containing username and password is found
 	 * @param username
 	 * @param password
-	 * @param userType is an enum that defines whether this is a regular or super user.
+	 * @param rqdUserType is an enum that defines whether this is a regular or super user.
 	 * @return Returns the user's type or -1 if authentication fails.
 	 */
-	public static int authenicateUser(Context context, String username, String password, UserType userType) {
-		Log.i(TAG, "Authenticating user = " + username + " Access type = " + userType);		
+	public static int authenicateUser(Context context, String username, String password, UserType rqdUserType) {
+		Log.i(TAG, "Authenticating user = " + username + " Access type = " + rqdUserType);		
 		
 		AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
-		
 		Dao<AcdiVocaUser, Integer> avUserDao = null;
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("name", username);
+		map.put("password", password);
+		List<AcdiVocaUser> list = null;
+		int result = 0;
+		int userType = 0;
 		try {
 			avUserDao = db.getAvUserDao();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+			list = avUserDao.queryForFieldValues(map);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL Exception " + e.getMessage());
+			e.printStackTrace();
 		}
-		
-		int result = 0;
-		if (userType.equals(UserType.ADMIN)) {
-			if (! ((username.equals(ADMIN_USER_NAME) &&  password.equals(ADMIN_USER_PASSWORD)) 
-				|| (username.equals(SUPER_USER_NAME) && password.equals(SUPER_USER_PASSWORD)) )) {
-				Log.i(TAG, "Sorry you must be ADMIN USER to do this.");
-				Toast.makeText(context, context.getString(R.string.toast_adminuser), Toast.LENGTH_SHORT);
-				result = -1;
-			}
-		} else if (userType.equals(UserType.AGRON)) {
-			if (! ((username.equals(AGRON_USER_NAME) &&  password.equals(AGRON_USER_PASSWORD)) 
-					|| (username.equals(SUPER_USER_NAME) && password.equals(SUPER_USER_PASSWORD)) )) {
+		Log.i(TAG, "List size = " + list.size());
+		if (list.size() != 1) 
+			result =  -1;
+		else {
+			AcdiVocaUser user = list.get(0);
+			userType = user.type;
+			result = userType;
+			Log.i(TAG, "User type = " + userType);
+			switch (rqdUserType) {
+			case SUPER:
+				if (userType != rqdUserType.ordinal()) {
+					Log.i(TAG, "Sorry you must be SUPER USER to do this.");
+					Toast.makeText(context, context.getString(R.string.toast_adminuser), Toast.LENGTH_SHORT);
+					result = -1;
+				}
+				break;
+			case ADMIN:
+				if (userType != rqdUserType.ordinal() && userType != UserType.SUPER.ordinal()) {
 					Log.i(TAG, "Sorry you must be ADMIN USER to do this.");
 					Toast.makeText(context, context.getString(R.string.toast_adminuser), Toast.LENGTH_SHORT);
 					result = -1;
-				}	
-		} else if (userType.equals(UserType.SUPER)) {
-			if (!username.equals(SUPER_USER_NAME) ||  !password.equals(SUPER_USER_PASSWORD)) {
-				Log.i(TAG, "Sorry you must be SUPER USER to do this.");
-				Toast.makeText(context, context.getString(R.string.toast_superuser), Toast.LENGTH_SHORT);
-				result = -1;
-			}
-		} 
-		if (result != -1) {
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("name", username);
-			map.put("password", password);
-			
-			List<AcdiVocaUser> list = null;
-			try {
-				list = avUserDao.queryForFieldValues(map);
-			} catch (SQLException e) {
-				Log.e(TAG, "SQL Exception " + e.getMessage());
-				e.printStackTrace();
-			}
-			Log.i(TAG, "List size = " + list.size());
-			if (list.size() != 1) 
-				result =  -1;
-			else {
-				AcdiVocaUser user = list.get(0);
-				result = user.type;
-			}
+				}
+				break;
+			case AGRON:
+				if (userType != rqdUserType.ordinal() && userType != UserType.SUPER.ordinal()) {
+					Log.i(TAG, "Sorry you must be ADMIN USER to do this.");
+					Toast.makeText(context, context.getString(R.string.toast_adminuser), Toast.LENGTH_SHORT);
+					result = -1;
+				}
+				break;			
+			}			
 		}
 		return result;
 	}
+
 
 	@Override
 	public String toString() {
