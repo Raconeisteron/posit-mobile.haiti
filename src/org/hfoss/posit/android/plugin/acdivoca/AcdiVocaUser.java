@@ -94,14 +94,14 @@ public class AcdiVocaUser {
 
 //		// Create some Users
 		
-		if (!insertUser(avUserDao, "b", "b", UserType.USER))
-			Log.e(TAG, "Error adding user = " + "b");
-		if (!insertUser(avUserDao, "a", "a", UserType.AGRI))
-			Log.e(TAG, "Error adding user = " + "a");
-		if (!insertUser(avUserDao, "r", "a", UserType.ADMIN))
-			Log.e(TAG, "Error adding user = " + "r");
-		if (!insertUser(avUserDao, "aa", "aa", UserType.AGRON))
-			Log.e(TAG, "Error adding user = " + "aa");
+//		if (!insertUser(avUserDao, "b", "b", UserType.USER))
+//			Log.e(TAG, "Error adding user = " + "b");
+//		if (!insertUser(avUserDao, "a", "a", UserType.AGRI))
+//			Log.e(TAG, "Error adding user = " + "a");
+//		if (!insertUser(avUserDao, "r", "a", UserType.ADMIN))
+//			Log.e(TAG, "Error adding user = " + "r");
+//		if (!insertUser(avUserDao, "aa", "aa", UserType.AGRON))
+//			Log.e(TAG, "Error adding user = " + "aa");
 		if (!insertUser(avUserDao, "auxa", "abba", UserType.USER))
 			Log.e(TAG, "Error adding user = " + "auxa");
 		if (!insertUser(avUserDao, "auxb", "achy", UserType.USER))
@@ -114,6 +114,36 @@ public class AcdiVocaUser {
 			Log.e(TAG, "Error adding user = " + "auxe");
 		if (!insertUser(avUserDao, "auxf", "ares", UserType.USER))
 			Log.e(TAG, "Error adding user = " + "auxf");
+		if (!insertUser(avUserDao, "auxg", "alfa", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxg");
+		if (!insertUser(avUserDao, "auxh", "anon", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxh");
+		if (!insertUser(avUserDao, "auxi", "arty", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxi");
+		if (!insertUser(avUserDao, "auxj", "awry", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxj");
+		if (!insertUser(avUserDao, "auxk", "avid", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxk");
+		if (!insertUser(avUserDao, "auxl", "axle", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxl");
+		if (!insertUser(avUserDao, "auxm", "atop", UserType.USER))
+			Log.e(TAG, "Error adding user = " + "auxm");
+
+		if (!insertUser(avUserDao, "agra", "ante", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agra");
+		if (!insertUser(avUserDao, "agrb", "alls", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agrb");
+		if (!insertUser(avUserDao, "agrc", "amie", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agrc");
+		if (!insertUser(avUserDao, "agrd", "aloe", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agrd");
+		if (!insertUser(avUserDao, "agre", "auks", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agre");
+		if (!insertUser(avUserDao, "agrf", "awed", UserType.AGRI))
+			Log.e(TAG, "Error adding user = " + "agrf");		
+		if (!insertUser(avUserDao, "agrg", "awls", UserType.AGRI))
+				Log.e(TAG, "Error adding user = " + "agrg");
+		
 		
 		if (!insertUser(avUserDao, "admina", "bake", UserType.ADMIN))
 			Log.e(TAG, "Error adding user = " + "admina");
