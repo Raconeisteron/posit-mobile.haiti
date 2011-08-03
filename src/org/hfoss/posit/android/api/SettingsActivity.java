@@ -339,6 +339,14 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
                     
                     
 //                    if (userTypeOrdinal == UserType.ADMIN.ordinal() 
+// 8/3/11 This code prevents admin users from changing the commune section                    
+                    if ((AppControlManager.isAdminUser()
+                    		&& key.equals(getString(R.string.commune_section_key))
+                    )) {
+                p.setEnabled(false);
+                Log.i(TAG, "Disabling ADMIN setting for key = " + key);
+                    }
+                    
                     if ((AppControlManager.isAdminUser() || AppControlManager.isAgronUser())
                             && key.equals(getString(R.string.distribution_event_key))) {
                         p.setEnabled(false);
