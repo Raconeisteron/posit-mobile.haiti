@@ -291,9 +291,9 @@
 	
 	               
  
- 	<string name="english">English</string>
-	<string name="french">French</string>
-	<string name="haitian">Haitian Creole</string>
+	<string name="english">English</string>
+	<string name="french">Française</string>
+	<string name="haitian">Creole haitien</string>
 	<string name="cancelLabel">Cancel</string>
 	<string name="cancel">Cancel</string>
 	<string name="exit">Are you sure you want to exit?</string>

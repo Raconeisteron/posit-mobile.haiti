@@ -99,7 +99,8 @@
     <string name="No">Non</string>
 <!-- 	<string name="participating_bene">Y a t-il quelqu\'un de votre famille qui participe dans le programme d’acdivoca ?</string> -->
     <string name="participating_bene_same">Est-ce que vous ou quelqu\'un dans votre maison reçoivent de l\'aide du programe santé de ACDI/VOCA?</string>
-    
+	<string name="participating_mchn">Etes-vous ou quelqu\'un dans votre maison participant au Programme de Santé ACDI/VOCA?</string>
+	<string name="participating_agri"> Etes-vous ou quelqu\'un dans votre aide à domicile reçoit de l\'ACDI/VOCA Programme d\'agriculture?</string>    
     
    
     <!--  Update View -->
