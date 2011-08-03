@@ -98,7 +98,8 @@
     <string name="No">Non</string>
 <!--     <string name="participating_bene">Eske genyen lòt moun nan fanmiy ki nan pwogram sante ACDI/VOCA?</string> -->
     <string name="participating_bene_same">Eske ou au lot moun nan fanmiw lap patisipe nan pwogram santé ACDI/VOCA?</string>
-    
+	<string name="participating_mchn">Èske ou menm oswa se yon moun nan kay ou a ap patisipe nan ACDI/VOCA Pwogram Sante?</string>
+	<string name="participating_agri">Èske ou menm oswa se yon moun nan èd lakay ou k ap resevwa soti nan ACDI/VOCA Pwogram Agrikilti? </string>    
        
 <!--      Update View -->
     <string name="beneficiary">Infòmasyon sou Benefisyè</string>
@@ -277,7 +278,7 @@
 	<string name="update_other">Lot</string>
 	
 	<string name="english">English</string>
-	<string name="french">French</string>
+	<string name="french">Française</string>
 	<string name="haitian">Creole haitien</string>
 	
 	<string name="powered_by_hfoss">Développé par HFOSS</string>
