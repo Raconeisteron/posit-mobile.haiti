@@ -259,8 +259,7 @@
     <string name="settings">Parametres</string>
     <string name="aboutItem">A Propos</string>
     <string name="exit">Ou vle kite tout bon?</string>
-    <string name="aboutCopyright2">Outil pòtab identifikation ak recherch\n
-	</string>
+    <string name="aboutCopyright2">Zouti selilè idantifikasyon ak rechèch (POSIT) \n devlope yon pwojè twou imanitè nan Trinity College. ACDI / VOCA mobil anrejistreman k ap resevwa sou telefòn ak sistèm ajou.</string>
 	<string name="loading_data">Done yo ap chage</string>
 	<string name="please_wait">Tann yon moman svp.</string>
 	<string name="alert_dialog_cancel">Anile</string>
@@ -312,7 +311,7 @@
 	<string name="invalid_phone_number">Valid nimewo telefòn: </string>
 	<string name="no_messages_to_send">Pa gen okenn pou bay mesaj pou voye.</string>
 	<string name="being_sent_to">mesaj ke yo te voye a </string>
-	<string name="aboutCopyright1">POSIT</string>
+	<string name="aboutCopyright1">Se lojisyèl se distribiye anba tèm lisans GNU Lesser Jeneral Piblik (LGPL). \n © Pwojè imanitè pou otè twou 2011.</string>
 	<!-- <string name="aboutCopyright2">Portable Open Search and Identification 
 		Tool\n </string> -->
 	<string name="aboutDescription"> Devlope pa Pwojè a FOSS imanitè nan Trinité Kolèj

@@ -263,7 +263,7 @@
     <string name="settings">Parametres</string>
     <string name="aboutItem">A Propos</string>
     <string name="exit">Etes vous sure de vouloir quitter?</string>
-    <string name="aboutCopyright2">Outils portable d’identification et de recherche\n</string>
+    
 	<string name="loading_data">Chargement des donnees</string>
 	<string name="please_wait">Patientez svp.</string>
 	<string name="alert_dialog_cancel">Annuler</string>
@@ -306,7 +306,8 @@
 	<string name="send_dist_rep2"> messages à envoyer. OK? </string>
 	<string name="invalid_phone_number">Numéro de téléphone invalide: </string>
 	<string name="being_sent_to">messages envoyés à </string>
-	<string name="aboutCopyright1">POSIT</string>
+	<string name="aboutCopyright2">Outils portable d\’identification et de recherche\n Développé par le projet FOSS Humanitaire au Trinity College. ACDI/VOCA mobiles d\'enregistrement bénéficiaire sur téléphone et système de mise à jour.</string>
+	<string name="aboutCopyright1">Ce logiciel est distribué sous les termes de la licence GNU Lesser General Public (LGPL). \n © Projet humanitaire d\'auteur FOSS 2011.</string>
 	<!-- <string name="aboutCopyright2">Portable Open Search and Identification Tool\n </string> -->
 	<string name="aboutDescription">Développé par le projet FOSS Humanitaire au Trinity College</string>
 	<string name="acdivocaDescription1">ACDI/VOCA mobiles d\'enregistrement bénéficiaire sur téléphone et système de mise à jour</string>

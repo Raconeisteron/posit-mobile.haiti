@@ -323,9 +323,9 @@
     <string name="invalid_phone_number">Invalid phone number: </string>
     <string name="no_messages_to_send">There are no messages to send.</string>
     <string name="being_sent_to">messages being sent to </string>
-    <string name="aboutCopyright1">POSIT</string>
-	<string name="aboutCopyright2">Portable Open Search and Identification Tool\n
-	</string>
+    <string name="aboutCopyright1">This software is licensed under the terms of the GNU Lesser General Public License (LGPL).  \n © Copyright Humanitarian FOSS Project 2011.</string>
+	<string name="aboutCopyright2">Portable Open Search and Identification Tool (POSIT). Developed by the Humanitarian FOSS Project at Trinity College, Hartford CT.\n Customized for ACDI/VOCA Mobile Phone based Beneficiary Registration and Update System.
+</string>
 	<string name="aboutDescription"> Developed by the Humanitarian FOSS Project at Trinity College
 	</string>
 	<string name="acdivocaDescription1">ACDI/VOCA Mobile Phone-Based Beneficiary Registration and Update System</string>
