@@ -14,15 +14,15 @@
 	<item>fr</item>
 	</string-array>	
 
-<!-- 	<string-array name="commune_names">  -->
-<!-- 	<item>Anse a Pitres</item> -->
-<!-- 	<item>Thiotte</item> -->
-<!-- 	<item>Grand Gosier</item> -->
-<!-- 	<item>Belle Anse</item> -->
-<!-- 	<item>La vallee</item> -->
-<!-- 	<item>Bainet</item> -->
-<!-- 	<item>Cote de fer</item> -->
-<!-- 	</string-array> -->
+	<string-array name="commune_names"> 
+	<item>Anse a Pitres</item>
+	<item>Thiotte</item>
+	<item>Grand Gosier</item>
+	<item>Belle Anse</item>
+	<item>La vallee</item>
+	<item>Bainet</item>
+	<item>Cote de fer</item>
+	</string-array>
 
 	<string-array name="commune_section_names">
 		<item>11eme La vallee</item>

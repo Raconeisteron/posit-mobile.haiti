@@ -557,9 +557,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 
 		// COummune section
 		Spinner spinner = null;
-		spinner = (Spinner)findViewById(R.id.commune_sectionSpinner);
-		String communeSection = (String) spinner.getSelectedItem();
-		result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, communeSection);		
+		spinner = (Spinner)findViewById(R.id.communeSectionSpinner);
+		String communeSectionId = Integer.toString(spinner.getSelectedItemPosition());
+		result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, communeSectionId);		
 
 		return result;
 	}
@@ -636,8 +636,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 			// DISPLAY FIRSTNAME
 			displayText(contentValues, R.id.firstnameEdit, AcdiVocaDbHelper.FINDS_FIRSTNAME);
 			// COMMUNE SECTION SPINNER
-			Spinner spinner = (Spinner)findViewById(R.id.commune_sectionSpinner);
-			AcdiVocaMchnFindActivity.setSpinner(spinner, contentValues, AcdiVocaDbHelper.FINDS_COMMUNE_SECTION);
+			Spinner spinner = (Spinner)findViewById(R.id.communeSectionSpinner);
+			//AcdiVocaMchnFindActivity.setSpinner(spinner, contentValues, AcdiVocaDbHelper.FINDS_COMMUNE_SECTION);
+			spinner.setSelection(Integer.parseInt(contentValues.getAsString(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION)));
 			// ADDRESS
 			displayText(contentValues, R.id.addressEdit, AcdiVocaDbHelper.FINDS_ADDRESS);
 			// DOB
