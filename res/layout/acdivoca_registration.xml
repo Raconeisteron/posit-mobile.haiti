@@ -64,6 +64,15 @@
 					android:layout_marginLeft="30px" android:layout_marginRight="30px"
 					android:entries="@+array/distribution_point_names"
 					android:layout_width="fill_parent" android:layout_height="wrap_content" />				
+					
+				<TextView android:text="@string/commune_section"
+					android:textColor="#ffffff" android:layout_width="fill_parent"
+					android:layout_marginLeft="10px" android:layout_height="wrap_content" />
+
+				<Spinner android:id="@+id/communeSectionSpinner"
+					android:layout_marginLeft="30px" android:layout_marginRight="30px"
+					android:entries="@+array/commune_section_names"
+					android:layout_width="fill_parent" android:layout_height="wrap_content" />		
 
 			<TextView android:text="@string/locality_section"
 				android:textColor="#ffffff" android:layout_width="fill_parent"

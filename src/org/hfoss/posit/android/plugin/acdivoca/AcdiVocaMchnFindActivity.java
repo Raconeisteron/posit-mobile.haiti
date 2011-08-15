@@ -359,6 +359,13 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 			result.put(AcdiVocaDbHelper.FINDS_DISTRIBUTION_POST, AttributeManager.getMapping(spinnerStr));
 		}
 		
+		// Retrieving COMMUNE SECTION from Spinner      
+		String communeId = "";
+		spinner = (Spinner)findViewById(R.id.communeSectionSpinner);
+		if (spinner != null) {
+			communeId = Integer.toString(spinner.getSelectedItemPosition());
+			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, AttributeManager.getMapping(communeId));
+		}
 		// Retrieving Alternate Collector (relative_1)
 		RadioButton rb = (RadioButton)findViewById(R.id.malnourishedRadio);
 		RadioButton rb2 = (RadioButton)findViewById(R.id.inpreventionRadio);
@@ -583,10 +590,14 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 			displayRadio(contentValues,R.id.femaleRadio,AcdiVocaDbHelper.FINDS_SEX,AcdiVocaDbHelper.FINDS_FEMALE);
 			displayRadio(contentValues,R.id.maleRadio,AcdiVocaDbHelper.FINDS_SEX,AcdiVocaDbHelper.FINDS_MALE);
 
-			// SPINNERS FOR MCHN
+			// SPINNERS FOR DISTRIBUTION POINT/COMMUNE SECTION
 			Spinner spinner = (Spinner)findViewById(R.id.distributionSpinner);
 			setDistroSpinner(spinner, contentValues, AcdiVocaDbHelper.FINDS_DISTRIBUTION_POST);
-
+			
+			spinner = (Spinner) findViewById(R.id.communeSectionSpinner);
+			int id=contentValues.getAsInteger(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION);
+			spinner.setSelection(id);
+			
 			// NUMBNER OF PEOPLE IN HOME
 			displayText(contentValues, R.id.inhomeEdit, AcdiVocaDbHelper.FINDS_HOUSEHOLD_SIZE);
 

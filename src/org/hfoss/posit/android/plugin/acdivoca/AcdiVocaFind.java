@@ -81,6 +81,7 @@ public class AcdiVocaFind {
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_HOUSEHOLD_SIZE) String household_size;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_BENEFICIARY_CATEGORY) String beneficiary_category;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_DISTRIBUTION_POST) String distribution_post;
+	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_COMMUNE_SECTION) String commune_section;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_Q_MOTHER_LEADER) boolean mother_leader;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_Q_VISIT_MOTHER_LEADER) boolean visit_mother_leader;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_Q_PARTICIPATING_AGRI) boolean participating_agri;
@@ -105,7 +106,6 @@ public class AcdiVocaFind {
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_PARTNER_PLAN) boolean partner_plan;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_PARTNER_MARDNR) boolean partner_mardnr;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_PARTNER_OTHER) boolean partner_other;
-	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_COMMUNE_SECTION) String communeSection;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_HAVE_HOUE) boolean have_hoe;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_HAVE_PIOCHE) boolean have_pick;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_HAVE_BROUETTE) boolean have_wheelbarrow;
@@ -353,6 +353,7 @@ public class AcdiVocaFind {
 		sb.append(COMMA).append(AttributeManager.ABBREV_SEX).append(EQ).append(AttributeManager.mapToShort(sex));
 		sb.append(COMMA).append(AttributeManager.ABBREV_CATEGORY).append(EQ).append(AttributeManager.mapToShort(beneficiary_category));
 		sb.append(COMMA).append(AttributeManager.ABBREV_DISTRIBUTION_POST).append(EQ).append(distribution_post);
+		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(AttributeManager.mapToShort(commune_section));
 		sb.append(COMMA).append(AttributeManager.ABBREV_NUMBER_IN_HOME).append(EQ).append(household_size);
 		sb.append(COMMA).append(AttributeManager.ABBREV_IS_MOTHERLEADER).append(EQ).append(AttributeManager.mapToShort(mother_leader));
 		sb.append(COMMA).append(AttributeManager.ABBREV_VISIT_MOTHERLEADER).append(EQ).append(AttributeManager.mapToShort(visit_mother_leader));
@@ -383,7 +384,7 @@ public class AcdiVocaFind {
 		sb.append(COMMA).append(AttributeManager.ABBREV_NUMBER_IN_HOME).append(EQ).append(household_size);
 		sb.append(COMMA).append(AttributeManager.ABBREV_LAND_AMT).append(EQ).append(amount_of_land);	
 //		sb.append(COMMA).append(AttributeManager.ABBREV_CATEGORY).append(EQ).append(beneficiary_category);
-		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(AttributeManager.mapToShort(communeSection));
+		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(AttributeManager.mapToShort(commune_section));
 		sb.append(COMMA).append(AttributeManager.ABBREV_PARTICIPATING_BENE).append(EQ).append(AttributeManager.mapToShort(participating_bene));
 		sb.append(COMMA).append(AttributeManager.ABBREV_RELATIVE_2).append(EQ).append(relative_2);
 		

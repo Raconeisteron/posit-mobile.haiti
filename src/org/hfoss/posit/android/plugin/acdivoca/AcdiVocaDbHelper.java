@@ -354,6 +354,8 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	private static final int AGRI_FIELD_SEX = 8;
 	private static final int AGRI_FIELD_CATEGORY = 9;
 	private static final int AGRI_FIELD_NUM_PERSONS  = 10;
+
+
 	
 	
 

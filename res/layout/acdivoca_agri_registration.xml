@@ -36,7 +36,8 @@
 				android:layout_width="fill_parent" 
 				android:layout_marginLeft="10px" 
 				android:layout_height="wrap_content" />
-			<Spinner android:id="@+id/commune_sectionSpinner" 
+				
+			<Spinner android:id="@+id/communeSectionSpinner" 
 				android:layout_marginLeft="20px" android:layout_marginRight="30px"
 				android:entries="@+array/commune_section_names"
 				android:layout_width="fill_parent" android:layout_height="wrap_content" />					
