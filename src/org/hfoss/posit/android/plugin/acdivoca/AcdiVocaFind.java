@@ -353,7 +353,7 @@ public class AcdiVocaFind {
 		sb.append(COMMA).append(AttributeManager.ABBREV_SEX).append(EQ).append(AttributeManager.mapToShort(sex));
 		sb.append(COMMA).append(AttributeManager.ABBREV_CATEGORY).append(EQ).append(AttributeManager.mapToShort(beneficiary_category));
 		sb.append(COMMA).append(AttributeManager.ABBREV_DISTRIBUTION_POST).append(EQ).append(distribution_post);
-		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(AttributeManager.mapToShort(commune_section));
+		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(commune_section);
 		sb.append(COMMA).append(AttributeManager.ABBREV_NUMBER_IN_HOME).append(EQ).append(household_size);
 		sb.append(COMMA).append(AttributeManager.ABBREV_IS_MOTHERLEADER).append(EQ).append(AttributeManager.mapToShort(mother_leader));
 		sb.append(COMMA).append(AttributeManager.ABBREV_VISIT_MOTHERLEADER).append(EQ).append(AttributeManager.mapToShort(visit_mother_leader));
@@ -384,7 +384,7 @@ public class AcdiVocaFind {
 		sb.append(COMMA).append(AttributeManager.ABBREV_NUMBER_IN_HOME).append(EQ).append(household_size);
 		sb.append(COMMA).append(AttributeManager.ABBREV_LAND_AMT).append(EQ).append(amount_of_land);	
 //		sb.append(COMMA).append(AttributeManager.ABBREV_CATEGORY).append(EQ).append(beneficiary_category);
-		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(AttributeManager.mapToShort(commune_section));
+		sb.append(COMMA).append(AttributeManager.ABBREV_COMMUNE_SECTION).append(EQ).append(commune_section);
 		sb.append(COMMA).append(AttributeManager.ABBREV_PARTICIPATING_BENE).append(EQ).append(AttributeManager.mapToShort(participating_bene));
 		sb.append(COMMA).append(AttributeManager.ABBREV_RELATIVE_2).append(EQ).append(relative_2);
 		
