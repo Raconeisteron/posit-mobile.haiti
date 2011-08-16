@@ -368,7 +368,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 
 			setTextView(values, R.id.sex_label, R.string.sex, AcdiVocaDbHelper.FINDS_SEX);
 			setTextView(values, R.id.num_ppl_label, R.string.Number_of_people_in_home, AcdiVocaDbHelper.FINDS_HOUSEHOLD_SIZE);
-			setTextView(values, R.id.commune_label, R.string.commune, AcdiVocaDbHelper.FINDS_COMMUNE_SECTION);
+			((TextView) findViewById(R.id.commune_label)).setText(getString(R.string.commune_section) +": " + AttributeManager.mapToLong(true, values.getAsString(AttributeManager.LONG_COMMUNE_SECTION)));
 
 			String[] arr = {AcdiVocaDbHelper.FINDS_IS_FARMER,AcdiVocaDbHelper.FINDS_IS_MUSO,AcdiVocaDbHelper.FINDS_IS_RANCHER,
 					AcdiVocaDbHelper.FINDS_IS_STOREOWN,AcdiVocaDbHelper.FINDS_IS_FISHER,

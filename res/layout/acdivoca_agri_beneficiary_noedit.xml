@@ -49,7 +49,7 @@
 						android:layout_width="fill_parent" android:textSize="15dp"
 						android:layout_height="wrap_content" />
 
-					<TextView android:id="@+id/commune_label" android:text="@string/commune"
+					<TextView android:id="@+id/commune_label" android:text="@string/commune_section"
 						android:textColor="#ffffff" android:layout_width="fill_parent"
 						android:textSize="15dp" android:layout_height="wrap_content" />
 
