@@ -364,7 +364,7 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 		spinner = (Spinner)findViewById(R.id.communeSectionSpinner);
 		if (spinner != null) {
 			communeId = Integer.toString(spinner.getSelectedItemPosition());
-			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, AttributeManager.getMapping(communeId));
+			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, communeId);
 		}
 		// Retrieving Alternate Collector (relative_1)
 		RadioButton rb = (RadioButton)findViewById(R.id.malnourishedRadio);
