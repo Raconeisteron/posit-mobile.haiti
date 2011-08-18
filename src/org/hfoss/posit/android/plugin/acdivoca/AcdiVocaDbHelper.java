@@ -278,12 +278,12 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	public static final String FINDS_RELATIVE_2 = AttributeManager.FINDS_RELATIVE_2;  // "relative_2";
 	public static final String FINDS_HAVE_COFFEE = AttributeManager.FINDS_HAVE_COFFEE; //  "have_vege";
 
-	public static final String FINDS_PARTNER_FAO = AttributeManager.FINDS_PARTNER_FAO;// "partner_fao";
-	public static final String FINDS_PARTNER_SAVE = AttributeManager.FINDS_PARTNER_SAVE;// "partner_save";
-	public static final String FINDS_PARTNER_CROSE = AttributeManager.FINDS_PARTNER_CROSE;// "partner_crose";
-	public static final String FINDS_PARTNER_PLAN = AttributeManager.FINDS_PARTNER_PLAN;// "partner_plan";
-	public static final String FINDS_PARTNER_MARDNR = AttributeManager.FINDS_PARTNER_MARDNR;// "partner_mardnr";
-	public static final String FINDS_PARTNER_OTHER = AttributeManager.FINDS_PARTNER_OTHER;// "partner_other";
+	public static final String FINDS_IS_FAO = AttributeManager.FINDS_IS_FAO;// "partner_fao";
+	public static final String FINDS_IS_SAVE = AttributeManager.FINDS_IS_SAVE;// "partner_save";
+	public static final String FINDS_IS_CROSE = AttributeManager.FINDS_IS_CROSE;// "partner_crose";
+	public static final String FINDS_IS_PLAN = AttributeManager.FINDS_IS_PLAN;// "partner_plan";
+	public static final String FINDS_IS_MARDNR = AttributeManager.FINDS_IS_MARDNR;// "partner_mardnr";
+	public static final String FINDS_IS_OTHER_ORG = AttributeManager.FINDS_IS_OTHER_ORG;// "partner_other";
 	
 	public static final String FINDS_MALNOURISHED = AttributeManager.FINDS_MALNOURISHED;  // "MALNOURISHED";
 	public static final String FINDS_PREVENTION = AttributeManager.FINDS_PREVENTION;     // "PREVENTION";

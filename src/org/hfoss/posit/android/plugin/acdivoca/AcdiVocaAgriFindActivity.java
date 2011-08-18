@@ -327,8 +327,8 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 				cat += keys[i].subSequence(3, keys[i].length())+", ";
 			if(val!=null && val && keys[i].substring(0, 4).equals("have"))
 				cat += keys[i].subSequence(5, keys[i].length())+", ";
-			if(val!=null && val && keys[i].substring(0, 7).equals("partner"))
-				cat += keys[i].subSequence(8, keys[i].length())+", ";
+//			if(val!=null && val && keys[i].substring(0, 7).equals("partner"))
+//				cat += keys[i].subSequence(8, keys[i].length())+", ";
 		}
 		if (cat.length()!=0)
 			tv.setText(getString(label)+": "+cat.substring(0,cat.length()-2));
@@ -389,9 +389,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 					AcdiVocaDbHelper.FINDS_HAVE_BARREAMINES};
 			setCheckBoxView(values,R.id.tool_label, R.string.tools,toolArr);
 
-			String[] partArr = {AcdiVocaDbHelper.FINDS_PARTNER_FAO, AcdiVocaDbHelper.FINDS_PARTNER_SAVE,
-					AcdiVocaDbHelper.FINDS_PARTNER_CROSE,AcdiVocaDbHelper.FINDS_PARTNER_PLAN,
-					AcdiVocaDbHelper.FINDS_PARTNER_MARDNR,AcdiVocaDbHelper.FINDS_PARTNER_OTHER};
+			String[] partArr = {AcdiVocaDbHelper.FINDS_IS_FAO, AcdiVocaDbHelper.FINDS_IS_SAVE,
+					AcdiVocaDbHelper.FINDS_IS_CROSE,AcdiVocaDbHelper.FINDS_IS_PLAN,
+					AcdiVocaDbHelper.FINDS_IS_MARDNR,AcdiVocaDbHelper.FINDS_IS_OTHER_ORG};
 			setCheckBoxView(values,R.id.partner_label, R.string.partners,partArr);
 
 			setTextView(values, R.id.participating_mchn, R.string.participating_mchn,AcdiVocaDbHelper.FINDS_Q_PARTICIPATING_BENE);
@@ -540,9 +540,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 
 		int[] partnerIds = {R.id.faoCheckBox,R.id.saveCheckBox, R.id.croseCheckBox,
 				R.id.planCheckBox,R.id.mardnrCheckBox,R.id.otherPartnerCheckBox};
-		String[] partnerArr = {AcdiVocaDbHelper.FINDS_PARTNER_FAO,AcdiVocaDbHelper.FINDS_PARTNER_SAVE,
-				AcdiVocaDbHelper.FINDS_PARTNER_CROSE,AcdiVocaDbHelper.FINDS_PARTNER_PLAN,
-				AcdiVocaDbHelper.FINDS_PARTNER_MARDNR,AcdiVocaDbHelper.FINDS_PARTNER_OTHER};
+		String[] partnerArr = {AcdiVocaDbHelper.FINDS_IS_FAO,AcdiVocaDbHelper.FINDS_IS_SAVE,
+				AcdiVocaDbHelper.FINDS_IS_CROSE,AcdiVocaDbHelper.FINDS_IS_PLAN,
+				AcdiVocaDbHelper.FINDS_IS_MARDNR,AcdiVocaDbHelper.FINDS_IS_OTHER_ORG};
 		putCheckBoxResult(result, partnerIds, partnerArr);
 
 		// ADD TOOLS -- also parallel arrays (see above)
@@ -701,9 +701,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 
 			int[] partnerIds = {R.id.faoCheckBox,R.id.saveCheckBox, R.id.croseCheckBox,
 					R.id.planCheckBox,R.id.mardnrCheckBox,R.id.otherCheckBox};
-			String[] partnerArr = {AcdiVocaDbHelper.FINDS_PARTNER_FAO,AcdiVocaDbHelper.FINDS_PARTNER_SAVE,
-					AcdiVocaDbHelper.FINDS_PARTNER_CROSE,AcdiVocaDbHelper.FINDS_PARTNER_PLAN,
-					AcdiVocaDbHelper.FINDS_PARTNER_MARDNR,AcdiVocaDbHelper.FINDS_PARTNER_OTHER};
+			String[] partnerArr = {AcdiVocaDbHelper.FINDS_IS_FAO,AcdiVocaDbHelper.FINDS_IS_SAVE,
+					AcdiVocaDbHelper.FINDS_IS_CROSE,AcdiVocaDbHelper.FINDS_IS_PLAN,
+					AcdiVocaDbHelper.FINDS_IS_MARDNR,AcdiVocaDbHelper.FINDS_IS_OTHER_ORG};
 			displayCheckBox(contentValues, partnerIds, partnerArr);
 
 			// ADD TOOLS -- also parallel arrays (see above)
@@ -715,7 +715,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 					AcdiVocaDbHelper.FINDS_HAVE_SERPETTE,AcdiVocaDbHelper.FINDS_HAVE_PELLE,
 					AcdiVocaDbHelper.FINDS_HAVE_BARREAMINES};
 			displayCheckBox(contentValues, toolIds, toolArr);
-			Log.i(TAG, "display Beneficiary Catagory=" + contentValues.getAsString(AcdiVocaDbHelper.FINDS_BENEFICIARY_CATEGORY));
+			Log.i(TAG, "display Beneficiary Category=" + contentValues.getAsString(AcdiVocaDbHelper.FINDS_BENEFICIARY_CATEGORY));
 
 		}
 	}

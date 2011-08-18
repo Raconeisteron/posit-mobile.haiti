@@ -319,19 +319,19 @@ public class AttributeManager {
 	public static final String FORM_MARDNR = "MARDNR";
 	public static final String FORM_OTHER_ORG = "OtherOrg";
 
-	public static final String FINDS_PARTNER_FAO = "partner_fao";
-	public static final String FINDS_PARTNER_SAVE = "partner_save";
-	public static final String FINDS_PARTNER_CROSE = "partner_crose";
-	public static final String FINDS_PARTNER_PLAN = "partner_plan";
-	public static final String FINDS_PARTNER_MARDNR = "partner_mardnr";
-	public static final String FINDS_PARTNER_OTHER = "partner_other";
+	public static final String FINDS_IS_FAO = "is_fao";
+	public static final String FINDS_IS_SAVE = "is_save";
+	public static final String FINDS_IS_CROSE = "is_crose";
+	public static final String FINDS_IS_PLAN = "is_plan";
+	public static final String FINDS_IS_MARDNR = "is_mardnr";
+	public static final String FINDS_IS_OTHER_ORG = "is_other_org";
 
-	public static final String ABBREV_PARTNER_FAO = "fo";
-	public static final String ABBREV_PARTNER_SAVE = "sv";
-	public static final String ABBREV_PARTNER_CROSE = "cr";
-	public static final String ABBREV_PARTNER_PLAN = "pl";
-	public static final String ABBREV_PARTNER_MARDNR = "md";
-	public static final String ABBREV_PARTNER_OTHER = "pt";
+	public static final String ABBREV_IS_FAO = "fo";
+	public static final String ABBREV_IS_SAVE = "sv";
+	public static final String ABBREV_IS_CROSE = "cr";
+	public static final String ABBREV_IS_PLAN = "pl";
+	public static final String ABBREV_IS_MARDNR = "md";
+	public static final String ABBREV_IS_OTHER_ORG = "pt";
 
 	// For Update Messages
 	public static final String ABBREV_Q_CHANGE = "cq"; // Added to incorporated
@@ -358,8 +358,8 @@ public class AttributeManager {
 	public static final String[] isAFields = { ABBREV_IS_FARMER,
 			ABBREV_IS_FISHER, ABBREV_IS_MUSO, ABBREV_IS_RANCHER,
 			ABBREV_IS_STOREOWNER, ABBREV_IS_OTHER, ABBREV_IS_ARTISAN,
-			ABBREV_PARTNER_FAO, ABBREV_PARTNER_SAVE, ABBREV_PARTNER_CROSE,
-			ABBREV_PARTNER_PLAN, ABBREV_PARTNER_MARDNR, ABBREV_PARTNER_OTHER,
+			ABBREV_IS_FAO, ABBREV_IS_SAVE, ABBREV_IS_CROSE,
+			ABBREV_IS_PLAN, ABBREV_IS_MARDNR, ABBREV_IS_OTHER_ORG,
 			ABBREV_IS_AGRI, ABBREV_RELATIVE_AGRI, ABBREV_PARTICIPATING_BENE,
 			ABBREV_RELATIVE_BENE };
 	public static final String ABBREV_ISA = "is";
@@ -917,12 +917,12 @@ public class AttributeManager {
 		mappings.put(FINDS_HAVE_VEGE, ABBREV_HAVE_VEG);
 		mappings.put(FINDS_HAVE_COFFEE, ABBREV_HAVE_COFFEE);
 
-		mappings.put(FINDS_PARTNER_FAO, ABBREV_PARTNER_FAO);
-		mappings.put(FINDS_PARTNER_SAVE, ABBREV_PARTNER_SAVE);
-		mappings.put(FINDS_PARTNER_CROSE, ABBREV_PARTNER_CROSE);
-		mappings.put(FINDS_PARTNER_PLAN, ABBREV_PARTNER_PLAN);
-		mappings.put(FINDS_PARTNER_MARDNR, ABBREV_PARTNER_MARDNR);
-		mappings.put(FINDS_PARTNER_OTHER, ABBREV_PARTNER_OTHER);
+		mappings.put(FINDS_IS_FAO, ABBREV_IS_FAO);
+		mappings.put(FINDS_IS_SAVE, ABBREV_IS_SAVE);
+		mappings.put(FINDS_IS_CROSE, ABBREV_IS_CROSE);
+		mappings.put(FINDS_IS_PLAN, ABBREV_IS_PLAN);
+		mappings.put(FINDS_IS_MARDNR, ABBREV_IS_MARDNR);
+		mappings.put(FINDS_IS_OTHER_ORG, ABBREV_IS_OTHER_ORG);
 
 		// These are for beneficiary update messages
 		mappings.put(FINDS_Q_CHANGE, ABBREV_Q_CHANGE);
