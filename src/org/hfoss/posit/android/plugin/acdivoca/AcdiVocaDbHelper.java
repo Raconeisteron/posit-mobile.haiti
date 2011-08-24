@@ -871,17 +871,64 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	 * @param lastname 
 	 * @return
 	 */
-	public AcdiVocaFind fetchBeneficiaryByLastname(String lastname) {		
-		Log.i(TAG, "Fetching beneficiary, lastname = " + lastname);
+	public List<AcdiVocaFind> fetchBeneficiariesByLastName(String lastName) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + lastName);
 		Dao<AcdiVocaFind, Integer> avFindDao = null;
 		List<AcdiVocaFind> list = null;
+		try {
+			avFindDao = getAcdiVocaFindDao();
+			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
+				avFindDao.queryBuilder();
+			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
+			where.like(FINDS_LASTNAME, lastName);
+			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
+			list = avFindDao.query(preparedQuery);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL Exception " + e.getMessage());
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * Retrieves a Find object by its last name.
+	 * @param lastname 
+	 * @return
+	 */
+	public List<AcdiVocaFind> fetchBeneficiariesByFirstName(String firstName) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + firstName);
+		Dao<AcdiVocaFind, Integer> avFindDao = null;
+		List<AcdiVocaFind> list = null;
+		try {
+			avFindDao = getAcdiVocaFindDao();
+			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
+				avFindDao.queryBuilder();
+			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
+			where.like(FINDS_FIRSTNAME, firstName);
+			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
+			list = avFindDao.query(preparedQuery);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL Exception " + e.getMessage());
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * Retrieves a Find object by its last name.
+	 * @param lastname 
+	 * @return
+	 */
+	public AcdiVocaFind fetchBeneficiaryByLastName(String lastName) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + lastName);
+		Dao<AcdiVocaFind, Integer> avFindDao = null;
 		AcdiVocaFind avFind = null;
 		try {
 			avFindDao = getAcdiVocaFindDao();
 			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
 				avFindDao.queryBuilder();
 			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
-			where.like(FINDS_LASTNAME, lastname);
+			where.like(FINDS_LASTNAME, lastName);
 			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
 			avFind = avFindDao.queryForFirst(preparedQuery);
 		} catch (SQLException e) {
@@ -892,9 +939,9 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	}
 	
 //	7/25/11
-	public AcdiVocaFind fetchBeneficiaryByLastAndFirstname(String lastname, String firstname) {		
-		Log.i(TAG, "Fetching beneficiary, lastname = " + lastname);
-		Log.i(TAG, "Fetching beneficiary, firstname = " + firstname);
+	public AcdiVocaFind fetchBeneficiaryByLastAndFirstName(String lastName, String firstName) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + lastName);
+		Log.i(TAG, "Fetching beneficiary, firstname = " + firstName);
 		Dao<AcdiVocaFind, Integer> avFindDao = null;
 		List<AcdiVocaFind> list = null;
 		AcdiVocaFind avFind = null;
@@ -903,9 +950,9 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
 				avFindDao.queryBuilder();
 			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
-			where.like(FINDS_LASTNAME, lastname);
+			where.like(FINDS_LASTNAME, lastName);
 			where.and();
-			where.like(FINDS_FIRSTNAME, firstname);
+			where.like(FINDS_FIRSTNAME, firstName);
 			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
 			avFind = avFindDao.queryForFirst(preparedQuery);
 		} catch (SQLException e) {
@@ -913,6 +960,29 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			e.printStackTrace();
 		}
 		return avFind;
+	}
+	
+//	7/25/11
+	public List<AcdiVocaFind> fetchBeneficiariesByLastAndFirstName(String lastName, String firstName) {		
+		Log.i(TAG, "Fetching beneficiary, lastname = " + lastName);
+		Log.i(TAG, "Fetching beneficiary, firstname = " + firstName);
+		Dao<AcdiVocaFind, Integer> avFindDao = null;
+		List<AcdiVocaFind> list = null;
+		try {
+			avFindDao = getAcdiVocaFindDao();
+			QueryBuilder<AcdiVocaFind, Integer> queryBuilder =
+				avFindDao.queryBuilder();
+			Where<AcdiVocaFind, Integer> where = queryBuilder.where();
+			where.like(FINDS_LASTNAME, lastName);
+			where.and();
+			where.like(FINDS_FIRSTNAME, firstName);
+			PreparedQuery<AcdiVocaFind> preparedQuery = queryBuilder.prepare();
+			list = avFindDao.query(preparedQuery);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL Exception " + e.getMessage());
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	
