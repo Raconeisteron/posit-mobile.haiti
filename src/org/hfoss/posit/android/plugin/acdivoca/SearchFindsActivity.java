@@ -44,7 +44,7 @@ import android.widget.RadioButton;
  * 
  */
 public class SearchFindsActivity extends Activity implements OnClickListener, TextWatcher {
-	public static final String TAG = "AcdiVocaLookupActivity";
+	public static final String TAG = "SearchFindsActivity";
 	public static final int ACTION_SEARCH = 1;
 	
 	// NOTE: Activity_RESULT_CANCELED = 1
@@ -81,6 +81,7 @@ public class SearchFindsActivity extends Activity implements OnClickListener, Te
 		((Button)findViewById(R.id.search_finds_ok_button)).setOnClickListener(this);
 		((Button)findViewById(R.id.search_finds_cancel_button)).setOnClickListener(this);
 		((EditText)findViewById(R.id.searchString)).addTextChangedListener(this);
+		((EditText)findViewById(R.id.searchString2)).addTextChangedListener(this);
 	}
 
 	/**
@@ -96,12 +97,12 @@ public class SearchFindsActivity extends Activity implements OnClickListener, Te
 			tv = (EditText)findViewById(R.id.searchString2);
 			String searchStr2 = tv.getText().toString();
 			if(!searchStr2.equals("")){								// 7/25/11
-				returnIntent.putExtra(LAST_NAME, searchStr + "%");
-				returnIntent.putExtra(FIRST_NAME, searchStr2 + "%");
+				returnIntent.putExtra(LAST_NAME, searchStr);
+				returnIntent.putExtra(FIRST_NAME, searchStr2);
 				setResult(Activity.RESULT_OK,returnIntent);
 			}
 			else{
-				returnIntent.putExtra(LAST_NAME, searchStr + "%");
+				returnIntent.putExtra(LAST_NAME, searchStr);
 				setResult(Activity.RESULT_OK,returnIntent);
 			}
 		} else {
