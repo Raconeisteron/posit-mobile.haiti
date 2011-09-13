@@ -61,7 +61,7 @@
 				
 				<DatePicker android:id="@+id/datepicker" 
 					android:layout_width="wrap_content" 
-					android:endYear="2020"
+					android:endYear="10000"
 					android:startYear="1900"
 					android:layout_marginLeft="20px" android:layout_marginRight="30px"
 					android:layout_height="wrap_content">
