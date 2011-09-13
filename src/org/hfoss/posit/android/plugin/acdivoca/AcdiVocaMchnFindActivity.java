@@ -65,7 +65,7 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 	private boolean isProbablyEdited = false;   // Set to true if user edits a datum
 	private String mAction = "";
 	private int mFindId = 0;
-	private AcdiVocaDbHelper mDbHelper;
+	//private AcdiVocaDbHelper mDbHelper;
 	private Button mSaveButton;
 	ContentValues mSavedStateValues = null;
 	int mCurrentViewId;  // Used to distinguish edit from no-edit mode. 
@@ -270,8 +270,8 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 		Log.i(TAG, "doEditAction");
 		mFindId = (int) getIntent().getLongExtra(AcdiVocaDbHelper.FINDS_ID, 0); 
 		Log.i(TAG,"Find id = " + mFindId);
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-		AcdiVocaFind avFind = db.fetchFindById(mFindId, null);
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+		AcdiVocaFind avFind = this.getHelper().fetchFindById(mFindId, null);
 		ContentValues values = avFind.toContentValues();
 //		ContentValues values = AcdiVocaFindDataManager.getInstance().fetchFindDataById(this, mFindId, null);
 		displayContentUneditable(values);
@@ -703,8 +703,8 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 		int id = v.getId();
 		if (id == R.id.editFind){
 	    	mFindId = (int) getIntent().getLongExtra(AcdiVocaDbHelper.FINDS_ID, 0); 
-	    	AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-	    	AcdiVocaFind avFind = db.fetchFindById(mFindId, null);
+	    	//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+	    	AcdiVocaFind avFind = this.getHelper().fetchFindById(mFindId, null);
 	    	ContentValues values = avFind.toContentValues();
 //			ContentValues values = AcdiVocaFindDataManager.getInstance().fetchFindDataById(this, mFindId, null);
 			displayContentInView(values);	
@@ -747,19 +747,19 @@ public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChan
 			ContentValues data = this.retrieveContentFromView(); 
 			AcdiVocaFind avFind = null; 
 						
-			AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+			//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
 			if (mAction.equals(Intent.ACTION_EDIT)) { // Editing an existing beneficiary
-				avFind = db.fetchFindById(mFindId, null);
+				avFind = this.getHelper().fetchFindById(mFindId, null);
 				avFind.update(data);
 				Log.i(TAG,"View Beneficiary: " + avFind.toString());
-				result = db.updateBeneficiary(avFind);
+				result = this.getHelper().updateBeneficiary(avFind);
 				Log.i(TAG, "Update to Db is " + result);
 			} else { // New beneficiary
 				data.put(AcdiVocaDbHelper.FINDS_STATUS, AcdiVocaDbHelper.FINDS_STATUS_NEW);
 				data.put(AcdiVocaDbHelper.FINDS_DOSSIER, AttributeManager.FINDS_BENE_DOSSIER);
 				avFind = new AcdiVocaFind(data);
 				Log.i(TAG,"View Beneficiary: " + avFind.toString());
-				result = db.insertBeneficiary(avFind);
+				result = this.getHelper().insertBeneficiary(avFind);
 				Log.i(TAG, "Save to Db is " + result);
 			}
 			if (result){

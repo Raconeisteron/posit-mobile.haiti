@@ -507,19 +507,19 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 				return true;
 			}
 
-			AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-			mAcdiVocaMsgs = db.createMessagesForBeneficiaries(
+			//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+			mAcdiVocaMsgs = this.getHelper().createMessagesForBeneficiaries(
 					SearchFilterActivity.RESULT_SELECT_NEW, null, null);
 			Log.i(TAG, "Created messages, n = " + mAcdiVocaMsgs.size());
 			if (AppControlManager.isRegularUser()
 					|| AppControlManager.isAgriUser()) {
-				db = new AcdiVocaDbHelper(this);
-				mAcdiVocaMsgs.addAll(db.fetchSmsMessages(
+				//db = new AcdiVocaDbHelper(this);
+				mAcdiVocaMsgs.addAll(this.getHelper().fetchSmsMessages(
 						SearchFilterActivity.RESULT_SELECT_PENDING,
 						AcdiVocaDbHelper.FINDS_STATUS_NEW, null));
 			} else {
-				db = new AcdiVocaDbHelper(this);
-				mAcdiVocaMsgs.addAll(db.fetchSmsMessages(
+				//db = new AcdiVocaDbHelper(this);
+				mAcdiVocaMsgs.addAll(this.getHelper().fetchSmsMessages(
 						SearchFilterActivity.RESULT_SELECT_PENDING,
 						AcdiVocaDbHelper.FINDS_STATUS_DONTCARE, null));
 			}
@@ -645,16 +645,16 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 						.getStringExtra(SearchFindsActivity.LAST_NAME);
 				String firstNameSearch = data
 						.getStringExtra(SearchFindsActivity.FIRST_NAME);
-				AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+				//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
 				List<AcdiVocaFind> list = null;
 				if (firstNameSearch == null)
-					list = db
+					list = this.getHelper()
 							.fetchBeneficiariesByLastName(lastNameSearch + "%");
 				else if (lastNameSearch == null)
-					list = db.fetchBeneficiariesByFirstName(firstNameSearch
+					list = this.getHelper().fetchBeneficiariesByFirstName(firstNameSearch
 							+ "%");
 				else if (firstNameSearch != null && lastNameSearch != null)
-					list = db.fetchBeneficiariesByLastAndFirstName(
+					list = getHelper().fetchBeneficiariesByLastAndFirstName(
 							lastNameSearch + "%", firstNameSearch + "%");
 				if (list.size() > 0)
 					fillSearchResults(list);
@@ -692,26 +692,26 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 				+ " for distribution center " + distributionCtr);
 		ArrayList<AcdiVocaMessage> acdiVocaMsgs = null;
 
-		AcdiVocaDbHelper db = null;
+		//AcdiVocaDbHelper db = null;
 		if (filter == SearchFilterActivity.RESULT_SELECT_NEW
 				|| filter == SearchFilterActivity.RESULT_SELECT_UPDATE) { // Second
 																			// arg
 																			// is
 																			// order
 																			// by
-			db = new AcdiVocaDbHelper(this);
-			acdiVocaMsgs = db.createMessagesForBeneficiaries(filter, null,
+			//db = new AcdiVocaDbHelper(this);
+			acdiVocaMsgs = this.getHelper().createMessagesForBeneficiaries(filter, null,
 					distributionCtr);
 		} else if (filter == SearchFilterActivity.RESULT_SELECT_ALL
 				|| filter == SearchFilterActivity.RESULT_SELECT_PENDING
 				|| filter == SearchFilterActivity.RESULT_SELECT_SENT
 				|| filter == SearchFilterActivity.RESULT_SELECT_ACKNOWLEDGED) {
-			db = new AcdiVocaDbHelper(this);
-			acdiVocaMsgs = db.fetchSmsMessages(filter,
+			//db = new AcdiVocaDbHelper(this);
+			acdiVocaMsgs = this.getHelper().fetchSmsMessages(filter,
 					AcdiVocaDbHelper.FINDS_STATUS_DONTCARE, null);
 		} else if (filter == SearchFilterActivity.RESULT_BULK_UPDATE) {
-			db = new AcdiVocaDbHelper(this);
-			acdiVocaMsgs = db.createBulkUpdateMessages(distributionCtr);
+			//db = new AcdiVocaDbHelper(this);
+			acdiVocaMsgs = this.getHelper().createBulkUpdateMessages(distributionCtr);
 		} else {
 			return;
 		}
