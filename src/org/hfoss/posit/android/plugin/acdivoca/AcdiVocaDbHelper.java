@@ -435,6 +435,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			avFind.dossier = fields[FIELD_DOSSIER];
 			avFind.lastname = fields[FIELD_LASTNAME];
 			avFind.firstname =  fields[FIELD_FIRSTNAME];
+			avFind.commune_section = AttributeManager.getMapping(fields[FIELD_SECTION]);
 			avFind.address = fields[FIELD_LOCALITY];
 			String adjustedDate = translateDateForDatePicker(fields[FIELD_BIRTH_DATE]);
 			avFind.dob = adjustedDate;
