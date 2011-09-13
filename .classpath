@@ -4,5 +4,7 @@
 	<classpathentry excluding="org/hfoss/posit/android/CoverageTrackerActivity.java|org/hfoss/posit/android/TrackerService.java|org/hfoss/posit/android/RegisterPhoneActivity.java|org/hfoss/posit/android/RegisterUserActivity.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/commons-validator-1.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/ormlite-android-4.23.jar"/>
+	<classpathentry kind="lib" path="libs/ormlite-core-4.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
