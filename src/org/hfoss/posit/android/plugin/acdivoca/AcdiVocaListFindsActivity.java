@@ -215,8 +215,8 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	 * an error.
 	 */
 	private void fillData(String order_by) {
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+		
 		int beneficiary_type = -1;
 		UserType userType = AppControlManager.getUserType();
 		if (userType.equals(UserType.ADMIN) || userType.equals(UserType.USER))
@@ -229,17 +229,26 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		else
 			Log.e(TAG, "Error: Unexpected user type in List Finds");
 
-		List<AcdiVocaFind> list = db.fetchAllBeneficiaries(beneficiary_type);
+		List<AcdiVocaFind> list = this.getHelper().fetchAllBeneficiaries(beneficiary_type);
+//		ContentValues values = new ContentValues();
+//		values.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, "Trishanna");
+//		
+//		AcdiVocaFind find = new AcdiVocaFind(values);
+//		for (int i=0;i<=900;i++)
+//			list.add(find);
+		
 		if (list.size() == 0) {
 			setContentView(R.layout.acdivoca_list_beneficiaries);
 			return;
 		}
 
-		thereAreUnsentFinds = db.queryUnsentBeneficiaries();
+		//thereAreUnsentFinds = db.queryUnsentBeneficiaries();
+		thereAreUnsentFinds = true;
 
 		BeneficiaryListAdapter<AcdiVocaFind> adapter = new BeneficiaryListAdapter(
 				this, R.layout.acdivoca_list_row, list);
 		setListAdapter(adapter);
+		//db.close();
 		Log.i(TAG, "There are unsent finds = " + thereAreUnsentFinds);
 	}
 
@@ -267,8 +276,8 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		// lookup the id and check the beneficiary type
 		// based on that prepare the intent
 		// Intent intent = new Intent(this, AcdiVocaFindActivity.class);
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-		AcdiVocaFind avFind = db.fetchFindById(findId, null);
+		
+		AcdiVocaFind avFind = this.getHelper().fetchFindById(findId, null);
 		if (avFind == null) {
 			Log.e(TAG, "Unable to lookup find with id = " + findId);
 			return;

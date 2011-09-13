@@ -37,6 +37,7 @@ import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUser.UserType;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.PreparedQuery;
@@ -67,9 +68,9 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	public static final int DATABASE_VERSION = 2;
 
 	// the DAO objects we use to access the Db tables
-	private Dao<AcdiVocaUser, Integer> avUser = null;
-	private Dao<AcdiVocaFind, Integer> acdiVocaFind = null;
-	private Dao<AcdiVocaMessage, Integer> acdiVocaMessage = null;
+	private Dao<AcdiVocaUser, Integer> avUserDao = null;
+	private Dao<AcdiVocaFind, Integer> acdiVocaFindDao = null;
+	private Dao<AcdiVocaMessage, Integer> acdiVocaMessageDao = null;
 
 	private static Context mContext;   // The Activity
 	private SQLiteDatabase mDb;  // Pointer to the DB	
@@ -134,10 +135,10 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	 * It will create it or just give the cached value.
 	 */
 	public Dao<AcdiVocaUser, Integer> getAvUserDao() throws SQLException {
-		if (avUser == null) {
-			avUser = getDao(AcdiVocaUser.class);
+		if (avUserDao == null) {
+			avUserDao = getDao(AcdiVocaUser.class);
 		}
-		return avUser;
+		return avUserDao;
 	}
 	
 //	public int authenicateUser(String username, String password, UserType userType) {
@@ -161,10 +162,11 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	 * It will create it or just give the cached value.
 	 */
 	public Dao<AcdiVocaFind, Integer> getAcdiVocaFindDao() throws SQLException {
-		if (acdiVocaFind == null) {
-			acdiVocaFind = getDao(AcdiVocaFind.class);
+		if (acdiVocaFindDao == null) {
+			acdiVocaFindDao = getDao(AcdiVocaFind.class);
+			//acdiVocaFindDao = DaoManager.createDao(getConnectionSource(), AcdiVocaFind.class);
 		}
-		return acdiVocaFind;
+		return acdiVocaFindDao;
 	}
 	
 	/**
@@ -172,10 +174,10 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	 * It will create it or just give the cached value.
 	 */
 	public Dao<AcdiVocaMessage, Integer> getAcdiVocaMessageDao() throws SQLException {
-		if (acdiVocaMessage == null) {
-			acdiVocaMessage = getDao(AcdiVocaMessage.class);
+		if (acdiVocaMessageDao == null) {
+			acdiVocaMessageDao = getDao(AcdiVocaMessage.class);
 		}
-		return acdiVocaMessage;
+		return acdiVocaMessageDao;
 	}
 	
 
@@ -1462,6 +1464,18 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 		}
 
 		return avFind;
+	}
+	
+	/**
+	 * Close the database connections and clear any cached DAOs.
+	 */
+	@Override
+	public void close() {
+		super.close();
+		acdiVocaFindDao = null;
+		avUserDao = null;
+		acdiVocaMessageDao = null;
+		
 	}
 
 }
