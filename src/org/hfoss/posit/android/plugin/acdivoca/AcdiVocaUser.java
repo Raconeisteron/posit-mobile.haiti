@@ -36,6 +36,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.support.ConnectionSource;
@@ -252,10 +253,10 @@ public class AcdiVocaUser {
 	 * @param rqdUserType is an enum that defines whether this is a regular or super user.
 	 * @return Returns the user's type or -1 if authentication fails.
 	 */
-	public static int authenicateUser(Context context, String username, String password, UserType rqdUserType) {
+	public static int authenicateUser(OrmLiteBaseActivity<AcdiVocaDbHelper> context, String username, String password, UserType rqdUserType) {
 		Log.i(TAG, "Authenticating user = " + username + " Access type = " + rqdUserType);		
 		
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
 		Dao<AcdiVocaUser, Integer> avUserDao = null;
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("name", username);
@@ -264,7 +265,7 @@ public class AcdiVocaUser {
 		int result = 0;
 		int userType = 0;
 		try {
-			avUserDao = db.getAvUserDao();
+			avUserDao = context.getHelper().getAvUserDao();
 			list = avUserDao.queryForFieldValues(map);
 		} catch (SQLException e) {
 			Log.e(TAG, "SQL Exception " + e.getMessage());

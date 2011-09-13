@@ -32,6 +32,8 @@ import org.hfoss.posit.android.api.FindPluginManager;
 import org.hfoss.posit.android.api.SettingsActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUser.UserType;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -52,7 +54,7 @@ import android.widget.EditText;
  * Handles Login for ACDI/VOCA application.
  * 
  */
-public class LoginActivity extends Activity implements OnClickListener {
+public class LoginActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements OnClickListener {
 	public static final String TAG = "LoginActivity";
 	public static final int ACTION_LOGIN = 0;
 	public static final int INVALID_LOGIN = 1;

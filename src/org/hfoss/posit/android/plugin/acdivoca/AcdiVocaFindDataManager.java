@@ -53,7 +53,7 @@ public class AcdiVocaFindDataManager extends FindDataManager{
 	public boolean updateFind(Context context, int id, ContentValues data) {
 		if (data == null)
 			return false;
-		AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
+		//AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
 //		return dbHelper.updateFind(id, data);
 		return false;
 	}
@@ -64,7 +64,7 @@ public class AcdiVocaFindDataManager extends FindDataManager{
 	 * @param data
 	 */
 	public boolean addNewFind(Context context, ContentValues data) {
-		AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
+		//AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
 		return false;
 //		return dbHelper.addNewBeneficiary(data) != -1;
 	}	
@@ -78,7 +78,7 @@ public class AcdiVocaFindDataManager extends FindDataManager{
 	 * @return
 	 */
 	public Cursor fetchFindsByProjectId(Context context, int project_id, String order_by) {
-		AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
+		//AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
 //		return dbHelper.fetchFindsByProjectId(project_id, order_by);
 		return null;
 	}
@@ -92,7 +92,7 @@ public class AcdiVocaFindDataManager extends FindDataManager{
 	 * @return
 	 */
 	public Cursor fetchFindsByStatus(Context context, int status) {
-		AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
+		//AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
 //		return dbHelper.fetchFindsByStatus(status);
 		return null;
 	}
@@ -107,7 +107,7 @@ public class AcdiVocaFindDataManager extends FindDataManager{
 	 * @return
 	 */
 	public ContentValues fetchFindDataById(Context context, int id, String[] columns) {
-		AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
+		//AcdiVocaDbHelper dbHelper = new AcdiVocaDbHelper(context); 
 		return null;
 //		return dbHelper.fetchFindDataById(id, columns);
 	}

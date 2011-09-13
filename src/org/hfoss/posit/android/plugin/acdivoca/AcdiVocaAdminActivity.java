@@ -38,6 +38,8 @@ import org.hfoss.posit.android.api.FindActivityProvider;
 import org.hfoss.posit.android.api.FindPluginManager;
 import org.hfoss.posit.android.api.SettingsActivity;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -77,7 +79,7 @@ interface SmsCallBack {
 	public void smsMgrCallBack(String s);
 }
 
-public class AcdiVocaAdminActivity extends Activity implements SmsCallBack {
+public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper> {
 
 	public static String TAG = "AdminActivity";
 	public static final int MAX_BENEFICIARIES = 20000;  // Max readable
@@ -320,12 +322,12 @@ public class AcdiVocaAdminActivity extends Activity implements SmsCallBack {
 		String distributionCtr = sharedPrefs.getString(distrKey, "");
 		Log.i(TAG, distrKey +"="+ distributionCtr);
 		
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-		int nAbsentees = db.queryNDistributionAbsentees(distributionCtr);
-		db = new AcdiVocaDbHelper(this);
-		int nWomen = db.queryNDistributionWomenProcessed(distributionCtr);
-		db = new AcdiVocaDbHelper(this);
-		int nChildren = db.queryNDistributionChildrenProcessed(distributionCtr);
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+		int nAbsentees = this.getHelper().queryNDistributionAbsentees(distributionCtr);
+		//db = new AcdiVocaDbHelper(this);
+		int nWomen = this.getHelper().queryNDistributionWomenProcessed(distributionCtr);
+		//db = new AcdiVocaDbHelper(this);
+		int nChildren = this.getHelper().queryNDistributionChildrenProcessed(distributionCtr);
 
 		mSummaryItems = new String[3];
 //		mDistributionSummaryReport = "Distribution Summary";
@@ -356,13 +358,13 @@ public class AcdiVocaAdminActivity extends Activity implements SmsCallBack {
 		Log.i(TAG, distrKey +"="+ distributionCtr);
 
 		// First create update reports -- i.e., those beneficiaries who were present and had changes.
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
 		mAcdiVocaMsgs = 
-			db.createMessagesForBeneficiaries(SearchFilterActivity.RESULT_SELECT_UPDATE, null, distributionCtr);
+			this.getHelper().createMessagesForBeneficiaries(SearchFilterActivity.RESULT_SELECT_UPDATE, null, distributionCtr);
 
 		// Now create bulk absences messages
-		db = new AcdiVocaDbHelper(this);
-		mAcdiVocaMsgs.addAll(db.createBulkUpdateMessages(distributionCtr));
+		//db = new AcdiVocaDbHelper(this);
+		mAcdiVocaMsgs.addAll(this.getHelper().createBulkUpdateMessages(distributionCtr));
 		Log.i(TAG, "nMsgs to send " + mAcdiVocaMsgs.size());
 		// Prompt the user
 		showDialog(SEND_DIST_REP);
@@ -472,21 +474,21 @@ public class AcdiVocaAdminActivity extends Activity implements SmsCallBack {
 				return STRING_EXCEPTION;
 		}
 		
-		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-		int rows = db.clearBeneficiaryTable();
+		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+		int rows = this.getHelper().clearBeneficiaryTable();
 		Log.i(TAG, "Deleted rows in beneficiary table = " + rows);
-		rows = db.clearMessageTable();
+		rows = this.getHelper().clearMessageTable();
 		Log.i(TAG, "Deleted rows in message table = " + rows);
 		
 		long nImports = 0;
 		Log.i(TAG, "Beneficiary type to be loaded = " + beneficiaryType);
 		if (beneficiaryType == AcdiVocaDbHelper.FINDS_TYPE_MCHN) {
-			db = new AcdiVocaDbHelper(this);
-			nImports = db.addUpdateBeneficiaries(mBeneficiaries);
+			//db = new AcdiVocaDbHelper(this);
+			nImports = this.getHelper().addUpdateBeneficiaries(mBeneficiaries);
 
 		} else  {
-			db = new AcdiVocaDbHelper(this);
-			nImports = db.addAgriBeneficiaries(mBeneficiaries);
+			//db = new AcdiVocaDbHelper(this);
+			nImports = this.getHelper().addAgriBeneficiaries(mBeneficiaries);
 		}
 
 		mImportDataReport = getString(R.string.beneficiaries_imported2) + " " + nImports;
