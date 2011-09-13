@@ -69,7 +69,7 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     private boolean isProbablyEdited = false;   // Set to true if user edits a datum
     private String mAction = "";
     private int mFindId = 0;
-    private AcdiVocaDbHelper mDbHelper;
+    //private AcdiVocaDbHelper mDbHelper;
     private ContentValues mContentValues;
     private boolean inEditableMode = false;
     
@@ -142,8 +142,8 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     		this.startActivityForResult(lookupIntent, ACTION_ID);
     	} else {
 
-    		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-    		AcdiVocaFind avFind = db.fetchBeneficiaryByDossier(mBeneficiaryId, null);
+    		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+    		AcdiVocaFind avFind = this.getHelper().fetchBeneficiaryByDossier(mBeneficiaryId, null);
     		mContentValues = avFind.toContentValues();
     		if (mContentValues == null) {
     			Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId, Toast.LENGTH_SHORT).show();
@@ -331,8 +331,8 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
      */    
     private void doEditAction() {
         Log.i(TAG, "doEditAction");
-        AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-        AcdiVocaFind avFind = db.fetchBeneficiaryByDossier(mBeneficiaryId, null);
+        //AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+        AcdiVocaFind avFind = this.getHelper().fetchBeneficiaryByDossier(mBeneficiaryId, null);
         ContentValues values = avFind.toContentValues();
         
         Log.i(TAG, "################  Value of FindsID " + values.getAsString(AcdiVocaDbHelper.FINDS_ID));
@@ -583,11 +583,11 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     		ContentValues data = this.retrieveContentFromView(); 
     		Log.i(TAG, "Retrieved = " + data.toString());
 
-    		AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
+    		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
     		   	
-			AcdiVocaFind avFind = db.fetchBeneficiaryByDossier(mBeneficiaryId, null);
+			AcdiVocaFind avFind = this.getHelper().fetchBeneficiaryByDossier(mBeneficiaryId, null);
 			avFind.update(data);
-    		result = db.updateBeneficiary(avFind);;
+    		result = this.getHelper().updateBeneficiary(avFind);;
 //    		result = AcdiVocaFindDataManager.getInstance().updateFind(this, mFindId, data);
     		Log.i(TAG, "Update to Db is " + result);
     		if (result){

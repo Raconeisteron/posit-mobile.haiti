@@ -31,6 +31,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseService;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -46,7 +48,7 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
-public class SmsService extends Service {
+public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 	public static final String TAG = "AcdiVocaSmsManager";
 	
 	private  BroadcastReceiver mReceiver;
@@ -107,49 +109,49 @@ public class SmsService extends Service {
 		
 		Log.i(TAG, "Rcvd broadcast for msg: " + smsMsg);
 		AcdiVocaMessage avMsg = new AcdiVocaMessage(smsMsg);
-		AcdiVocaDbHelper db =  new AcdiVocaDbHelper(this);
+		//AcdiVocaDbHelper db =  new AcdiVocaDbHelper(this);
 		switch (resultCode)  {
 		case Activity.RESULT_OK:
 			Log.d (TAG, "Received OK, avId = " + avIdStr + " msg:" + avMsg.getSmsMessage());
 			if (avIdInt < 0) 
-				db.updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_SENT);
+				this.getHelper().updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_SENT);
 			else 
-				db.updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_SENT);
+				this.getHelper().updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_SENT);
 			++nMsgsSent;
 			break;
 		case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
 			Log.e(TAG, "Received  generic failure, avId =  " + avIdStr + " msg:" + avMsg.getSmsMessage());
 			if (avIdInt < 0) 
-				db.updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			else 
-				db.updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			++nMsgsPending;
 			mErrorMsg = "Generic Failure";
 			break;
 		case SmsManager.RESULT_ERROR_NO_SERVICE:
 			Log.e(TAG, "Received  No service, avId =  " + avIdStr + " msg:" + avMsg.getSmsMessage());
 			if (avIdInt < 0) 
-				db.updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			else 
-				db.updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			++nMsgsPending;
 			mErrorMsg = "No cellular service";
 			break;
 		case SmsManager.RESULT_ERROR_NULL_PDU:
 			Log.e(TAG, "Received Null PDU, avId =  " + avIdStr + " msg:" + avMsg.getSmsMessage());
 			if (avIdInt < 0) 
-				db.updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			else 
-				db.updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			++nMsgsPending;
 			mErrorMsg = "Null PDU error";
 			break;
 		case SmsManager.RESULT_ERROR_RADIO_OFF:
 			Log.e(TAG, "Received  Radio off, avId =  " + avIdStr + " msg:" + avMsg.getSmsMessage());
 			if (avIdInt < 0) 
-				db.updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForBulkMsg(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			else 
-				db.updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
+				this.getHelper().updateMessageStatusForNonBulkMessage(avMsg, AcdiVocaDbHelper.MESSAGE_STATUS_PENDING);
 			++nMsgsPending;
 			mErrorMsg = "Texting is off";
 			break;
