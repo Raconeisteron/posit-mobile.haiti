@@ -30,6 +30,9 @@ import org.hfoss.posit.android.R;
 import org.hfoss.posit.android.api.ListFindsActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUser.UserType;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

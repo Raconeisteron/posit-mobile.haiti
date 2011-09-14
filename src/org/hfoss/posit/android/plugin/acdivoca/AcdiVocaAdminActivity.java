@@ -669,7 +669,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 								public void onClick(DialogInterface dialog,
 										int which) {
 									AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance((Activity) mContext);
-									mgr.sendMessages(mContext, mAcdiVocaMsgs);
+									mgr.sendMessages((OrmLiteBaseActivity<AcdiVocaDbHelper>)mContext, mAcdiVocaMsgs);
 									AppControlManager.moveToNextDistributionStage(mContext);
 									mSmsReport = "#: " + phoneNumber + "\n" + mAcdiVocaMsgs.size();
 									showDialog(SMS_REPORT);
