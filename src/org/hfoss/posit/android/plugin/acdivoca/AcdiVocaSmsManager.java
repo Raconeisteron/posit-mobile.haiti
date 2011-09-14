@@ -34,6 +34,9 @@ import org.hfoss.posit.android.R;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaAdminActivity.ImportDataThread;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaAdminActivity.ImportThreadHandler;
 
+import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
+import com.j256.ormlite.android.apptools.OrmLiteBaseListActivity;
+
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -113,6 +116,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.i(TAG, "Intent action = " + intent.getAction());
+		Log.i(TAG, "CONTEXT: " +context);
 		
 		Bundle bundle = intent.getExtras();
 
@@ -325,11 +329,23 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			acdiVocaMsg.setNumberSlashBatchSize(count + AttributeManager.NUMBER_SLASH_SIZE_SEPARATOR + size);
 			int beneficiary_id = acdiVocaMsg.getBeneficiaryId();
 //			Log.i(TAG, "To Send: " + acdiVocaMsg.getSmsMessage());
-			
+			int msgId = 0;
 			if (!acdiVocaMsg.isExisting()) {
-				Log.i(TAG,"This is a NEW message");
-				AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
-				int msgId = (int)db.createNewMessageTableEntry(acdiVocaMsg,beneficiary_id,AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
+				Log.i(TAG, "This is a NEW message");
+				// AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
+				if (context instanceof OrmLiteBaseListActivity<?>) {
+					OrmLiteBaseListActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseListActivity<AcdiVocaDbHelper>) context;
+					msgId = (int) helper.getHelper()
+							.createNewMessageTableEntry(acdiVocaMsg,
+									beneficiary_id,
+									AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
+				} else if (context instanceof OrmLiteBaseActivity<?>) {
+					OrmLiteBaseActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseActivity<AcdiVocaDbHelper>) context;
+					msgId = (int) helper.getHelper()
+							.createNewMessageTableEntry(acdiVocaMsg,
+									beneficiary_id,
+									AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
+				}
 				acdiVocaMsg.setMessageId(msgId);
 				acdiVocaMsg.setExisting(true);
 			}
