@@ -343,6 +343,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	private static final int FIELD_SEX = 7;
 	private static final int FIELD_CATEGORY = 8;
 	private static final int FIELD_DISTRIBUTION_POST = 9;
+	private static final int TOTAL_FIELDS = 10; // The total number of fields expected in the data file for each line
 	private static final String COMMA= ",";
 
 	private static final int AGRI_FIELD_DOSSIER = 0;
@@ -427,35 +428,42 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 
 		AcdiVocaFind avFind = null;
 		for (int k = 0; k < beneficiaries.length; k++) {
-			avFind = new AcdiVocaFind();
-			
-			fields = beneficiaries[k].split(COMMA);
-			avFind.type =  AcdiVocaDbHelper.FINDS_TYPE_MCHN;
-			avFind.status = AcdiVocaDbHelper.FINDS_STATUS_UPDATE;
-			avFind.dossier = fields[FIELD_DOSSIER];
-			avFind.lastname = fields[FIELD_LASTNAME];
-			avFind.firstname =  fields[FIELD_FIRSTNAME];
-			avFind.commune_section = AttributeManager.getMapping(fields[FIELD_SECTION]);
-			avFind.address = fields[FIELD_LOCALITY];
-			String adjustedDate = translateDateForDatePicker(fields[FIELD_BIRTH_DATE]);
-			avFind.dob = adjustedDate;
-			String adjustedSex = translateSexData(fields[FIELD_SEX]);
-			avFind.sex = adjustedSex;
-			String adjustedCategory = translateCategoryData(fields[FIELD_CATEGORY]);
-			avFind.beneficiary_category = adjustedCategory;
-			avFind.distribution_post = fields[FIELD_DISTRIBUTION_POST];
 
-			Dao<AcdiVocaFind, Integer> acdiVocaFindDao;
-			try {
-				acdiVocaFindDao = getAcdiVocaFindDao();
-				result = acdiVocaFindDao.create(avFind);
-				if (result == 1) 
-					++count;
-				else 
-					Log.e(TAG, "Error creating beneficiary entry " + avFind.toString());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			fields = beneficiaries[k].split(COMMA);
+			avFind = new AcdiVocaFind();
+			if (fields.length != TOTAL_FIELDS)
+				Log.i(TAG, "Line skipped, not enough fields: " + fields.toString());
+			else {
+				avFind.type = AcdiVocaDbHelper.FINDS_TYPE_MCHN;
+				avFind.status = AcdiVocaDbHelper.FINDS_STATUS_UPDATE;
+				avFind.dossier = fields[FIELD_DOSSIER];
+				avFind.lastname = fields[FIELD_LASTNAME];
+				avFind.firstname = fields[FIELD_FIRSTNAME];
+				avFind.commune_section = AttributeManager
+						.getMapping(fields[FIELD_SECTION]);
+				avFind.address = fields[FIELD_LOCALITY];
+				String adjustedDate = translateDateForDatePicker(fields[FIELD_BIRTH_DATE]);
+				avFind.dob = adjustedDate;
+				String adjustedSex = translateSexData(fields[FIELD_SEX]);
+				avFind.sex = adjustedSex;
+				String adjustedCategory = translateCategoryData(fields[FIELD_CATEGORY]);
+				avFind.beneficiary_category = adjustedCategory;
+				avFind.distribution_post = fields[FIELD_DISTRIBUTION_POST];
+
+				Dao<AcdiVocaFind, Integer> acdiVocaFindDao;
+				try {
+					acdiVocaFindDao = getAcdiVocaFindDao();
+					result = acdiVocaFindDao.create(avFind);
+					if (result == 1)
+						++count;
+					else
+						Log.e(TAG,
+								"Error creating beneficiary entry "
+										+ avFind.toString());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		Log.i(TAG, "Inserted to Db " + count + " Beneficiaries");
