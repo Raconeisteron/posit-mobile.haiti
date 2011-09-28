@@ -165,7 +165,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		Log.i(TAG, "Processing incoming SMS: " + msg);
 		boolean isAck  = false;
 		String attrvalPairs[] = msg.split(AttributeManager.PAIRS_SEPARATOR);
-
+		SmsService.logMessage(msg + " Received");
 		// The message has the format AV=ACK,IDS=1/2/3/.../,  so just two pairs
 		for (int k = 0; k < attrvalPairs.length; k++) {
 			String attrval[] = attrvalPairs[k].split(AttributeManager.ATTR_VAL_SEPARATOR);
@@ -347,7 +347,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 									AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
 				}
 				acdiVocaMsg.setMessageId(msgId);
-				acdiVocaMsg.setExisting(true);
+				//acdiVocaMsg.setExisting(true);
 			}
 			messages.add(acdiVocaMsg.toString());
 			++count;

@@ -797,6 +797,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			if (avMsg != null) {
 				avMsg.setMsgStatus(status);
 				avMsg.setBeneficiaryId(beneficiary_id);
+				avMsg.setExisting(true);
 				if (status == MESSAGE_STATUS_SENT) {
 					avMsg.message_sent_at = now;
 				} else if (status == MESSAGE_STATUS_ACK) 

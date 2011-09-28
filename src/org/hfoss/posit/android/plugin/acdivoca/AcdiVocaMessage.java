@@ -56,7 +56,7 @@ public class AcdiVocaMessage {
 	
 	private String rawMessage;	     // Attr/val pairs with long attribute names
 	private String msgHeader =""; 
-	private boolean existing = !EXISTING;  // Built from an existing message or, eg, a PENDING)
+	@DatabaseField boolean existing = !EXISTING;  // Built from an existing message or, eg, a PENDING)
 	private String numberSlashBatchSize;   // e.g 1/10  -- i.e., 1st of 10 messages in this batch
 	
 	public AcdiVocaMessage() {
