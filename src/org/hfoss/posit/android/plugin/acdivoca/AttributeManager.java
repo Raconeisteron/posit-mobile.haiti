@@ -777,6 +777,7 @@ public class AttributeManager {
 	public static final String ABBREV_D25 = "HETH026";
 	public static final String ABBREV_D26 = "HETH027";
 
+	public static final String ABBREV_DIST_ID = "di";
 	/**
 	 * Private constructor means it can't be instantiated.
 	 * 
