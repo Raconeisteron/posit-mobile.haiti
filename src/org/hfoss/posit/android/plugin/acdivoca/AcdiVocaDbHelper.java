@@ -1247,7 +1247,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 				avFind = it.next();
 				smsMessage += avFind.dossier + AttributeManager.LIST_SEPARATOR;
 				
-				if (smsMessage.length() > 120) {
+				if (smsMessage.length() > 100) {
 					// Add a header (length and status) to message
 					msgHeader = "MsgId: bulk, Len:" + smsMessage.length();
 					AcdiVocaMessage msg = new AcdiVocaMessage(UNKNOWN_ID, 
