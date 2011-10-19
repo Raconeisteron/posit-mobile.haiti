@@ -1263,11 +1263,14 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 			}
 			if (!smsMessage.equals("")) {
 				msgHeader = "MsgId: bulk, Len:" + smsMessage.length();
-				acdiVocaMsgs.add(new AcdiVocaMessage(UNKNOWN_ID, 
-							UNKNOWN_ID, 
-							MESSAGE_STATUS_UNSENT,
-							"", smsMessage, msgHeader, 
-							!AcdiVocaMessage.EXISTING));
+				AcdiVocaMessage msg = new AcdiVocaMessage(UNKNOWN_ID, 
+						UNKNOWN_ID, 
+						MESSAGE_STATUS_UNSENT,
+						"", smsMessage, msgHeader, 
+						!AcdiVocaMessage.EXISTING);
+				msg.setDistributionId(avFind.generateDistributionId());
+						
+				acdiVocaMsgs.add(msg);
 			}
 		}
 		return acdiVocaMsgs;
