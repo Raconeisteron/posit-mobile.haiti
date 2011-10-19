@@ -54,6 +54,8 @@ public class AcdiVocaMessage {
 	@DatabaseField Date message_sent_at;
 	@DatabaseField Date message_ack_at;
 	
+	@DatabaseField String distribution_id;
+	
 	private String rawMessage;	     // Attr/val pairs with long attribute names
 	private String msgHeader =""; 
 	@DatabaseField boolean existing = !EXISTING;  // Built from an existing message or, eg, a PENDING)
@@ -179,7 +181,14 @@ public class AcdiVocaMessage {
 		this.existing = existing;
 	}
 	
-	
+
+	public String getDistributionId() {
+		return distribution_id;
+	}
+
+	public void setDistributionId(String distribution_id) {
+		this.distribution_id = distribution_id;
+	}
 
 	public String getNumberSlashBatchSize() {
 		return numberSlashBatchSize;
@@ -212,6 +221,7 @@ public class AcdiVocaMessage {
 			+ AttributeManager.ATTR_VAL_SEPARATOR 
 			+ messageId 
 			+ AttributeManager.PAIRS_SEPARATOR
+			+ getDistributionId()
 			+ getSmsMessage();
 		} else {
 			message = 
@@ -226,6 +236,10 @@ public class AcdiVocaMessage {
 			+ AttributeManager.ABBREV_MESSAGE_ID
 			+ AttributeManager.ATTR_VAL_SEPARATOR 
 			+ messageId 
+			+ AttributeManager.PAIRS_SEPARATOR
+			+ AttributeManager.ABBREV_DIST_ID
+			+ AttributeManager.ATTR_VAL_SEPARATOR
+			+ getDistributionId()
 			+ AttributeManager.PAIRS_SEPARATOR
 			+ getSmsMessage();
 		}
