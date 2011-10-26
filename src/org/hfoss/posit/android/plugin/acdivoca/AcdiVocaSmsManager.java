@@ -225,7 +225,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 								attr + AttributeManager.ATTR_VAL_SEPARATOR + val, // Raw message
 								"",   // SmsMessage N/A
 								"",    // Header  N/A
-								!AcdiVocaMessage.EXISTING
+								!AcdiVocaMessage.EXISTING, true
 						);
 					} else {
 						// Message for normal messages, where IDs > 0 and represent beneficiary IDs
@@ -236,7 +236,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 								attr + AttributeManager.ATTR_VAL_SEPARATOR + val, // Raw message
 								"",   // SmsMessage N/A
 								"",    // Header  N/A
-								!AcdiVocaMessage.EXISTING
+								!AcdiVocaMessage.EXISTING, false
 						);
 					}
 					AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
@@ -276,6 +276,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	 * handle the details. 
 	 * @param context
 	 * @param acdiVocaMsgs
+	 * @param bulk whether or not this batch of messages are bulk messages
 	 */
 	public void sendMessages(Context context, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
 		mContext = context;
@@ -316,6 +317,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	 * Helper method to convert the message objects into a flat list of strings.
 	 * @param context
 	 * @param acdiVocaMsgs
+	 * @param bulk whether or not this is a batch of bulk messages
 	 * @return
 	 */
 	private ArrayList<String> getMessagesAsArray (Context context, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
@@ -328,29 +330,55 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			acdiVocaMsg = it.next();
 			acdiVocaMsg.setNumberSlashBatchSize(count + AttributeManager.NUMBER_SLASH_SIZE_SEPARATOR + size);
 			int beneficiary_id = acdiVocaMsg.getBeneficiaryId();
-//			Log.i(TAG, "To Send: " + acdiVocaMsg.getSmsMessage());
+			// Log.i(TAG, "To Send: " + acdiVocaMsg.getSmsMessage());
 			int msgId = 0;
-			if (!acdiVocaMsg.isExisting()) {
-				Log.i(TAG, "This is a NEW message");
-				// AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
-				if (context instanceof OrmLiteBaseListActivity<?>) {
-					OrmLiteBaseListActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseListActivity<AcdiVocaDbHelper>) context;
-					msgId = (int) helper.getHelper()
-							.createNewMessageTableEntry(acdiVocaMsg,
-									beneficiary_id,
-									AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
-				} else if (context instanceof OrmLiteBaseActivity<?>) {
-					OrmLiteBaseActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseActivity<AcdiVocaDbHelper>) context;
-					msgId = (int) helper.getHelper()
-							.createNewMessageTableEntry(acdiVocaMsg,
-									beneficiary_id,
-									AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT);
+			if (acdiVocaMsg.getMsgStatus() == AcdiVocaDbHelper.MESSAGE_STATUS_SENDING) {
+				Log.i(TAG, "Message already queued for sending.  Msgid: " + acdiVocaMsg.getMessageId());
+				continue;
+			} else {
+				if (!acdiVocaMsg.isExisting()) {
+					Log.i(TAG, "This is a NEW message");
+					// AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
+					if (context instanceof OrmLiteBaseListActivity<?>) {
+						OrmLiteBaseListActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseListActivity<AcdiVocaDbHelper>) context;
+						msgId = (int) helper.getHelper().createNewMessageTableEntry(acdiVocaMsg, beneficiary_id,
+								AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+						acdiVocaMsg.setMessageId(msgId);
+						helper.getHelper().updateAvMessage(acdiVocaMsg);
+					} else if (context instanceof OrmLiteBaseActivity<?>) {
+						OrmLiteBaseActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseActivity<AcdiVocaDbHelper>) context;
+						msgId = (int) helper.getHelper().createNewMessageTableEntry(acdiVocaMsg, beneficiary_id,
+								AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+						acdiVocaMsg.setMessageId(msgId);
+						helper.getHelper().updateAvMessage(acdiVocaMsg);
+					}
+					acdiVocaMsg.setMessageId(msgId);
+					// acdiVocaMsg.setExisting(true);
+				} else { // We're resending an existing message, update statuses
+							// to sending.. wow this is convoluted
+					if (context instanceof OrmLiteBaseListActivity<?>) {
+						OrmLiteBaseListActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseListActivity<AcdiVocaDbHelper>) context;
+						if (acdiVocaMsg.isBulk()) // if its a bulk
+															// message
+							helper.getHelper().updateMessageStatusForBulkMsg(acdiVocaMsg,
+									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+						else
+							helper.getHelper().updateMessageStatusForNonBulkMessage(acdiVocaMsg,
+									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+					} else if (context instanceof OrmLiteBaseActivity<?>) {
+						OrmLiteBaseActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseActivity<AcdiVocaDbHelper>) context;
+						if (acdiVocaMsg.isBulk()) // if its a bulk
+															// message
+							helper.getHelper().updateMessageStatusForBulkMsg(acdiVocaMsg,
+									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+						else
+							helper.getHelper().updateMessageStatusForNonBulkMessage(acdiVocaMsg,
+									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
+					}
 				}
-				acdiVocaMsg.setMessageId(msgId);
-				//acdiVocaMsg.setExisting(true);
+				messages.add(acdiVocaMsg.toString());
+				++count;
 			}
-			messages.add(acdiVocaMsg.toString());
-			++count;
 		}
 		return messages;
 	}
@@ -384,6 +412,9 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		public void run() {
 			// We pass the service a list of messages. It handles the rest.
 			Intent smsService = new Intent(mContext, SmsService.class);
+//			for (AcdiVocaMessage message : mAcdiVocaMsgs) {
+//				if ()
+//			}
 			ArrayList<String> messagesToSend = getMessagesAsArray(mContext, mAcdiVocaMsgs);
 
 			Log.i(TAG, "Starting background service");

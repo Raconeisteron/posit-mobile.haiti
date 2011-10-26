@@ -361,7 +361,7 @@ public class AcdiVocaFind {
 				+ beneficiary_id;
 
 		return new AcdiVocaMessage(msg_id, beneficiary_id, AcdiVocaDbHelper.MESSAGE_STATUS_UNSENT, rawMessage,
-				smsMessage, msgHeader, !AcdiVocaMessage.EXISTING);
+				smsMessage, msgHeader, !AcdiVocaMessage.EXISTING, false);
 	}
 
 	/**

@@ -191,12 +191,15 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	public static final String MESSAGE_BENEFICIARY_ID = AttributeManager.MESSAGE_BENEFICIARY_ID;  // Row Id in Beneficiary table
 	public static final String MESSAGE_TEXT = AttributeManager.MESSAGE_TEXT;
 	public static final String MESSAGE_STATUS = AttributeManager.FINDS_MESSAGE_STATUS; 
-	public static final String[] MESSAGE_STATUS_STRINGS = {"Unsent", "Pending", "Sent", "Ack", "Deleted"};
+	
+	public static final String[] MESSAGE_STATUS_STRINGS = {"Unsent", "Pending", "Sent", "Ack", "Deleted", "Sending"};
 	public static final int MESSAGE_STATUS_UNSENT = 0;
 	public static final int MESSAGE_STATUS_PENDING = 1;
 	public static final int MESSAGE_STATUS_SENT = 2;
 	public static final int MESSAGE_STATUS_ACK = 3;
 	public static final int MESSAGE_STATUS_DEL = 4;
+	public static final int MESSAGE_STATUS_SENDING = 5;
+	
 	public static final String MESSAGE_CREATED_AT = AttributeManager.MESSAGE_CREATED_AT;
 	public static final String MESSAGE_SENT_AT = AttributeManager.MESSAGE_SENT_AT;
 	public static final String MESSAGE_ACK_AT = AttributeManager.MESSAGE_ACK_AT;
@@ -776,6 +779,17 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 		return acdiVocaMsg.id;  // Return the message Id.
 	}
 
+	public boolean updateAvMessage(AcdiVocaMessage message){
+		Dao<AcdiVocaMessage, Integer> avMsgDao = null;
+		int rows = 0;
+		try {
+			avMsgDao = getAcdiVocaMessageDao();
+			rows = avMsgDao.update(message);
+		} catch (SQLException e) {
+			Log.e(TAG, "SQL exception: " + e.getSQLState());
+		}
+		return rows > 0;
+	}
 	/**
 	 * Updates the message table for an existing message.
 	 * @return
@@ -1254,7 +1268,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 							UNKNOWN_ID, 
 							MESSAGE_STATUS_UNSENT,
 							"", smsMessage, msgHeader, 
-							!AcdiVocaMessage.EXISTING);
+							!AcdiVocaMessage.EXISTING, true);
 					msg.setDistributionId(avFind.generateDistributionId());
 							
 					acdiVocaMsgs.add(msg);
@@ -1267,7 +1281,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 						UNKNOWN_ID, 
 						MESSAGE_STATUS_UNSENT,
 						"", smsMessage, msgHeader, 
-						!AcdiVocaMessage.EXISTING);
+						!AcdiVocaMessage.EXISTING, true);
 				msg.setDistributionId(avFind.generateDistributionId());
 						
 				acdiVocaMsgs.add(msg);

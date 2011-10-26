@@ -54,6 +54,8 @@ public class AcdiVocaMessage {
 	@DatabaseField Date message_sent_at;
 	@DatabaseField Date message_ack_at;
 	
+	
+	@DatabaseField boolean isBulk; // Whether or not this is a bulk message
 	@DatabaseField String distribution_id;
 	
 	private String rawMessage;	     // Attr/val pairs with long attribute names
@@ -66,7 +68,7 @@ public class AcdiVocaMessage {
 	}
 	
 	public AcdiVocaMessage(int messageId, int beneficiaryId, int msgStatus,  
-			String rawMessage, String smsMessage, String msgHeader, boolean existing) {
+			String rawMessage, String smsMessage, String msgHeader, boolean existing, boolean isBulk) {
 		super();
 		this.messageId = messageId;
 		this.beneficiaryId = beneficiaryId;
@@ -75,6 +77,7 @@ public class AcdiVocaMessage {
 		this.smsMessage = smsMessage;
 		this.msgHeader = msgHeader;
 		this.existing = existing;
+		this.isBulk = isBulk;
 	}
 	
 	/**
@@ -141,6 +144,14 @@ public class AcdiVocaMessage {
 	}
 
 	
+	public boolean isBulk() {
+		return isBulk;
+	}
+
+	public void setBulk(boolean isBulk) {
+		this.isBulk = isBulk;
+	}
+
 	public int getMsgStatus() {
 		return msgStatus;
 	}
@@ -221,7 +232,6 @@ public class AcdiVocaMessage {
 			+ AttributeManager.ATTR_VAL_SEPARATOR 
 			+ messageId 
 			+ AttributeManager.PAIRS_SEPARATOR
-			+ getDistributionId()
 			+ getSmsMessage();
 		} else {
 			message = 
