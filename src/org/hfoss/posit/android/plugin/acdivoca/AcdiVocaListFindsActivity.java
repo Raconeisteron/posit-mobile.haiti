@@ -726,7 +726,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 			acdiVocaMsgs.add(new AcdiVocaMessage(AcdiVocaDbHelper.UNKNOWN_ID,
 					AcdiVocaDbHelper.UNKNOWN_ID, -1, "",
 					getString(R.string.no_messages), "",
-					!AcdiVocaMessage.EXISTING));
+					!AcdiVocaMessage.EXISTING, false));
 		} else {
 			mNMessagesDisplayed = acdiVocaMsgs.size();
 			Log.i(TAG, "display Message List, N messages = "
