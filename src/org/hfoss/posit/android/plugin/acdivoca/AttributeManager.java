@@ -778,6 +778,7 @@ public class AttributeManager {
 	public static final String ABBREV_D26 = "HETH027";
 
 	public static final String ABBREV_DIST_ID = "di";
+	public static final String DISTRIBUTION_ID = "Distribution ID";
 	/**
 	 * Private constructor means it can't be instantiated.
 	 * 
@@ -886,6 +887,9 @@ public class AttributeManager {
 		mappings.put(MESSAGE_CREATED_AT, ABBREV_CREATED_AT);
 		mappings.put(MESSAGE_SENT_AT, ABBREV_SENT_AT);
 		mappings.put(MESSAGE_ACK_AT, ABBREV_ACK_AT);
+		
+		mappings.put(ABBREV_DIST_ID, DISTRIBUTION_ID);
+		mappings.put(DISTRIBUTION_ID, ABBREV_DIST_ID);
 
 		mappings.put(FINDS_Q_MOTHER_LEADER, ABBREV_IS_MOTHERLEADER);
 		mappings.put(FINDS_Q_VISIT_MOTHER_LEADER, ABBREV_VISIT_MOTHERLEADER);
