@@ -309,6 +309,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	public static final String FINDS_MONTHS_REMAINING = "MonthsRemaining";
 	public static final String FINDS_Q_CHANGE = AttributeManager.FINDS_Q_CHANGE;   //"ChangeInStatus";   // Added to incorporated changes to beneficiary type
 	public static final String FINDS_CHANGE_TYPE = AttributeManager.FINDS_CHANGE_TYPE;   //"ChangeType";
+	public static final String FINDS_OTHER_TRANSFER = AttributeManager.FINDS_OTHER_TRANSFER;
 	
 	public static final String FINDS_DESCRIPTION = "description";
 	public static final String FINDS_LATITUDE = "latitude";
@@ -361,9 +362,6 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 	private static final int AGRI_FIELD_CATEGORY = 9;
 	private static final int AGRI_FIELD_NUM_PERSONS  = 10;
 
-
-	
-	
 
 	/**
 	 * Inserts an array of beneficiaries input from AcdiVoca data file.

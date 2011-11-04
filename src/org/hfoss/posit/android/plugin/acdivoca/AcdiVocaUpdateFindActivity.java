@@ -216,6 +216,7 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     	//  New button - 6/17/11          
 
     	Spinner spinner = (Spinner)findViewById(R.id.statuschangeSpinner);
+    	((Spinner)findViewById(R.id.statuschangeSpinner)).setOnItemSelectedListener(this);
 //    	AcdiVocaFindActivity.setSpinner(spinner, contentValues, AcdiVocaDbHelper.FINDS_CHANGE_TYPE);
 		String selected = contentValues.getAsString(AcdiVocaDbHelper.FINDS_CHANGE_TYPE); 
 		int k = 0;  //I was unable to use the spinner function here.
@@ -454,6 +455,11 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     		result.put(AcdiVocaDbHelper.FINDS_CHANGE_TYPE, String.valueOf(spinnerInt));
     	}
 
+		EditText otherEditText = (EditText) findViewById(R.id.otherReason);
+		if (otherEditText != null) {
+			result.put(AcdiVocaDbHelper.FINDS_OTHER_TRANSFER, otherEditText.getText().toString());
+		}
+    	
     	return result;
     }
 
@@ -587,7 +593,8 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     		   	
 			AcdiVocaFind avFind = this.getHelper().fetchBeneficiaryByDossier(mBeneficiaryId, null);
 			avFind.update(data);
-    		result = this.getHelper().updateBeneficiary(avFind);;
+    		result = this.getHelper().updateBeneficiary(avFind);
+    		
 //    		result = AcdiVocaFindDataManager.getInstance().updateFind(this, mFindId, data);
     		Log.i(TAG, "Update to Db is " + result);
     		if (result){
@@ -713,9 +720,15 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
 
     
     
-    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-            long arg3) {
-        Log.i(TAG, "onItemSelected = " + arg2);
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+            long id) {
+        Log.i(TAG, "onItemSelected = " + position);
+        
+        switch (position) {
+        	case 8:  // "Other" selected
+        		findViewById(R.id.otherReason).setVisibility(View.VISIBLE);
+        }
+        
         //isProbablyEdited = true;
     }
 
