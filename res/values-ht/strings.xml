@@ -276,6 +276,8 @@
 	<string name="update_completed">Cycle complet</string>
 	<string name="update_other">Lot</string>
 	
+	<string name="babyName">Non nan ti bebe</string>
+	
 	<string name="english">English</string>
 	<string name="french">Française</string>
 	<string name="haitian">Creole haitien</string>
