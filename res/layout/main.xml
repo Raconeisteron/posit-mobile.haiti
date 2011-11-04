@@ -13,6 +13,8 @@
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
 		android:src="@drawable/posit"/>
+			<TextView android:layout_width="wrap_content" android:id="@+id/versionNumber"
+	android:layout_height="wrap_content" android:text="@string/version"></TextView>
 		
 	<include android:layout_width="fill_parent" layout="@layout/main_notabs_buttons"/>
 </LinearLayout>
