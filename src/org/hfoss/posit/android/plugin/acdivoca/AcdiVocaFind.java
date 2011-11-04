@@ -168,7 +168,8 @@ public class AcdiVocaFind {
 	boolean ChangeInStatus;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_CHANGE_TYPE)
 	String ChangeType;
-
+	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_OTHER_TRANSFER)
+	String other;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_Q_PRESENT)
 	boolean Present;
 	@DatabaseField(columnName = AcdiVocaDbHelper.FINDS_MONTHS_REMAINING)
@@ -390,6 +391,7 @@ public class AcdiVocaFind {
 		sb.append(COMMA).append(AttributeManager.ABBREV_Q_CHANGE).append(EQ)
 				.append(AttributeManager.mapToShort(ChangeInStatus));
 		sb.append(COMMA).append(AttributeManager.ABBREV_MONTHS).append(EQ).append(MonthsRemaining);
+		sb.append(COMMA).append(AttributeManager.ABBREV_OTHER).append(EQ).append(other);
 		return sb.toString();
 	}
 
