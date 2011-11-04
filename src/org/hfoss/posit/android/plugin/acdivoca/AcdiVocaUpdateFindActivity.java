@@ -723,10 +723,22 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     public void onItemSelected(AdapterView<?> parent, View view, int position,
             long id) {
         Log.i(TAG, "onItemSelected = " + position);
+        findViewById(R.id.otherReason).setVisibility(View.GONE);
+        findViewById(R.id.babyName).setVisibility(View.GONE);
+        findViewById(R.id.communeSectionSpinner).setVisibility(View.GONE);
+        findViewById(R.id.addressEdit).setVisibility(View.GONE);
         
         switch (position) {
+        	case 0: // Transfer pregnant to lactating
+        		findViewById(R.id.babyName).setVisibility(View.VISIBLE);
+        		break;
+        	case 2: // Change of location
+                findViewById(R.id.communeSectionSpinner).setVisibility(View.VISIBLE);
+                findViewById(R.id.addressEdit).setVisibility(View.VISIBLE);
+                break;
         	case 8:  // "Other" selected
         		findViewById(R.id.otherReason).setVisibility(View.VISIBLE);
+        		break;
         }
         
         //isProbablyEdited = true;
