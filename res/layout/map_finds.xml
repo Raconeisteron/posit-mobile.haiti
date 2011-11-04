@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:orientation="vertical"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent">
+	<include android:layout_width="fill_parent" layout="@layout/map_main" />
+	<LinearLayout android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:id="@+id/search_finds_layout"
+    	android:layout_centerHorizontal="true" 
+    	android:layout_alignTop="@+id/mapView" 
+    	android:visibility="invisible">
+    	<Button android:id="@+id/search_finds_first"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:drawableTop="@android:drawable/ic_media_previous" />
+    	<Button android:id="@+id/search_finds_previous"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:drawableTop="@android:drawable/ic_media_rew" />
+    	<Button android:id="@+id/search_finds_next"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:drawableTop="@android:drawable/ic_media_ff" />
+    	<Button android:id="@+id/search_finds_last"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:drawableTop="@android:drawable/ic_media_next" />
+    </LinearLayout>
+			
+</RelativeLayout>

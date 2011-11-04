@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+<!-- 	 Acdi Voca Strings -->
+	
+<!-- 	 Admin Menu Stuff -->
+	<string name="admin_menu">Adminitratyon</string>
+	<string name="admin_welcome">Fonction d’administration\nChwazi nan meni an</string>
+<string name="load_beneficiary_data">Impòte done Benefysyè yo</string>
+<string name="load_agri_data">Impòte mwayen poul viv Done</string>
+<string name="manage_distribution">Gere evenman distribisyon an</string>
+	<string name="distribution_point">Pwon distribisyon</string>
+	<string name="password_alert_message">Non itilizate ou mo de pas la pa bon.</string>
+	<string name="start_stop_distribution">Demare/Stope distribisyon an</string>
+	<string name="start_distribution">Demare distribisyon</string>
+	<string name="stop_distribution">Stope distribisyon</string>
+<!-- 	<string name="send_distribution_report">voye rap√≤ distribisyon</string> -->
+	<string name="no_files_found">Pa gen dosye nan lis.</string>
+	<string name="messages_being_sent">Mesaj te voye:</string>
+	<string name="beneficiaries_imported">Benefisyè enpòte:</string>
+
+	<string name="distribution_event_stage">Evenman Distribisyon</string>
+<!-- 	<string name="select_distr_point">choizi pos distribisyon</string> -->
+<!-- 	<string name="import_beneficiary_file">Imp√≤te fishye benefisyè </string> -->
+<!-- 	<string name="start_distribution_event">Demare evenman distribisyon</string> -->
+<!-- 	<string name="stop_distribution_event">Stope evenman distribisyon</string> -->
+	
+	
+	<string name="manage_event_directions">
+	\n\nEtap pour gere evenman distribisyon yo.
+	\n\n\t1) Selektione Pwen distribisyon (Settings).
+	\n\t2) Impòte fishye master. (Menu)
+	\n\t3) Demare evenman distribisyon. (Menu)
+	\n\t4) Stope evenman distribisyon. (Menu)
+	\n\t5) Voye rapò distribisyon. (Menu)
+	</string>
+	
+<!-- 	 Button Labels -->
+	
+	<string name="list_beneficiary_label">Lis\nBenefisyè</string>
+	<string name="send_sms_label">Voye\nMesaj\nSMS</string>
+	<string name="add_beneficiary_label">Nouvo\nBenefisyè\nSantè</string>
+	<string name="update_beneficiary_label">Mete\nBenefisyè\na Jou</string>
+	<string name="new_agri_beneficiary_label">Nouvo\nBenefisyè\nAgricilti</string>
+	<string name="update_beneficiary_edit_label">Edisyon</string>
+
+	
+	<string name="general_info">Infòmasyon general</string>
+	<string name="mchn_info">Infòmasyon MCHN</string>
+ 	<string name="save_info">Enregistr sezi</string>
+    <string name="name_section">Non Benefisyè</string>
+    <string name="locality_section">Localite</string>    
+    <string name="lastname">Siyati</string>
+    <string name="firstname">Prenon</string>
+    <string name="commune">Komin</string>
+    <string name="commune_section">Seksyon kominal</string>
+    <string name="address">Lokalite</string>	
+	
+    <string name="sex">Seks</string>
+    <string name="dob">Dat li fet</string>
+    <string name="dob_age">l\'Age</string>
+    <string name="dob_age_hint">Age (si nom DN)</string>
+    <string name="Male">Gason</string>
+    <string name="Female">Fi</string>	
+    
+    <string name="Number_of_people_in_home">Kombyen moun ki gen nan kay la</string>
+    <string name="Beneficiary_Category">Kategory</string>
+    <string name="Infant_Category">Kategory</string>
+    <string name="Malnourished">Enfant Mal Nouri (6-59 mwa)</string>
+    <string name="In_Prevention">En Prevention (6-23 mwa)</string>
+    <string name="Mother_Category">Category manman</string>
+    <string name="Expecting">Allaitante</string>
+    <string name="Nursing">Enceinte</string>
+    <string name="add_save">Sovegade nan base la</string>
+    <string name="add_send">Voye SMS</string>
+    
+<!--       MCHN Strings -->
+    <string name="mchn_title">Preciser Infòmasyon d\'registrement MCHN se trouvant au dessous</string>
+    <string name="relatives_section">Paran Benefisyè</string>
+    <string name="alternate">Reprezentan</string>
+<!--     <string name="responsible_if_mother">Reprezentan(si se fanm)</string> -->
+    <string name="father_if_child">Non papa (si se timoun)</string>
+    <string name="husband_if_mother">Nom mari (Si se yon fanm)</string>
+    
+    <string name="health_center">Sant sante, Dispensè, ou pwen fiks</string>
+    <string name="distribution_post">Sant sante, Dispensè, ou pwen fiks</string>    
+	<string name="status_change">Typ stati</string>
+    
+    <string name="mchn_questions">Keksyon</string>
+    <string name="mother_leader">Eske ou se yon mere leader?</string>
+    <string name="visit_mother_leader">Eske yon mere leader te visitew?</string>
+<!--     <string name="relative_participating_acdivoca"> Eske gen moun nan fanmiw kin an pwogram agrikilty ACDI/VOCA?</string> -->
+	<string name="participating_beneficiary_agri">Participant Agri</string>
+	<string name="participating_beneficiary_mchn">Participant Mchn</string>
+    <string name="participating_acdivoca">Eske ou au lot moun nan fanmiw lap jween nan pwogram agrikilti ACDI/VOCA?</string>
+    <string name="give_name">Siw reponn oui,Ekri non moun nan</string>
+    <string name="Yes">Oui</string>
+    <string name="No">Non</string>
+<!--     <string name="participating_bene">Eske genyen lòt moun nan fanmiy ki nan pwogram sante ACDI/VOCA?</string> -->
+    <string name="participating_bene_same">Eske ou au lot moun nan fanmiw lap patisipe nan pwogram santé ACDI/VOCA?</string>
+	<string name="participating_mchn">Èske ou menm oswa se yon moun nan kay ou a ap patisipe nan ACDI/VOCA Pwogram Sante?</string>
+	<string name="participating_agri">Èske ou menm oswa se yon moun nan èd lakay ou k ap resevwa soti nan ACDI/VOCA Pwogram Agrikilti? </string>    
+       
+<!--      Update View -->
+    <string name="beneficiary">Infòmasyon sou Benefisyè</string>
+    <string name="dossier_label">Tape no-dosye e chache!</string>
+    <string name="dossier_hint">No-dosier #</string>
+    <string name="lookup_button">Chache</string>
+    <string name="months_left_in_program">Mwa li rete</string>
+    <string name="save_update">Enregistre mi a jou</string>
+    <string name="save_button">Enregistre mi a jou</string>
+    <string name="update_questions">Keksyon mi a jou</string>
+    <string name="beneficiary_present">Eske benefisyè a vin pran mange?</string>
+    <string name="transfer_required">Eske benefisyè a dwe ale nan yon lot kategory?</string>
+    <string name="modifications_needed">Eske benefisyè a dwe modifye</string>
+    
+<!--     This is a new question for a button to replace the last two questions - 6/17/11 -->
+    <string name="change_in_status">Eske statil dwe change?</string>
+
+<!--     Toast messages - 6/21/11 -->
+	<string name="toast_save_update">Enregistre saw fè a nan baze la</string>
+    <string name="toast_find_saved">Chache nan baze la </string>
+    <string name="toast_saved_db">Enregistre nan baze la</string>
+    <string name="toast_saved">Enregistre nan baze la</string>
+    <string name="toast_error_db">Erè nan enregistreman</string>
+    <string name="toast_db_error">Erè nan baze la</string>
+    <string name="toast_db_error2">Erè nan baze la</string>
+    <string name="toast_Backkey_isEdited">Backkey isEdited=</string>
+    <string name="toast_no_beneficiary">ERROR: benefisyè sa pa la= </string>
+    <string name="toast_beneficiary_id">No dosye Benefisyè= </string>
+	<string name="toast_sorry_empty">Baze la pa gen benefisyè la danl</string>
+    <string name="toast_id">No dosye= </string>
+    <string name="toast_admin_beneficiary_data">Impòte done benefisyè:</string>
+    <string name="toast_distribution_post">Pos distribisyon an pa seleksyone</string>
+    <string name="toast_incorrect">Non itiliszatè ak mo de pas la pa bon.</string>
+    <string name="toast_superuser">Ou dwe yon itilizatè avanse pou ka fè travay sa.</string>
+    <string name="toast_fillform_agricultural">rampli fòm nan pou moun agrikilti a.</string>
+    <string name="toast_sent">Voye </string>
+    <string name="toast_messages"> Mesag.</string>
+    <string name="toast_deleted">Efase </string>
+     
+    
+    
+<!--     LookupActivity - 6/21/11  -->
+    <string name="no_beneficiaries_found">Benefisyè sa pa la</string> 
+
+    
+<!--      list_finds.xml -->
+    <string name="noFinds">Pbenefisyè a pa la</string>
+    <string name="pick_criterion_prompt">Kreye oswa rekipere mesaj ki egziste deja.</string>
+    <string name="search_filter_select_button">Seleksyone</string>
+    <string name="new_messages">Kreye mesag pou nouvo benefisyè</string>
+    <string name="update_messages">Kreye mesag mi a jou benefisyè</string>
+    <string name="bulk_messages">Kreye mesaj pou benefisyè distribisyon absan</string>
+    <string name="all_messages">Afiche tout mesag yo</string>
+    <string name="sent_messages">Afiche mesag ki voye yo</string>
+    <string name="pending_messages">Afiche mesag ki an pending yo</string>
+    <string name="acknowledged_messages">Afiche lòt mesag</string>
+    <string name="no_messages">pa gen mesag. Itilize meni an pou kree mesag</string>
+    <string name="delete_messages">Efase mesag ki afiche yo</string>
+    <string name="confirm_delete_messages">ou vle efase yo tout bon?</string>
+    <string name="unsent">Pas voye yo</string>
+    <string name="sent">Ki voye yo</string>
+    <string name="pending">An pending yo</string>
+    <string name="deleted">E passe</string>
+   
+<!--         Add and List Menu -->
+    <string name="refresh">Netwaye</string>
+    <string name="delete_find">Efase</string> 
+    <string name="search">Rechercher</string>
+    <string name="search_prompt">Recherche par Siyati</string>
+    <string name="list_messages">Jere Mesage SMS</string>
+    <string name="sync_messages">Voye Mesage SMS</string>
+  
+<!--     ACDI/VOCA Settings and Preferences -->
+    <string name="acdivocaprefs">Preferans ACDI/VOCA</string>
+    <string name="SMS_phone">Cible SMS Phone</string>
+    <string name="locale">Lokal</string>
+    <string name="localePref">lokal</string>
+    
+<!--     Alert Dialogs -->
+ 	<string name="acdivoca_cancel">Anile</string>
+ 	
+<!--  	 Login View -->
+ 	<string name="login_prompt">Conekte, SVP.</string>
+ 	<string name="username_hint">Nom itizatè</string>
+ 	<string name="password_hint">Mo de pas</string>
+ 	<string name="login_button">Connekte</string>
+ 	<string name="cancel_login_button">Anule</string>
+ 	
+ 	
+<!--  	New string constants for agriculture registration form -->
+	<string name="amount_of_land">Ki Dimansyon Jaden an (kawo)</string>
+	<string name="Ex:1over16"></string>
+    <string name="seed_group">Ki semans li jween?</string>
+    <string name="unit_of_measurement">Ki mezi ki itilize</string>
+    <string name="quantity_of_seeds">kantite semans li jween</string>
+    <string name="tools">Zoutil li jwenn</string>
+    <string name="partners">Ki lòt òganizasyon kit e nan distribisyon an?</string>
+    
+<!-- 	New agri strings - 6/21/11 -->
+    <string name="agri_relative_text">Preciser l\'information de votre membre de famille faisant partie du programme agriculture</string>
+	<string name="mchn_relative_text">Preciser l\'information de votre member de famille faisant partie du volet santè</string>
+    <string name="farmer">Agrikilti</string>
+ 	<string name="muso">MUSO</string>
+ 	<string name="cattle_rancher">Gadinaj bet</string> 	
+    <string name="store_owner">Pwoprietè</string>
+   	<string name="fisherman">Pech</string>
+    <string name="artisan">Atizanat</string> 
+   	<string name="other">Lot</string>
+   	<string name="vegetables">Legim</string>
+   	<string name="cereal">Sereal</string>
+   	<string name="tuber">Viv</string>  
+   	<string name="tree">Pye bwa</string>   	
+    <string name="grafting">Grefaj</string>    	
+   	<string name="coffee">Cafe</string>     
+   	<string name="hoe">Rou</string>     	
+   	<string name="pick">Pikwa</string>     	
+   	<string name="wheelbarrow">Brouet</string>  
+   	<string name="machete">Manchet</string>     	   	
+	<string name="pruning_knife">Serpet</string>     	   		
+   	<string name="shovel">Pel</string>     	
+   	<string name="crowbar">Barre a mines</string>
+   	<string name="fao">FAO</string>
+   	<string name="xmlsave">SAVE</string>
+   	<string name="crose">CROSE</string>
+   	<string name="plan">PLAN</string>
+   	<string name="mardnr">MARDNR</string>
+   	<string name="other2">Lot</string>   	
+   	
+<!-- 	New update strings - 6/21/11 -->
+   	<string name="beneficiary_information">Infomasyon Benefisyè</string> 
+	<string name="dossier_number">No Dosye: </string>  
+	
+	
+	<string name="toast_project_name">Tape yon nom</string>
+    <string name="toast_thankyou">Mèsi</string>
+    <string name="toast_network_problem">Gen yon pwoblèm.ou dwe fè pati de rezo a.</string>
+    <string name="toast_fields">ou dwe ranpli tout chan yon</string>
+    <string name="toast_addresses">Tape yon adres ki bon</string>
+    <string name="toast_email">E-mail la pa bon</string>
+    <string name="toast_password_match">mo de pas la pa mache</string>
+    <string name="toast_error">Erè: </string>
+    <string name="toast_regerror">Erè nan enregistreman</string>
+    <string name="toast_key">Pwoblèm nan parti serve a</string>
+    <string name="toast_loginfail">Ou pa ka konekte: </string>
+    <string name="toast_loginsuccess">Ou konekte.</string>
+    <string name="toast_regfail">Li pa inskri: </string>
+    <string name="toast_curproject">se déjà menm pwojè a.</string>
+    <string name="toast_sync_success">Synkronizasyon an fèt.</string>
+    <string name="toast_sync_fail"> Synkronizasyon  an pa fèt.</string>
+    <string name="toast_sync_exit"> Synkronizasyon an existe: Rézo a pa disponib</string>
+    <string name="toast_project_dne">Pwojè a pa eziste.cwazi yon lòt.</string>
+	 
+	 
+	<string name="powered_by_posit">\n         Développé par  POSIT</string>
+	<string name="cancel">Annuler</string>
+	<string name="admin_directions">Pour accès administratif, utilize fonktion ki nan meni an.</string>   	   	
+    <string name="settings">Parametres</string>
+    <string name="aboutItem">A Propos</string>
+    <string name="exit">Ou vle kite tout bon?</string>
+    <string name="aboutCopyright2">Zouti selilè idantifikasyon ak rechèch (POSIT) \n devlope yon pwojè twou imanitè nan Trinity College. ACDI / VOCA mobil anrejistreman k ap resevwa sou telefòn ak sistèm ajou.</string>
+	<string name="loading_data">Done yo ap chage</string>
+	<string name="please_wait">Tann yon moman svp.</string>
+	<string name="alert_dialog_cancel">Anile</string>
+	<string name="cancelLabel"> Anile </string>
+	
+	<string name="update_transfer">Transfert nan yon lòt kategori</string>
+	<string name="update_transfer_lectating">Transfert de: Enceinte à Allaitante</string>
+	<string name="update_transfer_prevention">Transfert de: Allaitante à Prevention</string>
+	<string name="update_transfer_location">Transfert du au changement de lieu</string>
+	<string name="update_edit_beneficiary">Changé infòmasyon de benefisyè</string>
+	<string name="update_transfer_abortion">L\'avortement</string>	
+	<string name="update_deceased">Decede</string>
+	<string name="update_fraud">Fraud</string>
+	<string name="update_completed">Cycle complet</string>
+	<string name="update_other">Lot</string>
+	
+	<string name="english">English</string>
+	<string name="french">Française</string>
+	<string name="haitian">Creole haitien</string>
+	
+	<string name="powered_by_hfoss">Développé par HFOSS</string>
+	<string name="toast_admin_login">konekte kom admin pou impòte done benefisyé yo.</string>
+	<string name="toast_adminuser">Ou dwe genyen dwa Administraté pou ka fé travay sa.</string>
+
+    <string name="send_dist_rep"> pou bay mesaj pou voye. OK?</string>
+    <string name="io_exc">Oops! Yo pa ka jwenn </string>
+    <string name="string_exc">Eksepsyon chén</string>
+   
+
+<!--     <string name="general">Pati Jeneral</string>  -->
+
+    <string name="general">Jeneral</string> 
+     <string name="send_message">voye mesaj</string> 
+	<string name="check_saving">sovegade done yo avan ou fé bak?</string>
+	
+	
+	<!--  Random translations of toasts and other strings -->
+	<string name="toast_admin_login_required">Admin Login oblije enpòte done.</string>
+	<string name="ack">Rekonèt</string>
+	<string name="beneficiary_dossier">No dosye benefisyè: </string>
+	<string name="agri_title">Bay enfòmasyon pou anrejistreman an Agrikilti
+		anba-a.</string>
+	<string name="distribution_summary">Rezime Distribisyon</string>
+	<string name="nabsentees">Absan = </string>
+	<string name="nmothers">Manman = </string>
+	<string name="nchildren">Timoun yo = </string>
+	<string name="beneficiaries_imported2">Benefisyè enpòte : </string>
+	<string name="send_dist_rep2"> pou bay mesaj pou voye. OK? </string>
+	<string name="invalid_phone_number">Valid nimewo telefòn: </string>
+	<string name="no_messages_to_send">Pa gen okenn pou bay mesaj pou voye.</string>
+	<string name="being_sent_to">mesaj ke yo te voye a </string>
+	<string name="aboutCopyright1">Se lojisyèl se distribiye anba tèm lisans GNU Lesser Jeneral Piblik (LGPL). \n © Pwojè imanitè pou otè twou 2011.</string>
+	<!-- <string name="aboutCopyright2">Portable Open Search and Identification 
+		Tool\n </string> -->
+	<string name="aboutDescription"> Devlope pa Pwojè a FOSS imanitè nan Trinité Kolèj
+	</string>
+	<string name="acdivocaDescription1">ACDI/VOCA Telefòn Selilè-Dapre Benefisyè
+		Enskripsyon ak System Mizajou</string>
+	<string name="acdivocaDescription2">(POSIT-Haiti)</string>
+	<string name="organizationDescription">Patwone pa NSF a, USAID, ak ACDI/VOCA</string>
+	<string name="acdivoca_exit_findactivity">Èske ou sèten ou vle sòti? Done ka pèdi pouvwa.
+	</string>
+	
+	
+</resources>
+

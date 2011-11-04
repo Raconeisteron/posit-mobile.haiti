@@ -1,0 +1,340 @@
+
+<resources>
+	
+	<!--  Acdi Voca Strings -->
+	
+	<!--  Admin Menu Stuff -->
+	<string name="default_phone">+50931702075</string>
+	<string name="default_preference_string">default_null_value</string>
+	<string name="admin_menu">Admin</string>
+	<string name="admin_welcome">Admin Functions\nChoose from the Menu</string>
+	<string name="load_beneficiary_data">Import Beneficiary Data</string>
+	<string name="load_agri_data">Import Livelihood Data</string>
+	
+	<string name="manage_distribution">Manage Distribution Event</string>
+	<string name="distribution_point">Distribution Point</string>
+	<string name="password_alert_message">Your username or password is incorrect.</string>
+	<string name="start_stop_distribution">Start/stop distribution</string>
+	<string name="start_distribution">Start distribution</string>
+	<string name="stop_distribution">Stop distribution</string>
+	<string name="send_distribution_report">Send distribution report</string>
+	<string name="no_files_found">No files to list.</string>
+	<string name="messages_being_sent">Messages being sent:</string>
+	<string name="beneficiaries_imported">Beneficiaries imported:</string>
+
+	<string name="distribution_point_key">distr_point_key</string>
+	<string name="distribution_event_key">distr_event_stage</string>
+	<string name="distribution_event_stage">Distribution Event Stage</string>
+	<string name="select_distr_point">Select distribution point</string>
+	<string name="import_beneficiary_file">Import beneficiary file</string>
+	<string name="start_distribution_event">Start distribution event</string>
+	<string name="stop_distribution_event">Stop distribution event</string>
+	<string name="abort_distribution_event">Abort distribution event</string>
+	
+	
+	<string name="manage_event_directions">
+	\n\nSteps for managing a distribution event.
+	\n\n\t1) Select the distribution point (Settings).
+	\n\t2) Import the master file. (Menu)
+	\n\t3) Start distribution event. (Menu)
+	\n\t4) Stop distribution event. (Menu)
+	\n\t5) Send distribution report. (Menu)
+	</string>
+	
+	<!--  Button Labels -->
+	
+	<string name="list_beneficiary_label">List\nBeneficiary</string>
+	<string name="send_sms_label">Send\nText\nMessages</string>
+	<string name="add_beneficiary_label">New\nHealth\nBeneficiary</string>
+	<string name="update_beneficiary_label">Update\nHealth\nBeneficiary</string>
+	<string name="new_agri_beneficiary_label">New\nAgriculture\nBeneficiary</string>
+	<string name="update_beneficiary_edit_label">Edit</string>
+
+	
+	<string name="general_info">General Information</string>
+	<string name="mchn_info">MCHN Information</string>
+ 	<string name="save_info">Save the registration</string>
+    <string name="name_section">Beneficiary Name</string>
+    <string name="locality_section">Locality</string>
+    
+    <string name="lastname">Last Name</string>
+    <string name="firstname">First Name</string>
+    <string name="commune">Commune</string>
+    <string name="commune_section">Communal section</string>
+    <string name="address">Locality</string>	
+	
+    <string name="sex">Sex</string>
+    <string name="dob">Date of Birth</string>
+    <string name="dob_age">Age</string>
+    <string name="dob_age_hint">Age (if no DOB)</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>	
+    
+    <string name="Number_of_people_in_home">Number of people in home</string>
+    <string name="Beneficiary_Category">Beneficiary Category</string>
+    <string name="Infant_Category">Infant Category</string>
+    <string name="Malnourished">Malnourished (6-59 months)</string>
+    <string name="In_Prevention">In Prevention (6-23 months)</string>
+    <string name="Mother_Category">Mother Category</string>
+    <string name="Expecting">Expecting</string>
+    <string name="Nursing">Nursing</string>
+    <string name="add_save">Save to Db</string>
+    <string name="add_send">Send SMS</string>
+    
+    <!--   MCHN Strings -->
+    <string name="mchn_title">Provide information for the MCHN registration below.</string>
+    <string name="relatives_section">Beneficiary relatives</string>
+    <string name="alternate">Alternate collector</string>
+<!--     <string name="responsible_if_mother">Alternate collector (if mother)</string> -->
+    <string name="father_if_child">Father (if child)</string>
+    <string name="husband_if_mother">Husband (if mother)</string>
+    
+    <string name="health_center">Health Center</string>
+    <string name="distribution_post">Health Center, Dispensary, or Fixed Point</string>
+	<string name="status_change">Status Change Type</string>
+    
+    <string name="mchn_questions">Questions</string>
+    <string name="mother_leader">Are you a mother leader?</string>
+    <string name="visit_mother_leader">Have you received a visit from a mother leader?</string>
+    <string name="participating_agri">Are you or is someone in your home receiving aid from ACDI/VOCA Agriculture Program?</string>
+	<string name="participating_beneficiary_agri">Agri participant</string>
+	<string name="participating_beneficiary_mchn">Mchn participant</string>
+    <string name="give_name">If so, give name</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+<!--     <string name="participating_bene">Is someone in your family participating in ACDI/VOCA Beneficiary program?</string> -->
+<!--     <string name="participating_bene_same">Are you or is someone in your home participating in ACDI/VOCA Health Program?</string> -->
+     <string name="participating_mchn">Are you or is someone in your home participating in ACDI/VOCA Health Program?</string>
+    
+    
+   
+    <!--  Update View -->
+    <string name="beneficiary">Beneficiary Information</string>
+    <string name="dossier_label">Enter dossier number and look up!</string>
+    <string name="dossier_hint">Id #</string>
+    <string name="lookup_button">Lookup beneficiary</string>
+    <string name="months_left_in_program">Months remaining in program</string>
+    <string name="save_update">Record the Update</string>
+    <string name="save_button">Record the Update</string>
+    <string name="update_questions">Update Questions</string>
+    <string name="beneficiary_present">Was the beneficiary present?</string>
+    <string name="transfer_required">Should this beneficiary be transferred to a new category?</string>
+    <string name="modifications_needed">Are modifications needed in the beneficiary\'s record?</string>
+    
+    <!-- This is a new question for a button to replace the last two questions - 6/17/11 -->
+    <string name="change_in_status">Is there a change in the beneficiary\'s status?</string>
+    
+    
+    
+    <!--     Toast messages - 6/21/11 -->
+    <string name="toast_save_update">Saving update to DB</string>
+    <string name="toast_find_saved">Find saved to Db </string>
+    <string name="toast_saved_db">Saved to Db</string>
+    <string name="toast_saved">Saved to Db</string>
+    <string name="toast_error_db">Error on save to Db</string>
+    <string name="toast_db_error">Db error</string>
+    <string name="toast_db_error2">Db error</string>
+    <string name="toast_Backkey_isEdited">Backkey isEdited=</string>
+    <string name="toast_no_beneficiary">ERROR: No beneficiary with ID = </string>
+    <string name="toast_beneficiary_id">Beneficiary Id = </string>
+    <string name="toast_sorry_empty">Sorry, there are no beneficiaries in the Db.</string>
+    <string name="toast_id">Id= </string>
+    <string name="toast_admin_beneficiary_data">Import Admin Beneficiary Data:</string>
+    <string name="toast_distribution_post">No distribution post selected</string>
+    <string name="toast_incorrect">Sorry. Incorrect username or password.</string>
+    <string name="toast_superuser">Sorry you must be SUPER USER to do this.</string>
+    <string name="toast_fillform_agricultural">Please fill the form for the person who is in agricultural program.</string>
+    <string name="toast_sent">Sent </string>
+    <string name="toast_messages"> messages.</string>
+    <string name="toast_deleted">Deleted </string>
+     
+    
+    
+<!--     LookupActivity - 6/21/11 --> 
+    <string name="no_beneficiaries_found">No beneficiaries found</string> 
+    
+    
+    
+    <!--  list_finds.xml -->
+    <string name="noFinds">No beneficiaries</string>
+    <string name="pick_criterion_prompt">Create or retrieve existing messages.</string>
+    <string name="search_filter_select_button">Select</string>
+    <string name="new_messages">Create messages for new beneficiaries</string>
+    <string name="update_messages">Create messages for updated beneficiaries</string>
+    <string name="bulk_messages">Create messages for absent distribution beneficiaries</string>
+    <string name="all_messages">List all existing messages</string>
+    <string name="sent_messages">List sent messages</string>
+    <string name="pending_messages">List pending messages</string>
+    <string name="acknowledged_messages">List acknowledged messages</string>
+    <string name="no_messages">No messages to send. Use the menu to create messages.</string>
+    <string name="delete_messages">Delete listed messages</string>
+    <string name="confirm_delete_messages">Are you sure you want to delete these messages?</string>
+    <string name="unsent">Unsent</string>
+    <string name="sent">Sent</string>
+    <string name="pending">Pending</string>
+    <string name="ack">Ack</string>
+    <string name="deleted">Deleted</string>
+   
+        <!-- Add and List Menu -->
+    <string name="refresh">Clear</string>
+    <string name="delete_find">Delete</string> 
+    <string name="search">Search</string>
+<!--     <string name="search_prompt">Search by last name</string>  -->
+    <string name="search_prompt">Search by last and/or first name</string> <!-- 7/25/11 -->
+    <string name="list_messages">Manage SMS Messages</string>
+    <string name="sync_messages">Send SMS Messages</string>
+  
+    <!-- ACDI/VOCA Settings and Preferences -->
+    <string name="acdivocaprefs">ACDI/VOCA Preferences</string>
+    <string name="SMS_phone">SMS Phone Target</string>
+    <string name="smsPhoneKey">smsPhone</string>
+    <string name="localeKey">locale</string>
+    <string name="locale">Locale</string>
+    <string name="localePref">locale</string>
+    
+    <!-- Alert Dialogs -->
+    <string name="acdivoca_exit_findactivity">Are you sure you want to exit? Data may be lost.</string>
+ 	<string name="acdivoca_cancel">Cancel</string>
+ 	
+ 	<!--  Login View -->
+ 	<string name="login_prompt">Login, please.</string>
+ 	<string name="username_hint">Username</string>
+ 	<string name="password_hint">Password</string>
+ 	<string name="login_button">Login</string>
+ 	<string name="cancel_login_button">Cancel</string>
+ 	
+ 	
+ 	<!-- New string constants for agriculture registration form -->
+	<string name="amount_of_land">Amount of Land (carreau)</string>
+	<string name="Ex:1over16"></string>
+    <string name="seed_group">Seed Types</string>
+    <string name="unit_of_measurement">Unit of Measurement</string>
+    <string name="quantity_of_seeds">Quantity of Seeds</string>
+    <string name="tools">Tools</string>
+    <string name="partners">Are you working with other partners?</string>
+ 	
+    <!-- New agri strings - 6/21/11 -->
+    <string name="agri_title">Provide information for the Agriculture registration below.</string>
+     <string name="agri_relative_text">Provide information for your family member in AGRICULTURE Program.</string>
+	 <string name="mchn_relative_text">Provide information for your family member in BENEFICIARY Program.</string>
+     <string name="farmer">Farmer</string>
+     <string name="muso">MUSO</string>
+     <string name="cattle_rancher">Cattle Rancher</string>     
+     <string name="store_owner">Store Owner</string>
+       <string name="fisherman">Fisherman</string>
+       <string name="artisan">Artisan</string>  
+       <string name="other">Other</string>
+       <string name="vegetables">Vegetables</string>
+       <string name="cereal">Cereal</string>
+       <string name="tuber">Tubers</string>  
+       <string name="tree">Tree</string>    
+       <string name="grafting">Grafting</string>   
+       <string name="coffee">Coffee</string>     
+       <string name="hoe">Hoe</string>         
+       <string name="pick">Pick</string>         
+       <string name="wheelbarrow">Wheelbarrow</string>  
+       <string name="machete">Machete</string>                
+    <string name="pruning_knife">Pruning Knife</string>                    
+       <string name="shovel">Shovel</string>         
+       <string name="crowbar">Crowbar</string>
+       <string name="fao">FAO</string>
+       <string name="xmlsave">SAVE</string>
+       <string name="crose">CROSE</string>
+       <string name="plan">PLAN</string>
+       <string name="mardnr">MARDNR</string>
+       <string name="other2">Other</string>       
+       
+    <!-- New update strings - 6/21/11 -->
+       <string name="beneficiary_information">Beneficiary Information</string> 
+    <string name="dossier_number">Dossier Number: </string> 
+    
+    
+    <string name="toast_project_name">Please enter a name for your project</string>
+    <string name="toast_thankyou">Thank you</string>
+    <string name="toast_network_problem">There\'s a problem. To register you must be on a network.</string>
+    <string name="toast_fields">Please fill in all the fields</string>
+    <string name="toast_addresses">Please enter a valid address</string>
+    <string name="toast_email">Please enter a valid email address</string>
+    <string name="toast_password_match">Your passwords do not match</string>
+    <string name="toast_error">Error: </string>
+    <string name="toast_regerror">Registration Error</string>
+    <string name="toast_key">Failed to get authentication key from server.</string>
+    <string name="toast_loginfail">Login failed: </string>
+    <string name="toast_loginsuccess">Successfully logged in.</string>
+    <string name="toast_regfail">Registration Failed: </string>
+    <string name="toast_curproject">\' is already the current project.</string>
+    <string name="toast_sync_success">Sync completed successfully.</string>
+    <string name="toast_sync_fail">Sync failed.</string>
+    <string name="toast_sync_exit">Sync Exiting: No network available</string>
+    <string name="toast_project_dne">Project does not exist. Please choose another project.</string>
+    
+
+    <string name="loading_data">Loading data</string>
+	<string name="please_wait">Please wait.</string>
+	<string name="powered_by_posit">\n         Powered by  POSIT</string>   
+    <string name="powered_by_hfoss">Powered by HFOSS</string>
+ 	<string name="toast_admin_login">Admin Login for Import Beneficiary Data.</string>
+	<string name="toast_adminuser">Sorry you must be ADMIN USER to do this.</string>
+	<string name="aboutItem">About</string>
+	<string name="beneficiary_dossier">Beneficiary Dossier: </string>
+	
+	<string name="update_transfer">Transfer to new category</string>
+	<string name="update_transfer_lectating">Transfer from pregnant to lactating</string>
+	<string name="update_transfer_prevention">Transfer from lactating to preventionn</string>
+	<string name="update_transfer_location">Transfer due to location change</string>
+	<string name="update_edit_beneficiary">Changed beneficiary data</string>
+	<string name="update_transfer_abortion">Abortion</string>
+	<string name="update_deceased">Deceased</string>
+	<string name="update_fraud">Fraud</string>
+	<string name="update_completed">Completed program</string>
+	<string name="update_other">Other</string>
+	
+	               
+ 
+	<string name="english">English</string>
+	<string name="french">Française</string>
+	<string name="haitian">Creole haitien</string>
+	<string name="cancelLabel">Cancel</string>
+	<string name="cancel">Cancel</string>
+	<string name="exit">Are you sure you want to exit?</string>
+	<string name="alert_dialog_ok">Ok</string>
+	<string name="alert_dialog_cancel">Cancel</string>
+ 
+    <string name="send_dist_rep"> messages to send. OK?</string>
+    <string name="io_exc">Oops! Can\'t find </string>
+    <string name="string_exc">String Exception</string>
+ 
+<!--  To be translated -->
+
+    <string name="general">General</string> 
+    <string name="send_message">Sending messages</string> 
+    
+<!--  To be translated -->   
+    <string name="toast_admin_login_required">Admin Login required to import data.</string>
+    
+    
+<!-- 7/18/11 -->    
+    <string name="distribution_summary">Distribution Summary</string>
+    <string name="nabsentees">Absentees = </string>
+    <string name="nmothers">Mothers = </string>
+    <string name="nchildren">Children = </string>
+    <string name="beneficiaries_imported2">Beneficiaries imported : </string>
+    <string name="send_dist_rep2"> messages to send. OK? </string>
+    <string name="invalid_phone_number">Invalid phone number: </string>
+    <string name="no_messages_to_send">There are no messages to send.</string>
+    <string name="being_sent_to">messages being sent to </string>
+    <string name="aboutCopyright1">This software is licensed under the terms of the GNU Lesser General Public License (LGPL).  \n © Copyright Humanitarian FOSS Project 2011.</string>
+	<string name="aboutCopyright2">Portable Open Search and Identification Tool (POSIT). Developed by the Humanitarian FOSS Project at Trinity College, Hartford CT.\n Customized for ACDI/VOCA Mobile Phone based Beneficiary Registration and Update System.
+</string>
+	<string name="aboutDescription"> Developed by the Humanitarian FOSS Project at Trinity College
+	</string>
+	<string name="acdivocaDescription1">ACDI/VOCA Mobile Phone-Based Beneficiary Registration and Update System</string>
+	<string name="acdivocaDescription2">@string/app_name</string>
+	<string name="organizationDescription">Sponsored by the NSF, USAID, and ACDI/VOCA</string>
+	
+	<!-- 7/25/11 --> 
+     <string name="commune_section_key">commune_section_key</string> <!-- Do not translate -->
+    
+    
+    
+</resources>

@@ -1,0 +1,64 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory 
+		android:key="@string/acdivocaprefs"
+		android:title="@string/acdivocaprefs">
+
+		<PreferenceScreen android:title="@string/acdivocaprefs">
+			<EditTextPreference 
+				android:key="@string/smsPhoneKey"  
+				android:title="@string/SMS_phone"
+				android:summary = "@string/SMS_phone" 
+				android:phoneNumber="true"
+				android:shouldDisableView="true"
+				android:defaultValue = "@string/default_phone"
+				android:positiveButtonText="@string/alert_dialog_ok"
+				android:negativeButtonText="@string/alert_dialog_cancel"
+				/>
+
+			<ListPreference 
+				android:key="@string/localeKey"
+				android:title="@string/locale" 
+				android:persistent="true"
+				android:defaultValue="en" 
+				android:summary="@string/locale"
+				android:entries="@array/locales" 
+				android:entryValues="@array/locale_values"
+				android:negativeButtonText="@string/cancelLabel" />
+				
+			    <ListPreference 
+                android:key="@string/distribution_point_key" 
+                android:title="@string/distribution_point"
+                android:entries="@array/distribution_point_names"
+                android:entryValues="@array/distribution_point_values"
+                android:defaultValue = "@string/default_preference_string"
+                android:shouldDisableView="true"
+                android:summary="@string/distribution_point" 
+                android:negativeButtonText="@string/cancelLabel" />
+                
+                
+			    <ListPreference 
+                android:key="@string/commune_section_key" 
+                android:title="@string/commune_section"
+                android:entries="@array/commune_section_names"
+                android:entryValues="@array/commune_section_names"
+                android:defaultValue = "@string/default_preference_string"
+                android:shouldDisableView="true"
+                android:summary="@string/commune_section" 
+                android:negativeButtonText="@string/cancelLabel" />                
+
+
+
+			<ListPreference 
+				android:key="@string/distribution_event_key" 
+				android:title="@string/distribution_event_stage"
+				android:entries="@array/distribution_event_stages"
+				android:entryValues="@array/distribution_event_stages"
+				android:defaultValue = "@string/default_preference_string"
+				android:shouldDisableView="true"
+				android:summary="@string/distribution_event_stage" 
+				android:negativeButtonText="@string/cancelLabel" />
+			
+		</PreferenceScreen>
+	</PreferenceCategory>
+
+</PreferenceScreen>

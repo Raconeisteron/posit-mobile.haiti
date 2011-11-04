@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" android:gravity="center"
+		android:scrollbars="vertical" android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<!-- <ImageView android:id="@+id/acdivoca_logo" android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" android:layout_alignParentTop="true" 
+			android:layout_centerHorizontal="true" android:src="@drawable/acdivoca_logo"/> -->
+
+		<TextView android:text="@string/pick_criterion_prompt"
+			android:textColor="#ffffff" android:layout_width="wrap_content"
+			android:layout_gravity="center" android:textSize="20dp"
+			android:layout_height="wrap_content" />
+
+		<RadioGroup android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="vertical"
+			android:id="@+id/select_filter_radio_group">
+
+			<RadioButton android:checked="false" android:id="@+id/new_messages"
+				android:text="@string/new_messages" />
+			<RadioButton android:checked="false" android:id="@+id/update_messages"
+				android:text="@string/update_messages" />
+			<RadioButton android:checked="false" android:id="@+id/update_bulk_messages"
+				android:text="@string/bulk_messages" />
+
+			<RadioButton android:checked="false" android:id="@+id/all_messages"
+				android:text="@string/all_messages" />
+			<RadioButton android:checked="false" android:id="@+id/pending_messages"
+				android:text="@string/pending_messages" />
+			<RadioButton android:checked="false" android:id="@+id/sent_messages"
+				android:text="@string/sent_messages" />
+			<RadioButton android:checked="false" android:id="@+id/acknowledged_messages"
+				android:text="@string/acknowledged_messages" />
+		</RadioGroup>
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:layout_marginTop="10px" android:orientation="horizontal"
+			android:gravity="center" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+
+			<Button android:text="@string/search_filter_select_button"
+				android:id="@+id/search_filter_select_button"
+				android:hapticFeedbackEnabled="true" android:enabled="false"
+				android:minWidth="75px" android:layout_gravity="bottom"
+				android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+			<Button android:text="@string/cancel" android:id="@+id/cancel_select_filter_button"
+				android:hapticFeedbackEnabled="true" android:minWidth="75px"
+				android:layout_gravity="bottom" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</LinearLayout>
+
+	</LinearLayout>
+</ScrollView>

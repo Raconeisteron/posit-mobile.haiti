@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal|top"
+		android:orientation="vertical"
+		xmlns:android="http://schemas.android.com/apk/res/android">
+		
+		<TextView
+			android:id="@+id/version"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="18sp"
+			android:textColor="#ffffff"
+			android:layout_marginBottom="10dp"/>
+
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    			android:orientation="horizontal"
+    			android:layout_width="wrap_content"
+    			android:layout_height="fill_parent"
+    			android:layout_gravity="center">
+
+		 		<Button 
+					android:id="@+id/listFindButton" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:text="List Find"/>
+					
+				<Button 
+					android:id="@+id/addFindButton" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:text="Add Find"/>
+					
+				<Button 
+					android:id="@+id/extraButton" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:visibility="gone"
+					android:text="Extra Button"/>	
+
+				<Button 
+					android:id="@+id/extraButton2" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content" 
+					android:visibility="visible"
+					android:text="New\nAgriculture"/>	
+			
+			
+		<TextView
+			android:id="@+id/website"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:textSize="18sp"
+			android:textColor="#ffffff"
+			android:text="\n         Powered by POSIT\n(http://www.posit-project.org)"
+			android:autoLink="web"
+			android:layout_marginBottom="10dp"/>
+										
+		</LinearLayout>
+
+	</LinearLayout>
+	

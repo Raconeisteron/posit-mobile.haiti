@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:gravity="center"
+	android:scrollbars="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+
+<!--  
+	<TextView android:text="@string/admin_login" 
+		android:textColor="#ffffff"
+		android:layout_width="wrap_content"
+		android:layout_gravity="center" 
+		android:textSize="20dp"
+		android:layout_height="wrap_content" />
+-->
+
+	<ImageView
+		android:id="@+id/acdivoca_logo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:src="@drawable/acdivoca_logo"/>
+
+<!--  
+	<TextView android:text="@string/login_prompt"
+		android:textColor="#ffffff" android:layout_width="wrap_content"
+		android:layout_gravity="center" android:textSize="20dp"
+		android:layout_height="wrap_content" />
+-->
+	<TextView android:layout_width="wrap_content" android:id="@+id/versionNumber"
+	android:layout_height="wrap_content" android:text="@string/version"></TextView>
+
+	<EditText android:id="@+id/usernameEdit" 
+		android:layout_marginTop="15px"	
+		android:hint="@string/username_hint"
+		android:layout_gravity="center"
+		android:nextFocusDown="@+id/passwordEdit"
+		android:minWidth="150px" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+		
+	<EditText android:id="@+id/passwordEdit" 
+		android:password="true"
+		android:hint="@string/password_hint"
+		android:nextFocusDown="@+id/login_button"
+		android:layout_gravity="center"
+		android:minWidth="150px" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />	
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_marginTop="10px"		
+		android:orientation="horizontal" 
+		android:gravity="center"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		
+		<Button android:text="@string/login_button" 
+			android:id="@+id/login_button"
+			android:hapticFeedbackEnabled="true"
+			android:minWidth="75px"
+			android:layout_gravity="bottom" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+		<Button android:text="@string/cancel" 
+			android:id="@+id/cancel_login_button"
+			android:hapticFeedbackEnabled="true"
+			android:minWidth="75px"
+			android:layout_gravity="bottom" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+</LinearLayout>

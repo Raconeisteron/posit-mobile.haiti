@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical" >
+  
+   
+
+
+	<RelativeLayout
+	android:id="@+id/buttonsBar"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:background="@drawable/gradient"
+	android:layout_alignParentBottom="true">
+	
+ 		<Button 
+		android:id="@+id/skipButton" 
+    	android:layout_width="80dp"
+    	android:layout_height="40dp"
+    	android:layout_alignParentLeft="true"
+		android:text="@string/skipButton"/>
+		
+		<Button 
+		android:id="@+id/previousButton" 
+    	android:layout_width="80dp"
+    	android:layout_height="40dp"
+    	android:layout_toLeftOf="@+id/nextButton"
+		android:text="@string/previousButton"/>
+
+		<Button 
+		android:id="@+id/nextButton" 
+    	android:layout_width="80dp"
+    	android:layout_height="40dp"
+    	android:layout_alignParentRight="true"
+		android:text="@string/nextButton"/>
+		
+		<Button 
+		android:id="@+id/finishButton" 
+    	android:layout_width="80dp"
+    	android:layout_height="40dp"
+    	android:layout_alignParentRight="true"
+		android:text="@string/finishButton"
+		android:visibility="gone"/>		     	    
+		   
+	</RelativeLayout>
+   <WebView 
+        android:id="@+id/tutorialView"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/buttonsBar"/>
+</RelativeLayout>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+	<!--  Acdi Voca Strings -->
+	
+	<!--  Admin Menu Stuff -->
+	<string name="admin_menu">Administration</string>
+	<string name="admin_welcome">Fonction d’administration\nChoisir dans le menu</string>
+	<string name="load_beneficiary_data">Importer donnees Beneficiare</string>
+	<string name="load_agri_data">Données Livelihood importation</string>
+	
+	<string name="manage_distribution">Gerer evenements de distribution</string>
+	<string name="distribution_point">Point de distribution</string>
+	<string name="password_alert_message">Nom utilisateur ou Mot de passe incorrecte.</string>
+	<string name="start_stop_distribution">Demarrer/Stopper distribution</string>
+	<string name="start_distribution">Demarrer distribution</string>
+	<string name="stop_distribution">Stopper distribution</string>
+<!-- 	<string name="send_distribution_report">Envoyer rapport distribution</string> -->
+	<string name="no_files_found">Pas de fichiers à la liste.</string>
+	<string name="messages_being_sent">Les messages envoyés:</string>
+	<string name="beneficiaries_imported">Bénéficiaires importés:</string>
+
+<!-- 	<string name="distribution_event_key">Evenement distribution</string> -->
+	<string name="distribution_event_stage">Evenement Distribution</string>
+<!-- 	<string name="select_distr_point">Selectionner Point de distribution</string> -->
+<!-- 	<string name="import_beneficiary_file">Importer fichier beneficiare</string> -->
+<!-- 	<string name="start_distribution_event">Demarrer evenement distribution</string> -->
+<!-- 	<string name="stop_distribution_event">Stopper evenement distribution</string> -->
+	
+	
+	<string name="manage_event_directions">
+	\n\nEtapes pour gerer evenement de distribution.
+	\n\n\t1) Selectionner Point de distribution (Settings).
+	\n\t2) Importer le fichier master. (Menu)
+	\n\t3) Demarrer evenement de distribution. (Menu)
+	\n\t4) Stopper evenement de distribution. (Menu)
+	\n\t5) Envoyer rapport de distribution. (Menu)
+	</string>
+	
+	<!--  Button Labels -->
+	
+	<string name="list_beneficiary_label">Liste\nBeneficiare</string>
+	<string name="send_sms_label">Envoyez\nMessages\nTexte</string>
+	<string name="add_beneficiary_label">Nouveaux\nBeneficiare\nSanté</string>
+	<string name="update_beneficiary_label">Mise à jour\nBeneficiare\nSanté</string>
+	<string name="new_agri_beneficiary_label">Nouveaux\nBeneficiare\nAgriculture</string>
+	<string name="update_beneficiary_edit_label">Edition</string>
+
+	
+	<string name="general_info">Informations generales</string>
+	<string name="mchn_info">Information MCHN</string>
+ 	<string name="save_info">Enregistrer saisie</string>
+    <string name="name_section">Nom Beneficiaire</string>
+    <string name="locality_section">Localite</string>
+    
+    <string name="lastname">Nom</string>
+    <string name="firstname">Prenom</string>
+    <string name="commune">Commune</string>
+    <string name="commune_section">Section Communale</string>
+    <string name="address">Localite</string>	
+	
+    <string name="sex">Sexe</string>
+    <string name="dob">Date naissance</string>
+    <string name="dob_age">Age</string>
+    <string name="dob_age_hint">Age (si nom DN)</string>
+    <string name="Male">M</string>
+    <string name="Female">F</string>	
+    
+    <string name="Number_of_people_in_home">Nombre de personne dans la maison</string>
+    <string name="Beneficiary_Category">Categorie</string>
+    <string name="Infant_Category">Categorie</string>
+    <string name="Malnourished">Mal Nouri (6-59 mois)</string>
+    <string name="In_Prevention">En Prevention (6-23 mois)</string>
+    <string name="Mother_Category">Categorie Mere</string>
+    <string name="Expecting">Allaitante</string>
+    <string name="Nursing">Enceinte</string>
+    <string name="add_save">Sauvegarder dans la base</string>
+    <string name="add_send">Envoyer SMS</string>
+    
+    <!--   MCHN Strings -->
+    <string name="relatives_section">Parent Beneficiaire</string>
+    <string name="alternate">Representant</string>
+<!--     <string name="responsible_if_mother">Representant (si femme)</string> -->
+    <string name="father_if_child">Nom Pere (si enfant)</string>
+    <string name="husband_if_mother">Nom mari (Si femme)</string>
+    
+    <string name="health_center">Centre sante, Dispensaire, ou point fixe</string>
+    <string name="distribution_post">Centre sante, Dispensaire, ou point fixe</string>    
+	<string name="status_change">Type de status</string>
+    
+    <string name="mchn_questions">Question</string>
+    <string name="mother_leader">Etes vous mere leader?</string>
+    <string name="visit_mother_leader">Avez vous recu la visite de mere leader?</string>
+<!--     <string name="relative_participating_acdivoca"> Y a t-il quelqu\'un de votre famille qui participe au programme Agriculture de ACDI/VOCA?</string> -->
+	<string name="participating_beneficiary_agri">Participant d\'agriculture</string>
+	<string name="participating_beneficiary_mchn">Participant de MCHN</string>    <string name="participating_acdivoca">Est-ce que vous ou quelqu\'un dans votre maison reçoivent de l\'aide du programe agriculture de ACDI/VOCA?</string>
+    <string name="give_name">Si oui, Precisez le nom</string>
+    <string name="Yes">Oui</string>
+    <string name="No">Non</string>
+<!-- 	<string name="participating_bene">Y a t-il quelqu\'un de votre famille qui participe dans le programme d’acdivoca ?</string> -->
+    <string name="participating_bene_same">Est-ce que vous ou quelqu\'un dans votre maison reçoivent de l\'aide du programe santé de ACDI/VOCA?</string>
+	<string name="participating_mchn">Etes-vous ou quelqu\'un dans votre maison participant au Programme de Santé ACDI/VOCA?</string>
+	<string name="participating_agri"> Etes-vous ou quelqu\'un dans votre aide à domicile reçoit de l\'ACDI/VOCA Programme d\'agriculture?</string>    
+    
+   
+    <!--  Update View -->
+    <string name="beneficiary">Information Beneficiaire</string>
+    <string name="dossier_label">Taper le no-dossier et rechercher!</string>
+    <string name="dossier_hint">No-dossier #</string>
+    <string name="lookup_button">Rechercher</string>
+    <string name="months_left_in_program">Mois restant</string>
+    <string name="save_update">Enregistrer mis a jour</string>
+    <string name="save_button">Enregistrer mis a jour</string>
+    <string name="update_questions">Question mis a jour</string>
+    <string name="beneficiary_present">Le beneficiare est-il present?</string>
+    <string name="transfer_required">Est ce que ce beneficiare doit etre transfere à une nouvelle categorie?</string>
+    <string name="modifications_needed">Est ce que ce beneficiaire doit etre modifie</string>
+    
+    <!-- This is a new question for a button to replace the last two questions - 6/17/11 -->
+    <string name="change_in_status">Est ce que le status du beneficiaire doit etre change?</string>
+
+<!--     Toast messages - 6/21/11 -->
+	<string name="toast_save_update">Enregistrer la mis a jour dans la base</string>
+    <string name="toast_find_saved">Rechercher dans la base </string>
+    <string name="toast_saved_db">Enregistrer dans la base</string>
+    <string name="toast_saved">Enregistrer dans la base</string>
+    <string name="toast_error_db">Erreur dans l’enregistrement</string>
+    <string name="toast_db_error">Erreur de base de donnees</string>
+    <string name="toast_db_error2">Erreur de base de donnees</string>
+    <string name="toast_Backkey_isEdited">Backkey isEdited=</string>
+    <string name="toast_no_beneficiary">ERROR: No dossier non trouve = </string>
+    <string name="toast_beneficiary_id">No dossier Beneficiare= </string>
+	<string name="toast_sorry_empty">Desolez, il n\'y a pas de beneficiaire dans la base.</string>
+    <string name="toast_id">No dossier= </string>
+    <string name="toast_admin_beneficiary_data">Importer donnees beneficiaire:</string>
+    <string name="toast_distribution_post">Poste distribution non encore selectionnee</string>
+	<string name="toast_superuser">Désolez, vous devez etre un utilisateur avancé pour faire ce travail.</string>
+    <string name="toast_fillform_agricultural">Veuillez remplir la forme pour cette personne faisant partie du volet agriculture.</string>
+    <string name="toast_sent">Envoyer </string>
+    <string name="toast_messages"> messages.</string>
+    <string name="toast_deleted">Effacer </string>
+     
+    
+    
+<!--     LookupActivity - 6/21/11 --> 
+    <string name="no_beneficiaries_found">Beneficiare non trouve</string> 
+
+    
+    <!--  list_finds.xml -->
+    <string name="noFinds">Pas de beneficiares</string>
+    <string name="pick_criterion_prompt">Créer ou récupérer des messages existants.</string>
+    <string name="search_filter_select_button">Selectionner</string>
+    <string name="new_messages">Créer messages pour nouveaux beneficiaire</string>
+    <string name="update_messages">Créer messages mis a jour beneficiaries</string>
+    <string name="bulk_messages">Créez des messages pour les bénéficiaires de la distribution absents</string>
+    <string name="all_messages">Lister tous les messages existant</string>
+    <string name="sent_messages">Lister les messages envoyes</string>
+    <string name="pending_messages">Lister les message en pending</string>
+    <string name="acknowledged_messages">Lister les autres message</string>
+    <string name="no_messages">pas de message a envoyer. Utiliser le menu pour create les messages.</string>
+    <string name="delete_messages">Supprimer les messages listés</string>
+    <string name="confirm_delete_messages">Etes vous sure de vouloir supprimer ces message?</string>
+    <string name="unsent">Pas unvoyes</string>
+    <string name="sent">Envoyes</string>
+    <string name="pending">En pending</string>
+    <string name="deleted">Deleted</string>
+    
+   
+        <!-- Add and List Menu -->
+    <string name="refresh">Netoyer</string>
+    <string name="delete_find">Supprimer</string> 
+    <string name="search">Rechercher</string>
+    <string name="search_prompt">Recherche par nom de famille</string>
+    
+    <string name="list_messages">Gérer Messages SMS</string>
+    <string name="sync_messages">Envoyer Messages SMS</string>
+  
+    <!-- ACDI/VOCA Settings and Preferences -->
+    <string name="acdivocaprefs">Preference ACDI/VOCA</string>
+    <string name="SMS_phone">Cible SMS Phone</string>
+<!--     <string name="smsPhoneKey">smsPhone</string> -->
+<!--     <string name="localeKey">locale</string> -->
+    <string name="locale">Locale</string>
+    <string name="localePref">locale</string>
+    
+    <!-- Alert Dialogs -->
+    <string name="acdivoca_exit_findactivity">Etes vous sure de vouloir quitter?.</string>
+ 	<string name="acdivoca_cancel">Annuler</string>
+ 	
+ 	<!--  Login View -->
+ 	<string name="login_prompt">Connecter, SVP.</string>
+ 	<string name="username_hint">Nom utilisateur</string>
+ 	<string name="password_hint">Mot de passe</string>
+ 	<string name="login_button">Connecter</string>
+ 	<string name="cancel_login_button">Annuler</string>
+ 	
+ 	
+ 	<!-- New string constants for agriculture registration form -->
+	<string name="amount_of_land">Dimension Jarden (carreau)</string>
+	<string name="Ex:1over16"></string>
+    <string name="seed_group">Semences recues?</string>
+    <string name="unit_of_measurement">Uniter de mesure</string>
+    <string name="quantity_of_seeds">Quantite de semences</string>
+    <string name="tools">Outils</string>
+    <string name="partners">Partenaire ayant participle dans la distribution?</string>
+    
+	<!-- New agri strings - 6/21/11 -->
+ 	<string name="farmer">Agriculture</string>
+ 	<string name="muso">MUSO</string>
+ 	<string name="cattle_rancher">Betail/Elevage</string> 	
+	<string name="store_owner">Proprietaire</string>
+   	<string name="fisherman">Peche</string>
+    <string name="artisan">Artisanat</string> 
+   	<string name="other">Autre</string>
+   	<string name="vegetables">Marecheres</string>
+   	<string name="cereal">Cerealiere</string>
+   	<string name="tuber">Tuberculess</string>  
+   	<string name="tree">Arbres</string>  
+    <string name="grafting">Greffage</string>    	
+   	<string name="coffee">Cafe</string>     
+   	<string name="hoe">Houe</string>     	
+   	<string name="pick">Pioche</string>     	
+   	<string name="wheelbarrow">Brouette</string>  
+   	<string name="machete">Machette</string>     	   	
+	<string name="pruning_knife">Serpette</string>     	   		
+   	<string name="shovel">Pelle</string>     	
+   	<string name="crowbar">Barre a mines</string>
+   	<string name="fao">FAO</string>
+   	<string name="xmlsave">SAVE</string>
+   	<string name="crose">CROSE</string>
+   	<string name="plan">PLAN</string>
+   	<string name="mardnr">MARDNR</string>
+   	<string name="other2">Autres</string>   	
+   	
+	<!-- New update strings - 6/21/11 -->
+   	<string name="beneficiary_information">Information Beneficiare</string> 
+	<string name="dossier_number">No Dossier: </string>  
+	
+	
+	<string name="toast_project_name">Veuillez taper un nom</string>
+    <string name="toast_thankyou">Merci</string>
+    <string name="toast_network_problem">Un problem est survenu. Il faut faire partie du reseau.</string>
+    <string name="toast_fields">Il faut remplir tous les champs</string>
+    <string name="toast_addresses">Il faut taper une adresse valide</string>
+    <string name="toast_email">E-mail non valide</string>
+    <string name="toast_password_match">mot de passé dismatch</string>
+    <string name="toast_error">Erreur: </string>
+    <string name="toast_regerror">Erreur d’enregistrement</string>
+    <string name="toast_key">Probleme d’authentification du server</string>
+    <string name="toast_loginfail">Connexion echouée: </string>
+    <string name="toast_loginsuccess">Connexion reussie.</string>
+    <string name="toast_regfail">Inscription echouée: </string>
+    <string name="toast_curproject">C’est déjà le projet courent.</string>
+    <string name="toast_sync_success">Synchronisation effectuée.</string>
+    <string name="toast_sync_fail">Synchronisation echouée.</string>
+    <string name="toast_sync_exit">Synchronisation existante: Réseau non disponible</string>
+    <string name="toast_project_dne">Le projet n’existe pas. Il faut choisir un autre projet.</string>
+	 
+	 
+	<string name="powered_by_posit">\n         Développé par  POSIT</string>
+	<string name="cancel">Annuler</string>
+	<string name="admin_directions">Pour accès administrative, utiliser les fonctions dans le menu.</string>   	   	
+    <string name="settings">Parametres</string>
+    <string name="aboutItem">A Propos</string>
+    <string name="exit">Etes vous sure de vouloir quitter?</string>
+    
+	<string name="loading_data">Chargement des donnees</string>
+	<string name="please_wait">Patientez svp.</string>
+	<string name="alert_dialog_cancel">Annuler</string>
+	<string name="cancelLabel">Annuler</string>
+	
+	<string name="update_transfer">Transferer a une autre categorie</string>
+	<string name="update_transfer_lectating">Transferer de l\'enceinte de soins infirmiers</string>
+	<string name="update_transfer_prevention">Transferer de lactating to preventionn</string>
+	<string name="update_transfer_location">Transferer a un\'autre point de distribution</string>
+	<string name="update_edit_beneficiary">Changé l\'information de beneficiare</string>
+	<string name="update_deceased">Decede</string>
+	<string name="update_fraud">Fraud</string>
+	<string name="update_completed">Cycle complet</string>
+	<string name="update_other">L\'autre</string>
+	
+	
+	<string name="english">English</string>
+	<string name="french">Française</string>
+	<string name="haitian">Creole haitien</string>
+	
+	<string name="powered_by_hfoss">Développé par HFOSS</string>
+	<string name="toast_admin_login">Conexion Administrateur pour importer les donnees des beneficiaires.</string>
+	<string name="toast_adminuser">Désolez vous devez avoir un droit administrateur pour faire ce travail.</string>
+	<string name="general">Generale</string>
+	<string name="send_message">Envoye message est en cours</string> 
+	<string name="check_saving">Sauvegarder les donnees avant de retourner?</string>
+	
+	
+	<!-- Random translations of toasts and other strings  -->
+	<string name="toast_admin_login_required">Admin Login requis pour importer des données.</string>
+	<string name="ack">Reconnu</string>
+    <string name="no_messages_to_send">Il n\'y a pas d\'envoyer des messages.</string>	
+	<string name="beneficiary_dossier">No dossier du bénéficiaire: </string>
+	<string name="agri_title">Fournir des informations pour l\'enregistrement agriculture ci-dessous.</string>
+	<string name="distribution_summary">Résumé de Distribution</string>
+	<string name="nabsentees">Absents = </string>
+	<string name="nmothers">Mères = </string>
+	<string name="nchildren">Enfants = </string>
+	<string name="beneficiaries_imported2">Bénéficiaires importés : </string>
+	<string name="send_dist_rep2"> messages à envoyer. OK? </string>
+	<string name="invalid_phone_number">Numéro de téléphone invalide: </string>
+	<string name="being_sent_to">messages envoyés à </string>
+	<string name="aboutCopyright2">Outils portable d\’identification et de recherche\n Développé par le projet FOSS Humanitaire au Trinity College. ACDI/VOCA mobiles d\'enregistrement bénéficiaire sur téléphone et système de mise à jour.</string>
+	<string name="aboutCopyright1">Ce logiciel est distribué sous les termes de la licence GNU Lesser General Public (LGPL). \n © Projet humanitaire d\'auteur FOSS 2011.</string>
+	<!-- <string name="aboutCopyright2">Portable Open Search and Identification Tool\n </string> -->
+	<string name="aboutDescription">Développé par le projet FOSS Humanitaire au Trinity College</string>
+	<string name="acdivocaDescription1">ACDI/VOCA mobiles d\'enregistrement bénéficiaire sur téléphone et système de mise à jour</string>
+	<string name="acdivocaDescription2">(POSIT-Haiti)</string>
+	<string name="organizationDescription">Parrainé par la NSF, USAID et ACDI/VOCA</string>
+	<string name="toast_incorrect">Désolé. Nom d\'utilisateur incorrect ou mot de passe.</string>
+	<string name="mchn_title">Fournir des informations pour l\'enregistrement MCHN ci-dessous.</string>
+	<string name="agri_relative_text">Fournir des informations pour les membres de votre famille au programme AGRICULTURE.</string>
+	<string name="mchn_relative_text">Fournir des informations pour les membres de votre famille au programme BÉNÉFICIAIRE.</string>
+	<string name="update_transfer_abortion">Avortement</string>
+	<string name="send_dist_rep"> messages à envoyer. OK?</string>
+	<string name="io_exc">Oops! Vous ne trouvez pas </string>
+	<string name="string_exc">Exception cordes</string>
+	
+	
+	
+</resources>

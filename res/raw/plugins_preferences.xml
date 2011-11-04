@@ -1,0 +1,43 @@
+<PluginsPreferences>
+	<FindPlugins>
+		<Plugin active="true" name="AcdiVocaFind"
+			package="org.hfoss.posit.android.plugin.acdivoca" 
+			find_factory="AcdiVocaFindFactory"
+			find_activity_class="AcdiVocaMchnFindActivity" 
+			extra_activity_class="AcdiVocaUpdateFindActivity"
+			extra_activity_class2="AcdiVocaAgriFindActivity"
+			list_finds_activity_class="AcdiVocaListFindsActivity"
+			login_activity_class="LoginActivity"
+			find_data_manager="AcdiVocaFindDataManager" 
+			preferences_xml="acdivoca_preferences" 
+			main_list_button_label="send_sms_label"
+			main_add_button_label="add_beneficiary_label"
+			main_extra_button_label="update_beneficiary_label"
+			main_extra_button_label2="new_agri_beneficiary_label"
+			main_icon="acdivoca_logo_lg" />
+
+<!-- 			list_finds_activity_class="AcdiVocaSendSmsActivity" -->
+
+<!-- 		<Plugin active="true" name="AcdiVocaFind2" -->
+<!-- 			package="org.hfoss.posit.android.plugin.acdivoca"  -->
+<!-- 			find_factory="AcdiVocaFindFactory" -->
+<!-- 			find_activity_class="AcdiVocaFindActivity"  -->
+<!-- 			extra_activity_class="AcdiVocaUpdateActivity" -->
+<!-- 			list_finds_activity_class="AcdiVocaListFindsActivity" -->
+<!-- 			login_activity_class="LoginActivity" -->
+<!-- 			extra_activity_class2="AcdiVocaNewAgriActivity" -->
+<!-- 			find_data_manager="AcdiVocaFindDataManager"  -->
+<!-- 			preferences_xml="acdivoca_preferences2"   -->
+<!-- 			main_list_button_label="list_beneficiary_label" -->
+<!-- 			main_add_button_label="add_beneficiary_label" -->
+<!-- 			main_extra_button_label="update_beneficiary_label" -->
+<!-- 			main_extra_button_label2="new_agri_beneficiary_label" -->
+<!-- 			main_icon="acdivoca_logo" /> -->
+	</FindPlugins>
+</PluginsPreferences>
+
+<!-- Specs:
+
+preferences_xml has to be in res/raw
+
+ -->

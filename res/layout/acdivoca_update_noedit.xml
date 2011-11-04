@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:scrollbars="vertical|horizontal">
+                
+             <TextView android:id="@+id/dossier_heading"
+                android:text="@string/beneficiary"
+                android:textColor="#ffffff"
+                android:layout_width="fill_parent"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />        
+ 
+            <TextView android:id="@+id/dossier_label"
+                android:text="@string/dossier_number"
+                android:layout_width="fill_parent"
+                android:textSize="14dp"
+                android:layout_marginLeft="20px" 
+                android:layout_height="wrap_content" />        
+       
+            <TextView android:id="@+id/firstnameLabel"
+                android:text="@string/firstname"
+                android:textSize="14dp"
+                android:inputType="textCapSentences"
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px" />
+
+            <TextView android:id="@+id/lastnameLabel"
+                android:text="@string/lastname"
+                android:textSize="14dp"
+                android:layout_width="fill_parent" android:layout_marginRight="30px"
+                android:layout_marginLeft="20px"
+                android:inputType="textCapSentences"
+                android:layout_height="wrap_content" />
+
+            <TextView android:id="@+id/dobLabel"
+            	android:text="@string/dob"
+                android:textSize="14dp"
+                android:layout_marginLeft="20px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+            
+            <TextView android:id="@+id/sexLabel"
+            	android:text="@string/sex"
+                android:textSize="14dp"
+                android:layout_marginLeft="20px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView android:id="@+id/categoryLabel"
+            	android:text="@string/Beneficiary_Category"
+                android:textSize="14dp"
+                android:layout_marginLeft="20px"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+                
+            
+<!--             <TextView android:id="@+id/monthsInProgramLabel"  -->
+<!--             	android:text="@string/months_left_in_program" -->
+<!--                 android:textSize="14dp" -->
+<!--                 android:layout_marginLeft="20px" -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="wrap_content" />         -->
+
+            <TextView android:text="@string/update_questions"
+                android:layout_marginLeft="0px"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+            <TextView android:id="@+id/beneficiary_present"
+                android:text="@string/beneficiary_present" android:textColor="#ffffff"
+                android:visibility="visible"
+                android:layout_marginLeft="15px"
+                android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+            <RadioGroup android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:id="@+id/radio_beneficiary_present">
+                <RadioButton android:checked="false"
+                    android:layout_marginLeft="30px"
+                    android:id="@+id/radio_present_yes"
+                    android:text="@string/Yes" />
+                <RadioButton android:checked="false"
+                    android:layout_marginLeft="30px"
+                    android:id="@+id/radio_present_no"
+                    android:text="@string/No" />
+            </RadioGroup>    
+
+
+            <TextView android:id="@+id/change_in_status"
+                android:text="@string/change_in_status" android:textColor="#ffffff"
+                android:visibility="visible"
+                android:layout_marginLeft="15px"
+                android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+            <RadioGroup android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:id="@+id/radio_change_in_status">
+                <RadioButton android:checked="false"
+                    android:layout_marginLeft="30px"
+                    android:id="@+id/radio_change_in_status_yes"
+                    android:text="@string/Yes" />
+                <RadioButton android:checked="false"
+                    android:layout_marginLeft="30px"
+                    android:id="@+id/radio_change_in_status_no"
+                    android:text="@string/No" />
+            </RadioGroup>    
+            
+            
+            <TextView android:text="@string/status_change" android:textColor="#ffffff"
+                android:id="@+id/statuschange"
+                android:layout_width="fill_parent"
+                android:layout_marginLeft="10px"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+            <Spinner android:id="@+id/statuschangeSpinner"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px"
+                android:entries="@+array/status_change_options"
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:visibility="gone" />                
+
+
+
+<!--             <TextView android:id="@+id/transfer_required" -->
+<!--                 android:text="@string/transfer_required"  -->
+<!--                 android:layout_marginLeft="15px"  -->
+<!--                 android:textColor="#ffffff" -->
+<!--                 android:visibility="visible" -->
+<!--                 android:layout_width="fill_parent" android:layout_height="wrap_content" /> -->
+                
+<!--             <RadioGroup android:layout_width="fill_parent" -->
+<!--                 android:layout_height="wrap_content" android:orientation="horizontal" -->
+<!--                 android:id="@+id/radio_transfer_required"> -->
+<!--                 <RadioButton android:checked="false"  -->
+<!--                     android:layout_marginLeft="30px"  -->
+<!--                     android:id="@+id/radio_transfer_yes" -->
+<!--                     android:text="@string/Yes" /> -->
+<!--                 <RadioButton android:checked="false"                      -->
+<!--                     android:layout_marginLeft="30px"  -->
+<!--                     android:id="@+id/radio_transfer_no" -->
+<!--                     android:text="@string/No" /> -->
+<!--             </RadioGroup>                     -->
+
+<!--             <TextView android:id="@+id/modifications_needed" -->
+<!--                 android:text="@string/modifications_needed"  -->
+<!--                 android:layout_marginLeft="15px"  -->
+<!--                 android:textColor="#ffffff" -->
+<!--                 android:visibility="visible" -->
+<!--                 android:layout_width="fill_parent" android:layout_height="wrap_content" />     -->
+                
+<!--             <RadioGroup android:layout_width="fill_parent" -->
+<!--                 android:layout_height="wrap_content" android:orientation="horizontal" -->
+<!--                 android:id="@+id/radio_modifications"> -->
+<!--                 <RadioButton android:checked="false"  -->
+<!--                     android:layout_marginLeft="30px"  -->
+<!--                     android:id="@+id/radio_modifications_yes" -->
+<!--                     android:text="@string/Yes" /> -->
+<!--                 <RadioButton android:checked="false"  -->
+<!--                     android:layout_marginLeft="30px"  -->
+<!--                     android:id="@+id/radio_modifications_no" -->
+<!--                     android:text="@string/No" /> -->
+<!--             </RadioGroup> -->
+
+                        
+<!--
+            <EditText android:id="@+id/give_name"
+                android:hint="@string/give_name"
+                android:inputType="textCapSentences"
+                android:visibility="invisible"
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="30px" android:layout_marginRight="30px" />                
+            </LinearLayout>
+            
+-->    
+            <TextView android:text="@string/save_update" android:textColor="#ffffff"
+                android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:textSize="20dp" />        
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal" android:layout_width="wrap_content"
+                android:layout_height="fill_parent" android:layout_gravity="center"
+                android:paddingTop="24dp" >
+
+                <Button android:text="@string/save_button" android:id="@+id/update_to_db_button"
+                    android:layout_marginLeft="20px" android:layout_marginRight="20px"
+                    android:layout_width="fill_parent" android:layout_height="wrap_content" />
+                    
+				<Button android:text="@string/update_beneficiary_edit_label" android:id="@+id/update_edit_button"
+					android:visibility="visible"
+					android:layout_marginLeft="20px" android:layout_marginRight="20px"
+					android:layout_width="fill_parent" android:layout_height="wrap_content" />	                    
+<!--  
+
+-->                    
+            </LinearLayout>
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

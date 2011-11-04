@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical">
+    <LinearLayout android:id="@+id/linearLayout1" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <ImageView android:id="@+id/Logo" android:src="@drawable/icon" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+        <TextView android:gravity="center" android:textColor="#ffffff" android:id="@+id/developmentTeamLabel2" android:text="@string/app_name" android:textSize="15sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="3dp"></TextView>
+        <TextView android:gravity="center" android:textColor="#ffffff" android:id="@+id/developmentTeamLabel3" android:text="@string/version" android:textSize="15sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="3dp"></TextView>
+        <TextView android:paddingBottom="0dip" android:textColor="#ffffff" android:id="@+id/developmentTeamLabel7" android:text="@string/aboutCopyright2" android:textSize="15sp" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+        <TextView android:textColor="#ffffff" android:id="@+id/developmentTeamLabel5" android:text="@string/httpLink" android:textSize="15sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="3dp"></TextView>
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/tableRow1" android:background="#FFFFFF" >
+            <ImageView android:id="@+id/Logo" android:src="@drawable/hfoss_logo" android:layout_width="wrap_content" android:layout_height="match_parent"></ImageView>
+            <ImageView android:layout_width="wrap_content" android:id="@+id/Logo" android:layout_height="wrap_content" android:src="@drawable/acdivoca_logo"></ImageView>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/tableRow2" android:background="#FFFFFF">
+            <ImageView android:id="@+id/Logo" android:src="@drawable/usaid_logo" android:layout_width="match_parent" android:layout_height="wrap_content"></ImageView>
+        </TableRow>
+        <TextView android:gravity="center" android:textColor="#ffffff" android:id="@+id/developmentTeamLabel8" android:text="@string/organizationDescription" android:textSize="15sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="3dp"></TextView>
+    </LinearLayout>
+    <TextView android:id="@+id/textView1" android:text="@string/aboutCopyright1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+</LinearLayout>

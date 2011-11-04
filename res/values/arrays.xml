@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+<!-- ACDI/VOCA Arrays -->
+	<string-array name="locales"> 
+	<item>@string/english</item>
+	<item>@string/haitian</item>
+	<item>@string/french</item>
+	</string-array>
+	
+	<string-array name="locale_values"> 
+	<item>en</item>
+	<item>ht</item>
+	<item>fr</item>
+	</string-array>	
+
+	<string-array name="commune_names"> 
+	<item>Anse a Pitres</item>
+	<item>Thiotte</item>
+	<item>Grand Gosier</item>
+	<item>Belle Anse</item>
+	<item>La vallee</item>
+	<item>Bainet</item>
+	<item>Cote de fer</item>
+	</string-array>
+
+	<string-array name="commune_section_names">
+		<item>11eme La vallee</item>
+		<item>1ere Musac</item>
+		<item>3 eme La vallee</item>
+		<item>3eme Bras de gauche</item>
+		<item>4eme Haut Gandou</item>
+		<item>5eme Bas Gandou</item>
+		<item>6eme Bas de la croix</item>
+		<item>6ème Jamais-Vu</item>
+		<item>8eme orangers</item>
+		<item>9eme Bas des gris gris</item>
+		<item>Amazone</item>
+		<item>Anse a Pitres</item>
+		<item>Baie d_Orange</item>
+		<item>Bas Grandou</item>
+		<item>BelAir</item>
+		<item>Belle Anse</item>
+		<item>Bodarie</item>
+		<item>Bois d_Orme</item>
+		<item>Boucan Belier</item>
+		<item>BoucanGuillaume</item>
+		<item>Bras de gauche</item>
+		<item>Bresilienne</item>
+		<item>Callumette</item>
+		<item>Centre de Santé Anse a Pitres</item>
+		<item>CollinedesChaines</item>
+		<item>CorailLamothe</item>
+		<item>Cote de fer</item>
+		<item>Grand Gosier</item>
+		<item>Gris-Gris</item>
+		<item>Haut Grandou</item>
+		<item>Jamais vus</item>
+		<item>Labich</item>
+		<item>Mabriole</item>
+		<item>Mapou</item>
+		<item>Morne a Brule</item>
+		<item>Pichon</item>
+		<item>Platon Cedre</item>
+		<item>Pot de Chambre/2eMareMirande</item>
+		<item>Thiotte 1ereColombier</item>
+		<item>Tou mahot</item>
+	</string-array>
+	
+	
+	<string-array name="distribution_point_names"> 
+	<item>Anse a Pitres</item>
+	<item>Centre Belle-Ance</item>
+	<item>Centre Platon Cedre</item>
+	<item>Centre Sacre Coeur</item>	
+	<item>Centre St Joseph</item>	
+	<item>Dispensaire Banane</item>
+	<item>Dispensaire Bodarie</item>
+	<item>Dispensaire Boucan Belier</item>	
+	<item>Dispensaire de Bleck/ Mar Mirande</item>
+	<item>Dispensaire de Savane Zombi</item>
+	<item>Dispensaire Grand Gosier</item>
+	<item>Dispensaire Mapou</item>
+	<item>Dispensaire marbriole</item>				
+	<item>Dispensaire Ricot</item>	
+	<item>Dispensaire Ste rose de lima</item>	
+	<item>Labiche</item>	
+	<item>Point Fixe de Amazone</item>
+	<item>Point Fixe de Mayette</item>	
+	<item>Point Fixe Ka Tousen</item>	
+	<item>Pt fixe Baie d_orange</item>	
+	<item>Pt Fixe Bel-air</item>	
+	<item>Pt fixe Boulay</item>
+	<item>Pt fixe Calumette</item>	
+	<item>Pt fixe Corail Lamothe</item>
+	<item>Pt Fixe Macieux</item>	
+	<item>Pt fixe Pichon</item>		
+	</string-array>
+
+	<string-array name="distribution_point_values">
+		<item>HEAP-020</item>
+		<item>HEBA-017</item>
+		<item>HEAP-014</item>
+		<item>HETH-024</item>
+		<item>HECF001</item>
+		<item>HEAP-021</item>
+		<item>HEGG-019</item>
+		<item>HECF003</item>
+		<item>HETH027</item>
+		<item>HETH026</item>
+		<item>HEGG-018</item>
+		<item>HEBA006</item>
+		<item>HEBA008</item>
+		<item>HECF004</item>
+		<item>HECF002</item>
+		<item>HECF-005</item>
+		<item>HECF025</item>
+		<item>HECF024</item>
+		<item>HEAP-017</item>
+		<item>HEBA007</item>
+		<item>HEBA015</item>
+		<item>HEGG-020</item>
+		<item>HEBA-016</item>
+		<item>HEBA009</item>
+		<item>HECF023</item>
+		<item>HEBA010</item>
+	</string-array>
+	
+	
+<!-- 	<string-array name="health_center_names">  -->
+<!-- 	<item>Centre de santé une</item> -->
+<!-- 	<item>Centre de santé deux</item> -->
+<!-- 	<item>Centre de santé trois</item> -->
+<!-- 	<item>Centre de santé quatre</item> -->
+<!-- 	<item>Centre de santé cinq</item> -->
+<!-- 	</string-array> -->
+
+
+<!--  Preferences that start activities in SettingsActivity -->
+	<string-array name="preference_activities">
+	<item>testpref</item>
+	<item>testpref2</item>
+	</string-array>
+	
+	<string-array name="preference_activity_classes">
+	<item>org.hfoss.posit.android.AboutActivity</item>
+	<item>org.hfoss.posit.android.AboutActivity</item>
+	</string-array>
+	
+<!-- 	<string-array name="types_of_units"> -->
+<!-- 	<item>Livre</item> -->
+<!-- 	<item>Marmites</item> -->
+<!-- 	<item>Pote</item> -->
+<!-- 	<item>Kg</item> -->
+<!-- 	<item>Plantules</item> -->
+<!-- 	<item>Boutures</item> -->
+<!-- 	</string-array> -->
+	
+	<!-- 	Change in status reasons list -->
+	<string-array name="status_change_options">
+	<item>@string/update_transfer_lectating</item>
+	<item>@string/update_transfer_prevention</item>
+	<item>@string/update_transfer_location</item>
+	<item>@string/update_transfer_abortion</item>
+	<item>@string/update_edit_beneficiary</item>
+	<item>@string/update_deceased</item>
+	<item>@string/update_fraud</item>
+	<item>@string/update_completed</item>
+	<item>@string/update_other</item>
+	</string-array>
+	
+	<!--    Arrays for managing distribution events -->
+	<!--  Same array used for attributes and values -->
+	<string-array name="distribution_event_stages">
+	<item>@string/select_distr_point</item>
+	<item>@string/import_beneficiary_file</item>
+	<item>@string/start_distribution_event</item>
+	<item>@string/stop_distribution_event</item>
+	<item>@string/send_distribution_report</item>
+	<item>@string/abort_distribution_event</item>
+	</string-array>
+
+	<integer-array name="distribution_event_stage_values">
+	<item>1</item>
+	<item>2</item>
+	<item>3</item>
+	<item>4</item>
+	<item>5</item>
+	<item>6</item>
+	</integer-array>	
+
+	
+</resources>

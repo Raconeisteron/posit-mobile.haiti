@@ -1,0 +1,39 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="@string/general">
+ 
+			<Preference android:key="testpositpref" 
+				android:title="@string/aboutItem"
+				activity_class="org.hfoss.posit.android.AboutActivity"
+				android:summary="" />
+  <!-- 
+			<Preference android:key="regDevice" 
+				android:title="@string/prefDevice"
+				android:summary="@string/registerDeviceTitle" 
+				activity_class="org.hfoss.posit.android.AboutActivity"
+				/>
+
+			<Preference android:key="regUser" 
+				android:title="@string/prefUser"
+				android:summary="@string/registerUserTitle" 
+				activity_class="org.hfoss.posit.android.AboutActivity"
+				/>
+
+			<EditTextPreference android:title="@string/serverPrefLabel"
+				android:key="SERVER_ADDRESS" />
+  
+			<Preference android:key="PROJECT_NAME" 
+				android:title="@string/currProjectLabel" 
+				activity_class="org.hfoss.posit.android.AboutActivity"
+			/>
+
+			<Preference android:key="EMAIL" 
+				android:title="@string/currUserLabel" 
+				activity_class="org.hfoss.posit.android.AboutActivity"
+				/>
+
+		<PreferenceScreen android:title="POSIT Preferences">
+		</PreferenceScreen>
+-->
+	</PreferenceCategory>
+  
+</PreferenceScreen>

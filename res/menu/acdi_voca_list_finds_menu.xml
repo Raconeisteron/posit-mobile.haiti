@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:icon="@drawable/ic_menu_list"
+		android:title="@string/list_messages"
+		android:id="@+id/list_messages" >
+	</item>
+	<item 
+		android:icon="@drawable/ic_menu_refresh" 
+		android:title="@string/sync_messages"
+		android:enabled="false"
+		android:id="@+id/sync_messages" >
+	</item>	
+	<item 
+		android:title="@string/delete_messages" 
+		android:id="@+id/delete_messages_menu"
+		android:enabled="false"
+		android:icon="@android:drawable/ic_menu_delete">
+	</item>
+	
+	<item 
+		android:title="@string/search" 
+		android:id="@+id/search_finds_menu"
+		android:enabled="true"
+		android:icon="@android:drawable/ic_menu_search">
+	</item>
+</menu>
+

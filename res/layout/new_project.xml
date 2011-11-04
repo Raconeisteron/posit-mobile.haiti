@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+   	<TextView 
+		android:id="@+id/projectNameLabel"
+		android:text="@string/projectNameLabel"
+		android:textSize="14.5sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="left"/>
+
+	<EditText
+        android:id="@+id/projectName"
+        android:layout_height="40dp"
+        android:layout_width="fill_parent"
+        android:layout_gravity="fill_horizontal"
+        android:inputType ="textCapSentences"/>
+	
+	  	<TextView 
+		android:id="@+id/projectDescriptionLabel"
+		android:text="@string/projectDescriptionLabel"
+		android:textSize="14.5sp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="left"/>
+
+	<EditText
+        android:id="@+id/projectDescription"
+        android:layout_height="40dp"
+        android:layout_width="fill_parent"
+        android:layout_gravity="fill_horizontal"
+        android:inputType ="textCapSentences"/>
+        
+ 	<Button android:id="@+id/createProject"
+    	android:layout_width="150dp"
+    	android:layout_height="40dp"
+    	android:layout_gravity="left"
+    	android:text="@string/createProjectButton" />
+	
+</LinearLayout>

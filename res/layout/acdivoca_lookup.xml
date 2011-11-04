@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:scrollbars="vertical"
+	android:gravity="center"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+	
+	<TextView android:id="@+id/distribution_label"
+		android:textColor="#ffffff" android:layout_width="wrap_content"
+		android:layout_gravity="center" android:textSize="24dp"
+		android:layout_height="wrap_content" />
+
+	<TextView android:text="@string/dossier_label"
+		android:textColor="#ffffff" android:layout_width="wrap_content"
+		android:layout_gravity="center" android:textSize="20dp"
+		android:layout_height="wrap_content" />
+	
+	<Spinner android:id="@+id/lookupSpinner" 
+		android:layout_marginLeft="20px"
+		android:layout_marginRight="30px"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" />		
+
+	<EditText android:id="@+id/dossierEdit" 
+		android:layout_marginTop="30px"
+		android:textSize="24dp"
+		android:numeric="integer"
+		android:hint="@string/dossier_hint"
+		android:layout_gravity="center"
+		android:minWidth="150px" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+<!-- 		android:inputType="textCapSentences"  -->
+
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal" 
+		android:layout_marginTop="30px"
+		android:gravity="center"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		
+		<Button android:text="@string/lookup_button" android:id="@+id/update_lookup_button"
+			android:layout_gravity="bottom" 
+			android:minWidth="150px"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+		<Button android:text="@string/cancel" android:id="@+id/cancel_lookup_button"
+			android:layout_gravity="bottom" 
+			android:minWidth="150px"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+
+</LinearLayout>
