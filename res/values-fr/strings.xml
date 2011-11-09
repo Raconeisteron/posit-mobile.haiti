@@ -279,7 +279,9 @@
 	<string name="update_completed">Cycle complet</string>
 	<string name="update_other">L\'autre</string>
 	
-	<string name="babyName">Nom du bébé</string>
+	<string name="babyFirstName">Prénom du bébé</string>
+	<string name="babyLastName">Nom du bébé</string>
+	<string name="reasonForTransfer">Raison du transfert</string>
 	
 	
 	<string name="english">English</string>

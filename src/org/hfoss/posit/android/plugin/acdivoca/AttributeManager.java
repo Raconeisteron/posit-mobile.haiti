@@ -23,8 +23,10 @@
 package org.hfoss.posit.android.plugin.acdivoca; // Mobile side package
 //package haiti.server.datamodel;                  // Server side package
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import android.util.Log;
 
@@ -348,6 +350,27 @@ public class AttributeManager {
 	public static final String ABBREV_Q_DECEASED = "dc";
 	public static final String ABBREV_Q_FRAUD = "fr";
 	public static final String ABBREV_Q_COMPLETED_PROGRAM = "cp";
+	
+	public static final String ABBREV_OTHER = "o";
+	public static final String FINDS_OTHER_TRANSFER = "other";
+	
+	public static final int COMMUNE_SECTION_NOT_CHANGED = -1;
+	
+	// Map for getting the transfer types out of the spinner
+    public static final Map<String, Integer> TRANSFER_TYPES;
+    static {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        map.put(ABBREV_Q_TRANSFER_LACTATE, 0);
+        map.put(ABBREV_Q_TRANSFER_PREVENTION, 1);
+        map.put(ABBREV_Q_TRANSFER_LOCATION, 2);
+        map.put(ABBREV_Q_TRANSFER_ABORTION, 3);
+        map.put(ABBREV_Q_MODIFICATIONS, 4);
+        map.put(ABBREV_Q_DECEASED, 5);
+        map.put(ABBREV_Q_FRAUD, 6);
+        map.put(ABBREV_Q_COMPLETED_PROGRAM, 7);
+        map.put(ABBREV_OTHER, 8);
+        TRANSFER_TYPES = Collections.unmodifiableMap(map);
+    }
 
 	// This array of abbreviations is used to encode
 	// multiple fields of Y/N data -- such as 'is the
@@ -780,8 +803,7 @@ public class AttributeManager {
 	public static final String ABBREV_DIST_ID = "di";
 	public static final String DISTRIBUTION_ID = "Distribution ID";
 
-	public static final Object ABBREV_OTHER = "o";
-	public static final String FINDS_OTHER_TRANSFER = "other";
+
 	/**
 	 * Private constructor means it can't be instantiated.
 	 * 

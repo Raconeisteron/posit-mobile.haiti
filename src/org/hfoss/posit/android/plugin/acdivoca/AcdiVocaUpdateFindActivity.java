@@ -426,9 +426,7 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     	if (presentRB.isChecked()) 
     		present = AcdiVocaDbHelper.FINDS_FALSE;
     	result.put(AcdiVocaDbHelper.FINDS_Q_PRESENT, present); 
-
-    	// New button - 6/17/11        
-
+    
     	RadioButton changeRB = (RadioButton)findViewById(R.id.radio_change_in_status_yes);
     	String change = "";
     	if (changeRB.isChecked()) 
@@ -438,26 +436,43 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     		change = AcdiVocaDbHelper.FINDS_FALSE;
     	result.put(AcdiVocaDbHelper.FINDS_Q_CHANGE, change); 
 
-//    	String spinnerStr = "";
+
     	int spinnerInt;
     	Spinner spinner = (Spinner)findViewById(R.id.statuschangeSpinner);
-//    	String[] strArrSpin = {AttributeManager.FINDS_Q_TRANSFER_LACTATE, AttributeManager.FINDS_Q_TRANSFER_PREVENTION, 
-//    			AttributeManager.FINDS_Q_TRANSFER_LOCATION, AttributeManager.FINDS_Q_TRANSFER_ABORTION, 
-//    			AttributeManager.FINDS_Q_CHANGED_BENEFICIARY_DATA, AttributeManager.FINDS_Q_DECEASED, 
-//    			AttributeManager.FINDS_Q_FRAUD, AttributeManager.FINDS_Q_COMPLETED_PROGRAM, 
-//    			AttributeManager.FINDS_Q_OTHER};
-    	if (spinner != null) {
-//    		spinnerStr = (String) spinner.getSelectedItem();
+    	
 
-    		//Note: I changed how the spinner gets data. It is now based on position
+    	if (spinner != null) {
     		spinnerInt = spinner.getSelectedItemPosition();
-//    		spinnerStr = strArrSpin[spinnerInt];
     		result.put(AcdiVocaDbHelper.FINDS_CHANGE_TYPE, String.valueOf(spinnerInt));
     	}
 
+		// Retrieving COMMUNE SECTION from Spinner    
+		if (result.getAsString(AcdiVocaDbHelper.FINDS_CHANGE_TYPE).equals(
+				AttributeManager.TRANSFER_TYPES.get(AttributeManager.ABBREV_Q_TRANSFER_LOCATION))) {
+			String communeId = "";
+			spinner = (Spinner) findViewById(R.id.communeSectionSpinner);
+			if (spinner != null) {
+				communeId = Integer.toString(spinner.getSelectedItemPosition());
+				result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, communeId);
+			}
+		} else {
+			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, AttributeManager.COMMUNE_SECTION_NOT_CHANGED);
+		}
+		EditText addressEditText = (EditText) findViewById(R.id.addressEdit);
+		if (addressEditText != null) {
+			result.put(AcdiVocaDbHelper.FINDS_ADDRESS, addressEditText.getText().toString());
+		}
 		EditText otherEditText = (EditText) findViewById(R.id.otherReason);
 		if (otherEditText != null) {
 			result.put(AcdiVocaDbHelper.FINDS_OTHER_TRANSFER, otherEditText.getText().toString());
+		}
+		EditText babyFirstName= (EditText) findViewById(R.id.babyFirstName);
+		if (babyFirstName != null) {
+			result.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, babyFirstName.getText().toString());
+		}
+		EditText babyLastName= (EditText) findViewById(R.id.babyLastName);
+		if (babyLastName != null) {
+			result.put(AcdiVocaDbHelper.FINDS_LASTNAME, babyLastName.getText().toString());
 		}
     	
     	return result;
@@ -724,13 +739,15 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
             long id) {
         Log.i(TAG, "onItemSelected = " + position);
         findViewById(R.id.otherReason).setVisibility(View.GONE);
-        findViewById(R.id.babyName).setVisibility(View.GONE);
+        findViewById(R.id.babyFirstName).setVisibility(View.GONE);
+        findViewById(R.id.babyLastName).setVisibility(View.GONE);
         findViewById(R.id.communeSectionSpinner).setVisibility(View.GONE);
         findViewById(R.id.addressEdit).setVisibility(View.GONE);
         
         switch (position) {
         	case 0: // Transfer pregnant to lactating
-        		findViewById(R.id.babyName).setVisibility(View.VISIBLE);
+        		findViewById(R.id.babyFirstName).setVisibility(View.VISIBLE);
+        		findViewById(R.id.babyLastName).setVisibility(View.VISIBLE);
         		break;
         	case 2: // Change of location
                 findViewById(R.id.communeSectionSpinner).setVisibility(View.VISIBLE);
