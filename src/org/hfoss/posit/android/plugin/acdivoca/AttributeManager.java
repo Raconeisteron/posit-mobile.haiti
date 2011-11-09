@@ -687,7 +687,7 @@ public class AttributeManager {
 	public static final String COMMUNE_SECTION_21 = "Bresilienne";
 	public static final String COMMUNE_SECTION_22 = "Callumette";
 	public static final String COMMUNE_SECTION_23 = "Centre de Santé Anse a Pitres";
-	public static final String COMMUNE_SECTION_24 = "CollinedesChaines";
+	public static final String COMMUNE_SECTION_24 = "Collinedeschaines";
 	public static final String COMMUNE_SECTION_25 = "CorailLamothe";
 	public static final String COMMUNE_SECTION_26 = "Cote de fer";
 	public static final String COMMUNE_SECTION_27 = "Grand Gosier";

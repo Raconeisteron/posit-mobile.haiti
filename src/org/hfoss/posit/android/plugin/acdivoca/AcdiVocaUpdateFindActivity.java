@@ -448,31 +448,39 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
 
 		// Retrieving COMMUNE SECTION from Spinner    
 		if (result.getAsString(AcdiVocaDbHelper.FINDS_CHANGE_TYPE).equals(
-				AttributeManager.TRANSFER_TYPES.get(AttributeManager.ABBREV_Q_TRANSFER_LOCATION))) {
+				AttributeManager.TRANSFER_TYPES.get(AttributeManager.ABBREV_Q_TRANSFER_LOCATION).toString())) {
 			String communeId = "";
 			spinner = (Spinner) findViewById(R.id.communeSectionSpinner);
 			if (spinner != null) {
 				communeId = Integer.toString(spinner.getSelectedItemPosition());
 				result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, communeId);
 			}
-		} else {
-			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, AttributeManager.COMMUNE_SECTION_NOT_CHANGED);
+			EditText addressEditText = (EditText) findViewById(R.id.addressEdit);
+			if (addressEditText != null) {
+				if (!addressEditText.getText().toString().equals(""))
+				result.put(AcdiVocaDbHelper.FINDS_ADDRESS, addressEditText.getText().toString());
+			}
+//		} else {
+//			result.put(AcdiVocaDbHelper.FINDS_COMMUNE_SECTION, AttributeManager.COMMUNE_SECTION_NOT_CHANGED);
 		}
-		EditText addressEditText = (EditText) findViewById(R.id.addressEdit);
-		if (addressEditText != null) {
-			result.put(AcdiVocaDbHelper.FINDS_ADDRESS, addressEditText.getText().toString());
-		}
+
 		EditText otherEditText = (EditText) findViewById(R.id.otherReason);
 		if (otherEditText != null) {
 			result.put(AcdiVocaDbHelper.FINDS_OTHER_TRANSFER, otherEditText.getText().toString());
 		}
-		EditText babyFirstName= (EditText) findViewById(R.id.babyFirstName);
-		if (babyFirstName != null) {
-			result.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, babyFirstName.getText().toString());
-		}
-		EditText babyLastName= (EditText) findViewById(R.id.babyLastName);
-		if (babyLastName != null) {
-			result.put(AcdiVocaDbHelper.FINDS_LASTNAME, babyLastName.getText().toString());
+		if (result.getAsString(AcdiVocaDbHelper.FINDS_CHANGE_TYPE).equals(
+				AttributeManager.TRANSFER_TYPES.get(AttributeManager.ABBREV_Q_TRANSFER_LACTATE).toString())) {
+			EditText babyFirstName = (EditText) findViewById(R.id.babyFirstName);
+			if (babyFirstName != null) {
+				if (babyFirstName.getText().toString() != "") {
+					result.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, babyFirstName.getText().toString());
+				}
+			}
+			EditText babyLastName = (EditText) findViewById(R.id.babyLastName);
+			if (babyLastName != null) {
+				if (!babyLastName.getText().toString().equals(""))
+				result.put(AcdiVocaDbHelper.FINDS_LASTNAME, babyLastName.getText().toString());
+			}
 		}
     	
     	return result;
