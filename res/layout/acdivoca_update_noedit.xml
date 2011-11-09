@@ -129,15 +129,19 @@
  			<EditText android:id="@+id/otherReason" 
  			    android:layout_width="fill_parent" android:layout_height="wrap_content"
                 android:layout_marginLeft="20px" android:layout_marginRight="30px" 
-                android:hint="@string/other"
+                android:hint="@string/reasonForTransfer"
                 android:visibility="gone"/>
                 
-             <EditText android:id="@+id/babyName" 
+             <EditText android:id="@+id/babyFirstName" 
  			    android:layout_width="fill_parent" android:layout_height="wrap_content"
                 android:layout_marginLeft="20px" android:layout_marginRight="30px" 
-                android:hint="@string/babyName"
+                android:hint="@string/babyFirstName"
                 android:visibility="gone"/>
-                
+            <EditText android:id="@+id/babyLastName" 
+ 			    android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px" 
+                android:hint="@string/babyLastName"
+                android:visibility="gone"/>
 
 			<Spinner android:id="@+id/communeSectionSpinner"
 					android:layout_marginLeft="30px" android:layout_marginRight="30px"

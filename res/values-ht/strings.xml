@@ -276,7 +276,9 @@
 	<string name="update_completed">Cycle complet</string>
 	<string name="update_other">Lot</string>
 	
-	<string name="babyName">Non nan ti bebe</string>
+	<string name="babyFirstName">Siyati bebe a</string>
+	<string name="babyLastName">Non bebe a</string>
+	<string name="reasonForTransfer">Poukisa ou vle transfè a</string>
 	
 	<string name="english">English</string>
 	<string name="french">Française</string>

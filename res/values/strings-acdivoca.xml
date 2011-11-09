@@ -289,10 +289,10 @@
 	<string name="update_completed">Completed program</string>
 	<string name="update_other">Other</string>
 	
-	<string name="babyName">Baby name</string>
+	<string name="babyFirstName">Baby first name</string>
+	<string name="babyLastName">Baby last name</string>
+	<string name="reasonForTransfer">Reason for transfer</string>
 	
-	               
- 
 	<string name="english">English</string>
 	<string name="french">Française</string>
 	<string name="haitian">Creole haitien</string>
