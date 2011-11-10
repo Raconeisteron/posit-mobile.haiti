@@ -158,7 +158,36 @@
                 android:layout_marginLeft="20px" android:layout_marginRight="30px"
                 android:entries="@+array/status_change_options"
                 android:layout_width="fill_parent" android:layout_height="wrap_content"
-                android:visibility="gone" />                
+                android:visibility="gone" />      
+                          
+		<EditText android:id="@+id/otherReason" 
+ 			    android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px" 
+                android:hint="@string/reasonForTransfer"
+                android:visibility="gone"/>
+                
+             <EditText android:id="@+id/babyFirstName" 
+ 			    android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px" 
+                android:hint="@string/babyFirstName"
+                android:visibility="gone"/>
+            <EditText android:id="@+id/babyLastName" 
+ 			    android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:layout_marginLeft="20px" android:layout_marginRight="30px" 
+                android:hint="@string/babyLastName"
+                android:visibility="gone"/>
+
+			<Spinner android:id="@+id/communeSectionSpinner"
+					android:layout_marginLeft="30px" android:layout_marginRight="30px"
+					android:entries="@+array/commune_section_names"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:visibility="gone" />		
+
+			<EditText android:id="@+id/addressEdit" android:hint="@string/address"
+				android:inputType="textCapWords" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_marginLeft="20px"
+				android:layout_marginRight="30px"
+				android:visibility="gone" />
 
                 
             <TextView android:text="@string/save_update" android:textColor="#ffffff"

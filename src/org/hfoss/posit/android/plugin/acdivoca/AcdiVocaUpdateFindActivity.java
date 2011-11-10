@@ -472,7 +472,7 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
 				AttributeManager.TRANSFER_TYPES.get(AttributeManager.ABBREV_Q_TRANSFER_LACTATE).toString())) {
 			EditText babyFirstName = (EditText) findViewById(R.id.babyFirstName);
 			if (babyFirstName != null) {
-				if (babyFirstName.getText().toString() != "") {
+				if (!babyFirstName.getText().toString().equals("")) {
 					result.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, babyFirstName.getText().toString());
 				}
 			}
@@ -746,11 +746,16 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     public void onItemSelected(AdapterView<?> parent, View view, int position,
             long id) {
         Log.i(TAG, "onItemSelected = " + position);
-        findViewById(R.id.otherReason).setVisibility(View.GONE);
-        findViewById(R.id.babyFirstName).setVisibility(View.GONE);
-        findViewById(R.id.babyLastName).setVisibility(View.GONE);
-        findViewById(R.id.communeSectionSpinner).setVisibility(View.GONE);
-        findViewById(R.id.addressEdit).setVisibility(View.GONE);
+		if (findViewById(R.id.otherReason) != null)
+			findViewById(R.id.otherReason).setVisibility(View.GONE);
+		if (findViewById(R.id.otherReason) != null)
+			findViewById(R.id.babyFirstName).setVisibility(View.GONE);
+		if (findViewById(R.id.otherReason) != null)
+			findViewById(R.id.babyLastName).setVisibility(View.GONE);
+		if (findViewById(R.id.otherReason) != null)
+			findViewById(R.id.communeSectionSpinner).setVisibility(View.GONE);
+		if (findViewById(R.id.otherReason) != null)
+			findViewById(R.id.addressEdit).setVisibility(View.GONE);
         
         switch (position) {
         	case 0: // Transfer pregnant to lactating
