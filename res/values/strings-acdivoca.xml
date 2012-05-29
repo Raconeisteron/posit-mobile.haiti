@@ -152,6 +152,7 @@
     
 <!--     LookupActivity - 6/21/11 --> 
     <string name="no_beneficiaries_found">No beneficiaries found</string> 
+    <string name="qr_code_button">Scan QR Code</string>
     
     
     

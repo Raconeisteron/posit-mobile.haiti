@@ -1464,7 +1464,7 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 		int k = 0;
 		while (it.hasNext()) {
 			dossiers[k] = it.next().dossier;
-			Log.i(TAG, "dossier = " + dossiers[k]);
+			//Log.i(TAG, "dossier = " + dossiers[k]);
 			++k;
 		}
 		return dossiers;

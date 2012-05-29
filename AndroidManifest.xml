@@ -94,6 +94,10 @@
                         <action android:name="android.provider.Telephony.SMS_RECEIVED" />
                 </intent-filter>
         </receiver>
+        
+	    <!-- QR Code Scanner --> 
+	   	<activity android:name="com.google.zxing.integration.android.IntentIntegrator"></activity>
+	    
 
   	<service android:name="org.hfoss.posit.android.plugin.acdivoca.SmsService"/>
 
