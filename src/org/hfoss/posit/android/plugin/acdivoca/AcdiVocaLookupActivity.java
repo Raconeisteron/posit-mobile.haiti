@@ -197,9 +197,14 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 			String id = (String)lookupSpinner.getSelectedItem();
 //			EditText etext = ((EditText)findViewById(R.id.dossierEdit));
 //			String id = etext.getText().toString();
-			returnIntent.putExtra("Id",id);
-			setResult(RESULT_OK,returnIntent); 
-			Log.i(TAG, "Returning selected id = " + id);
+//			returnIntent.putExtra("Id",id);
+//			setResult(RESULT_OK,returnIntent); 
+//			Log.i(TAG, "Returning selected id = " + id);
+			
+			Intent intent = new Intent(this, AcdiVocaUpdateFindActivity.class);
+			intent.putExtra("Id",id);
+			this.startActivity(intent);
+
 			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
 		} else if (v.getId() == R.id.read_qr_code) {
 			IntentIntegrator zxing;
