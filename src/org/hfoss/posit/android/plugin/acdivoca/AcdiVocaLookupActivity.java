@@ -25,6 +25,8 @@ package org.hfoss.posit.android.plugin.acdivoca;
 import org.hfoss.posit.android.R;
 import org.hfoss.posit.android.api.SettingsActivity;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 
 import android.app.Activity;
@@ -132,14 +134,13 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 
 		((Button)findViewById(R.id.update_lookup_button)).setOnClickListener(this);
 		((Button)findViewById(R.id.cancel_lookup_button)).setOnClickListener(this);
+		((Button)findViewById(R.id.read_qr_code)).setOnClickListener(this);
 		lookupSpinner = ((Spinner)findViewById(R.id.lookupSpinner));
 
-		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String distrKey = this.getResources().getString(R.string.distribution_point_key);
 		String distributionCtr = sharedPrefs.getString(distrKey, "");
 		Log.i(TAG, distrKey +"="+ AttributeManager.getMapping(distributionCtr));
-		Log.i(TAG,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		((TextView)findViewById(R.id.distribution_label)).setText(AttributeManager.getMapping(distributionCtr));
 
@@ -182,7 +183,7 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 		);
 		eText = ((EditText)findViewById(R.id.dossierEdit));
 		eText.addTextChangedListener(this);
-		eText.setText(""); 
+//		eText.setText(""); 
 	}
 	
 	/**
@@ -198,13 +199,49 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 //			String id = etext.getText().toString();
 			returnIntent.putExtra("Id",id);
 			setResult(RESULT_OK,returnIntent); 
+			Log.i(TAG, "Returning selected id = " + id);
 			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
+		} else if (v.getId() == R.id.read_qr_code) {
+			IntentIntegrator zxing;
+        	zxing = new IntentIntegrator(this);
+        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
+        	zxing.initiateScan();	
+        	return;
 		} else {
 			setResult(Activity.RESULT_CANCELED, returnIntent);
 		}
 	    finish();
 	}
 
+	/**
+	 * Handle the result from the QRcode Scanner
+	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		Log.i(TAG, "onActivityResult, requestCode = " + requestCode);
+		super.onActivityResult(requestCode, resultCode, intent);
+    	if (resultCode == Activity.RESULT_CANCELED) {
+    		Log.i(TAG, "Scan barcode cancelled");
+    	} else {
+    		IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+    		if (scanResult != null) {
+    			String contents = scanResult.getContents();
+    			Log.i(TAG, "Scan result = " + contents);
+    			
+    			// Lookup beneficiary
+
+    			String id = contents;
+    		    Intent returnIntent = new Intent();
+    			returnIntent.putExtra("Id",id);
+    			setResult(RESULT_OK,returnIntent); 
+    			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
+    			finish();
+    		} else {
+    			Toast toast = Toast.makeText(this, "Scanner error", Toast.LENGTH_LONG);
+    			toast.show();
+    		}
+    	}
+	}
 
 	public void afterTextChanged(Editable s) {
 		// TODO Auto-generated method stub

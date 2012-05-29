@@ -143,7 +143,8 @@
     
 <!--     LookupActivity - 6/21/11  -->
     <string name="no_beneficiaries_found">Benefisyè sa pa la</string> 
-
+    <string name="qr_code_button">Scan QR Code</string>
+    
     
 <!--      list_finds.xml -->
     <string name="noFinds">Pbenefisyè a pa la</string>

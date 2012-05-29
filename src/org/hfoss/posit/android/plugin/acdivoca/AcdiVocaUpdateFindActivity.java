@@ -316,9 +316,11 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
         case ACTION_ID:
             if (resultCode == RESULT_OK) {
                 mBeneficiaryId = data.getStringExtra("Id");
-               // Toast.makeText(this, "Beneficiary Id = " + " " + beneficiaryId, Toast.LENGTH_LONG).show();
+            	Log.i(TAG, "Set beneficiaryId = " + mBeneficiaryId);
+             // Toast.makeText(this, "Beneficiary Id = " + " " + beneficiaryId, Toast.LENGTH_LONG).show();
                 break;
             } else {
+            	Log.i(TAG, "Result NOT Ok, finishing");
                 finish();
             }
         }   
