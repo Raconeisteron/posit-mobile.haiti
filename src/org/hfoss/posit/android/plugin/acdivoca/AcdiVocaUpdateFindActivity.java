@@ -78,6 +78,13 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	
+    	// Barcode scanner may pass in the beneficiary's Id
+    	Intent intent = getIntent();
+    	String id = intent.getStringExtra("Id");
+    	if (id != "unknown") 
+    		mBeneficiaryId = id;
+    	
     	Log.i(TAG, "onCreate");
     	isProbablyEdited = false;
     }
@@ -144,17 +151,22 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
 
     		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
     		AcdiVocaFind avFind = this.getHelper().fetchBeneficiaryByDossier(mBeneficiaryId, null);
-    		mContentValues = avFind.toContentValues();
-    		if (mContentValues == null) {
-    			Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId, Toast.LENGTH_SHORT).show();
-    		} else {
-    			Log.i(TAG,mContentValues.toString());
-    			setContentView(R.layout.acdivoca_update_noedit);  // Should be done after locale configuration
-    			((Button)findViewById(R.id.update_to_db_button)).setOnClickListener(this);
-    			((Button)findViewById(R.id.update_edit_button)).setOnClickListener(this);
+    		if (avFind != null) {
+    			mContentValues = avFind.toContentValues();
+    			if (mContentValues == null) {
+    				Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId, Toast.LENGTH_SHORT).show();
+    			} else {
+    				Log.i(TAG,mContentValues.toString());
+    				setContentView(R.layout.acdivoca_update_noedit);  // Should be done after locale configuration
+    				((Button)findViewById(R.id.update_to_db_button)).setOnClickListener(this);
+    				((Button)findViewById(R.id.update_edit_button)).setOnClickListener(this);
 
-    			displayContentUneditable(mContentValues);
-    			mFindId = mContentValues.getAsInteger(AcdiVocaDbHelper.FINDS_ORMLIST_ID);
+    				displayContentUneditable(mContentValues);
+    				mFindId = mContentValues.getAsInteger(AcdiVocaDbHelper.FINDS_ORMLIST_ID);
+    			}
+    		} else {
+    			Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId,  Toast.LENGTH_LONG).show();
+    			finish();
     		}
     	}
     }

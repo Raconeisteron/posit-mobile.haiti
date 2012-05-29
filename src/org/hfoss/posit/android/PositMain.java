@@ -32,7 +32,9 @@ import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaAdminActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaDbHelper;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaListFindsActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaLocaleManager;
+import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaLookupActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaSmsManager;
+import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUpdateFindActivity;
 import org.hfoss.posit.android.plugin.acdivoca.AttributeManager;
 import org.hfoss.posit.android.plugin.acdivoca.AcdiVocaUser;
 import org.hfoss.posit.android.plugin.acdivoca.LoginActivity;
@@ -40,6 +42,8 @@ import org.hfoss.posit.android.plugin.acdivoca.AppControlManager;
 
 import org.hfoss.posit.android.plugin.acdivoca.SearchFilterActivity;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.j256.ormlite.dao.Dao;
 
@@ -80,7 +84,8 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 	public static final int LOGIN_CANCELED = 3;
 	public static final int LOGIN_SUCCESSFUL = 4;
 
-
+	private boolean mNoRestartFlag = false;
+	
 	private SharedPreferences mSharedPrefs;
 	private Editor mSpEditor;
 
@@ -275,7 +280,11 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 		Log.i(TAG,"Resuming");
 		
 		AcdiVocaLocaleManager.setDefaultLocale(this);  // Locale Manager should be in API
-		startPOSIT();
+		// Suppress restart after onActivityResult
+		if (mNoRestartFlag == false) 
+			startPOSIT();
+		else
+			mNoRestartFlag = false;
 	}
 
 	@Override
@@ -314,6 +323,36 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 			} else {
 				finish();
 			} 
+		case IntentIntegrator.REQUEST_CODE:
+			if (resultCode == Activity.RESULT_CANCELED) {
+				mNoRestartFlag = true;
+				Intent intent = new Intent(this, AcdiVocaLookupActivity.class);
+				this.startActivity(intent);
+				//setResult(RESULT_OK,intent); 
+				//Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
+				break;
+			} else {
+				IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+				if (scanResult != null) {
+					mNoRestartFlag = true;
+					String contents = scanResult.getContents();
+					Log.i(TAG, "Scan result = " + contents);
+
+					// Lookup beneficiary
+
+					String id = contents;
+					Intent intent = new Intent(this, AcdiVocaUpdateFindActivity.class);
+					intent.putExtra("Id",id);
+					this.startActivity(intent);
+					//setResult(RESULT_OK,intent); 
+					Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
+					break;
+				} else {
+					Toast toast = Toast.makeText(this, "Scanner error", Toast.LENGTH_LONG);
+					toast.show();
+					break;
+				}
+			}
 		default:
 			super.onActivityResult(requestCode, resultCode, data);
 		}
@@ -343,9 +382,13 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 				break;
 
 			case R.id.extraButton:
-				intent.setAction(Intent.ACTION_EDIT);
-				intent.setClass(this, FindActivityProvider.getExtraActivityClass());
-				startActivity(intent);
+				IntentIntegrator zxing;
+	        	zxing = new IntentIntegrator(this);
+	        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
+	        	zxing.initiateScan();	
+//				intent.setAction(Intent.ACTION_EDIT);
+//				intent.setClass(this, FindActivityProvider.getExtraActivityClass());
+//				startActivity(intent);
 				break;	
 
 			case R.id.extraButton2:
