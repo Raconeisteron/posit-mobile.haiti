@@ -310,7 +310,7 @@ public class AcdiVocaUpdateFindActivity extends FindActivity implements OnDateCh
     	final Intent intent = getIntent();
     	mAction = intent.getAction();
     	Log.i(TAG, "mAction = " + mAction);
-    	if (mAction.equals(Intent.ACTION_EDIT)) {
+    	if (this.inEditableMode ||  mAction.equals(Intent.ACTION_EDIT)) {
     		doEditAction();
     		isProbablyEdited = false; // In EDIT mode, initialize after filling in data
     	}
