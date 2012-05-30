@@ -58,7 +58,7 @@ import android.widget.DatePicker.OnDateChangedListener;
  */
 public class AcdiVocaMchnFindActivity extends FindActivity implements OnDateChangedListener, 
 	TextWatcher, OnItemSelectedListener { //, OnKeyListener {
-	public static final String TAG = "AcdiVocaAddActivity";
+	public static final String TAG = "AcdiVocaMchnFindActivity";
 
 	private static final int CONFIRM_EXIT = 0;
 
