@@ -322,6 +322,7 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 				break;
 			} else {
 				finish();
+				break;
 			} 
 		case IntentIntegrator.REQUEST_CODE:
 			if (resultCode == Activity.RESULT_CANCELED) {

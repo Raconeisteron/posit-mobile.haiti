@@ -193,6 +193,10 @@
     <string name="locale">Locale</string>
     <string name="localePref">locale</string>
     
+    <!-- ACDI/VOCA Searchable -->
+    <string name="app_label">Look up id</string>
+    <string name="search_hint">Enter dossier number</string>
+    
     <!-- Alert Dialogs -->
     <string name="acdivoca_exit_findactivity">Are you sure you want to exit? Data may be lost.</string>
  	<string name="acdivoca_cancel">Cancel</string>

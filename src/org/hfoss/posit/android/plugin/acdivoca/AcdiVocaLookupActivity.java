@@ -42,13 +42,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 /**
  * Handles Finds for AcdiVoca Mobile App.
@@ -57,18 +61,43 @@ import android.widget.Toast;
 public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements OnClickListener, TextWatcher {
 	public static final String TAG = "AcdiVocaLookupActivity";
 
-	private Spinner lookupSpinner;
+//	private Spinner lookupSpinner;
 	private ArrayAdapter<String> mAdapter;
 	private String dossiers[];
 	private EditText eText;
+
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.acdivoca_lookup);
 		Log.i(TAG, "onCreate");
 		Log.i(TAG, PreferenceManager.getDefaultSharedPreferences(this).getAll().toString());
+		
+		// load up the suggestion texts for the id lookup
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String distrKey = this.getResources().getString(R.string.distribution_point_key);
+		String distributionCtr = sharedPrefs.getString(distrKey, "");
+		Log.i(TAG, distrKey +"="+ AttributeManager.getMapping(distributionCtr));
+		
+		//added code to handle autoCompleteTextView
+		dossiers = this.getHelper().fetchAllBeneficiaryIdsByDistributionSite(distributionCtr);
+		if(dossiers!=null){
+			AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.autoDossier);
+		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
+		    autoTextView.setThreshold(0);
+		    autoTextView.setAdapter(adapter);
+		}		
+		else {
+			Toast.makeText(this, getString(R.string.toast_sorry_empty), Toast.LENGTH_SHORT).show();
+			dossiers = new String[1];
+			dossiers[0] = getString(R.string.no_beneficiaries_found);
+			((Button)findViewById(R.id.update_lookup_button)).setEnabled(false);
+		}
 	}
+	
+
 
 	@Override
 	protected void onPause() {
@@ -134,9 +163,12 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 
 		((Button)findViewById(R.id.update_lookup_button)).setOnClickListener(this);
 		((Button)findViewById(R.id.cancel_lookup_button)).setOnClickListener(this);
-		((Button)findViewById(R.id.read_qr_code)).setOnClickListener(this);
-		lookupSpinner = ((Spinner)findViewById(R.id.lookupSpinner));
+		//((Button)findViewById(R.id.read_qr_code)).setOnClickListener(this);
+		//lookupSpinner = ((Spinner)findViewById(R.id.lookupSpinner));
 
+
+		
+		
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String distrKey = this.getResources().getString(R.string.distribution_point_key);
 		String distributionCtr = sharedPrefs.getString(distrKey, "");
@@ -151,40 +183,47 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 			dossiers = new String[1];
 			dossiers[0] = getString(R.string.no_beneficiaries_found);
 			((Button)findViewById(R.id.update_lookup_button)).setEnabled(false);
-		} 
-		setUpSpinnerAdapter(dossiers);
+		}
+		else{
+		//added code to handle AutoCompleteTextView
+		AutoCompleteTextView atextView = (AutoCompleteTextView) findViewById(R.id.autoDossier);
+	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
+	    atextView.setThreshold(0);
+	    atextView.setAdapter(adapter);
+		}
+//		setUpSpinnerAdapter(dossiers);
 	}
 	
-	private void setUpSpinnerAdapter(final String[] data) {
-		mAdapter = 
-			new ArrayAdapter<String>(
-					this,
-					android.R.layout.simple_spinner_item,
-					data );
-		mAdapter.sort(String.CASE_INSENSITIVE_ORDER);
-		mAdapter.setDropDownViewResource(
-				android.R.layout.simple_spinner_dropdown_item);
-		lookupSpinner.setAdapter(mAdapter);
-		lookupSpinner.setOnItemSelectedListener(
-				new AdapterView.OnItemSelectedListener() {
-					public void onItemSelected(
-							AdapterView<?> parent, 
-							View view, 
-							int position, 
-							long id) {
-						String d = data[position];
-
-						//eText.setText(d);
-					}
-
-					public void onNothingSelected(AdapterView<?> parent) {
-					}
-				}
-		);
-		eText = ((EditText)findViewById(R.id.dossierEdit));
-		eText.addTextChangedListener(this);
-//		eText.setText(""); 
-	}
+//	private void setUpSpinnerAdapter(final String[] data) {
+//		mAdapter = 
+//			new ArrayAdapter<String>(
+//					this,
+//					android.R.layout.simple_spinner_item,
+//					data );
+//		mAdapter.sort(String.CASE_INSENSITIVE_ORDER);
+//		mAdapter.setDropDownViewResource(
+//				android.R.layout.simple_spinner_dropdown_item);
+//		lookupSpinner.setAdapter(mAdapter);
+//		lookupSpinner.setOnItemSelectedListener(
+//				new AdapterView.OnItemSelectedListener() {
+//					public void onItemSelected(
+//							AdapterView<?> parent, 
+//							View view, 
+//							int position, 
+//							long id) {
+//						String d = data[position];
+//
+//						//eText.setText(d);
+//					}
+//
+//					public void onNothingSelected(AdapterView<?> parent) {
+//					}
+//				}
+//		);
+//		eText = ((EditText)findViewById(R.id.dossierEdit));
+//		eText.addTextChangedListener(this);
+////		eText.setText(""); 
+//	}
 	
 	/**
 	 * Required as part of OnClickListener interface. Handles button clicks.
@@ -194,25 +233,27 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 	    Intent returnIntent = new Intent();
 	
 		if (v.getId() == R.id.update_lookup_button) {
-			String id = (String)lookupSpinner.getSelectedItem();
+//			String id = (String)lookupSpinner.getSelectedItem();
+			eText = (EditText) findViewById(R.id.autoDossier);
+    		String id = eText.getText().toString();
 //			EditText etext = ((EditText)findViewById(R.id.dossierEdit));
 //			String id = etext.getText().toString();
 //			returnIntent.putExtra("Id",id);
 //			setResult(RESULT_OK,returnIntent); 
 //			Log.i(TAG, "Returning selected id = " + id);
-			
 			Intent intent = new Intent(this, AcdiVocaUpdateFindActivity.class);
 			intent.putExtra("Id",id);
 			this.startActivity(intent);
-
 			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
-		} else if (v.getId() == R.id.read_qr_code) {
-			IntentIntegrator zxing;
-        	zxing = new IntentIntegrator(this);
-        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
-        	zxing.initiateScan();	
-        	return;
-		} else {
+		}
+//		else if (v.getId() == R.id.read_qr_code) {
+//			IntentIntegrator zxing;
+//        	zxing = new IntentIntegrator(this);
+//        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
+//        	zxing.initiateScan();	
+//        	return;
+//		}
+		else {
 			setResult(Activity.RESULT_CANCELED, returnIntent);
 		}
 	    finish();
@@ -261,21 +302,28 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 	}
 
 
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		if(dossiers == null){
-			return;
-		}
-		int k = 0;
-		String prefix = s.toString();
-		Log.i(TAG, "Prefix = " + prefix);
-		String item = dossiers[k];
-		while (!item.startsWith(prefix.toUpperCase()) && k < dossiers.length) {
-			k += 1;
-			if (k < dossiers.length)
-				item = dossiers[k];
-		}
-		Log.i(TAG, "onTextChanged " + prefix + " " + k);
-		if (k < dossiers.length)
-			lookupSpinner.setSelection(k);				
+
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		
 	}
+
+
+//	public void onTextChanged(CharSequence s, int start, int before, int count) {
+//		if(dossiers == null){
+//			return;
+//		}
+//		int k = 0;
+//		String prefix = s.toString();
+//		Log.i(TAG, "Prefix = " + prefix);
+//		String item = dossiers[k];
+//		while (!item.startsWith(prefix.toUpperCase()) && k < dossiers.length) {
+//			k += 1;
+//			if (k < dossiers.length)
+//				item = dossiers[k];
+//		}
+//		Log.i(TAG, "onTextChanged " + prefix + " " + k);
+//		if (k < dossiers.length)
+//			lookupSpinner.setSelection(k);				
+//	}
 }
