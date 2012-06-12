@@ -34,6 +34,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -62,6 +63,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 	public static final String TAG = "AcdiVocaUpdateActivity";
 
 	private static final int CONFIRM_EXIT = 0;
+	private static final int WRONG_ID = 1;
 
 	private static final int ACTION_ID = 0;
 
@@ -83,9 +85,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 		// Barcode scanner may pass in the beneficiary's Id
 		Intent intent = getIntent();
 		String id = intent.getStringExtra("Id");
-		if (id != "unknown") 
+		if (id != "unknown") {
 			mBeneficiaryId = id;
-
+		}	
 		Log.i(TAG, "onCreate");
 		isProbablyEdited = false;
 	}
@@ -145,6 +147,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 		Log.i(TAG, "Before edited = " + isProbablyEdited);
 
 		if (mBeneficiaryId == "unknown") {
+			Log.i(TAG, "UNKNOWN ID");
 			Intent lookupIntent = new Intent();
 			lookupIntent.setClass(this, AcdiVocaLookupActivity.class);
 			this.startActivityForResult(lookupIntent, ACTION_ID);
@@ -166,8 +169,9 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 					mFindId = mContentValues.getAsInteger(AcdiVocaDbHelper.FINDS_ORMLIST_ID);
 				}
 			} else {
-				Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId,  Toast.LENGTH_LONG).show();
-				finish();
+				showDialog(WRONG_ID);
+				//Toast.makeText(this, getString(R.string.toast_no_beneficiary) + mBeneficiaryId,  Toast.LENGTH_LONG).show();
+				//finish();
 			}
 		}
 	}
@@ -694,6 +698,14 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 							/* User clicked Cancel so do nothing */
 						}
 					}).create();
+		case WRONG_ID:
+			String title = getString(R.string.toast_no_beneficiary)+ mBeneficiaryId;
+			return new AlertDialog.Builder(this).setTitle(title)
+					.setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							finish();
+						}
+					}).create();	
 
 		default:
 			return null;
@@ -798,7 +810,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 
 	}
 
-	
+
 	/**
 	 * Handles the back key
 	 * Had to write this function because, two layoutViews are using the same screen
