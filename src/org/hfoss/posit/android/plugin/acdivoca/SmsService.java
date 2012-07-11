@@ -32,16 +32,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.hfoss.posit.android.PositMain;
+import org.hfoss.posit.android.R;
+
 import com.j256.ormlite.android.apptools.OrmLiteBaseService;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.IBinder;
 import android.telephony.SmsManager;
@@ -52,17 +57,23 @@ import android.widget.Toast;
 public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 	public static final String TAG = "AcdiVocaSmsManager";
 
+	//public ProgressDialog smsDialog;
+	//public ProgressDialog limitDialog;
+
 	private BroadcastReceiver mReceiver;
 	private int nMsgsSent = 0;
 	private int nMsgsPending = 0;
 	private int mBroadcastsOutstanding = 0;
 	private String mErrorMsg = ""; // Set to last error by BroadcastReceiver,
-									// not currently used
+	// not currently used
 
 	private SendMessagesTask sendMessagesTask;
 
 	private ArrayList<String> mMessages;
 	private String mPhoneNumber;
+
+	private int limit_counter = 0;
+
 
 	/**
 	 * This service is not accepting bindings.
@@ -85,11 +96,11 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		if (intent != null) {
+
 			mMessages = intent.getStringArrayListExtra("messages");
 			mPhoneNumber = intent.getStringExtra("phonenumber");
 			Log.i(TAG, "Started background service, phone = " + mPhoneNumber
 					+ " nMessages = " + mMessages.size());
-
 			sendMessagesTask = new SendMessagesTask();
 			sendMessagesTask.execute(this);
 		}
@@ -240,6 +251,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 
 		private Context context;
 
+
 		@Override
 		protected String doInBackground(Context... contexts) {
 			Log.i(TAG, "doInBackground");
@@ -253,6 +265,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 				ArrayList<String> messages) {
 			Iterator<String> it = messages.iterator();
 			mBroadcastsOutstanding = messages.size();
+
 			while (it.hasNext()) {
 				final String message = it.next();
 				String[] msgparts = message
@@ -281,7 +294,23 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 							handleSentMessage(this, getResultCode(), arg1,
 									message);
 							--mBroadcastsOutstanding;
+							PositMain.mSMSdialog.setMessage(mBroadcastsOutstanding+" "+getString(R.string.smsRunning));
+							limit_counter++;
+							Log.i(TAG,"MESSEGES LEFT : "+Integer.toString(mBroadcastsOutstanding));
+							if((mBroadcastsOutstanding==0)){
+								AcdiVocaAdminActivity.sms_service_done=true;
 
+								if(AcdiVocaAdminActivity.totallyDone==true){
+									if(PositMain.mSMSdialog.isShowing()){
+										PositMain.mSMSdialog.setMessage("");
+										Log.i(TAG,"ALL DONE BYE");
+										PositMain.mSMSdialog.cancel();
+										AcdiVocaAdminActivity.batch=0;
+										AcdiVocaAdminActivity.totallyDone=false;
+										AcdiVocaAdminActivity.resetArrays();
+									}
+								}
+							}
 							unregisterReceiver(this);
 							Log.i(TAG, "Broadcasts outstanding  = "
 									+ mBroadcastsOutstanding);
@@ -347,6 +376,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 							+ mPhoneNumber);
 				}
 			}
+
 		}
 
 		@Override
@@ -364,6 +394,32 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 
 		@Override
 		protected void onPreExecute() {
+			if(PositMain.mSMSdialog==null){
+				if(AcdiVocaAdminActivity.batch==0){
+					PositMain.mSMSdialog = ProgressDialog.show(PositMain.mContext,getString(R.string.smsSending),"",true,false);
+				}
+				else{
+					String title = getString(R.string.smsBatch)+AcdiVocaAdminActivity.batch;
+					PositMain.mSMSdialog = ProgressDialog.show(PositMain.mContext,title,"",true,false);
+				}
+			}
+			else{
+				if(PositMain.mSMSdialog.isShowing()){
+					String title = getString(R.string.smsBatch)+AcdiVocaAdminActivity.batch;
+					PositMain.mSMSdialog.setTitle(title);
+				}
+				else{
+					if(AcdiVocaAdminActivity.batch==0){
+						PositMain.mSMSdialog.setTitle(R.string.smsSending);
+						PositMain.mSMSdialog.show();
+					}
+					else{
+						String title = getString(R.string.smsBatch)+AcdiVocaAdminActivity.batch;
+						PositMain.mSMSdialog.setTitle(title);
+						PositMain.mSMSdialog.show();
+					}
+				}
+			}
 			Log.i(TAG, "onPreExecute");
 			super.onPreExecute();
 		}

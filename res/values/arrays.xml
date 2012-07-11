@@ -14,6 +14,16 @@
 	<item>fr</item>
 	</string-array>	
 
+	<string-array name="bar_scan">
+	<item>@string/bar_on</item>
+	<item>@string/bar_off</item>    
+	</string-array>
+	
+	<string-array name="bar_scan_values">
+	<item>on</item>
+	<item>off</item>    
+	</string-array>
+	
 	<string-array name="commune_names"> 
 	<item>Anse a Pitres</item>
 	<item>Thiotte</item>

@@ -51,6 +51,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -88,6 +89,10 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 	
 	private SharedPreferences mSharedPrefs;
 	private Editor mSpEditor;
+	
+	public static Context mContext;
+	
+	public static ProgressDialog mSMSdialog;
 
 	
 	/**
@@ -98,7 +103,7 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG,"Creating");
-
+		mContext = this;
 		// Initialize plugins and managers
 		FindPluginManager.initInstance(this);
 		AcdiVocaSmsManager.initInstance(this);
@@ -383,13 +388,18 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 				break;
 
 			case R.id.extraButton:
-				IntentIntegrator zxing;
-	        	zxing = new IntentIntegrator(this);
-	        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
-	        	zxing.initiateScan();	
-//				intent.setAction(Intent.ACTION_EDIT);
-//				intent.setClass(this, FindActivityProvider.getExtraActivityClass());
-//				startActivity(intent);
+				String scanner = mSharedPrefs.getString(getString(R.string.scanner_key),"");
+				if (scanner.equals(getString(R.string.bar_on))){
+					IntentIntegrator zxing;
+		        	zxing = new IntentIntegrator(this);
+		        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
+		        	zxing.initiateScan();
+				}
+				else{
+					intent = new Intent();
+					intent.setClass(this, AcdiVocaLookupActivity.class);
+					startActivity(intent);
+				}
 				break;	
 
 			case R.id.extraButton2:

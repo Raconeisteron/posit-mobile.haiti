@@ -38,6 +38,7 @@
          style="@android:style/Widget.ProgressBar.Small"
          android:visibility="invisible"
          android:layout_marginRight="5dp" />
+
 		
 
 <!--  

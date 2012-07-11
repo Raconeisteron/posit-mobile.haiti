@@ -184,6 +184,8 @@
     <string name="search_prompt">Search by last and/or first name</string> <!-- 7/25/11 -->
     <string name="list_messages">Manage SMS Messages</string>
     <string name="sync_messages">Send SMS Messages</string>
+    <string name = "no_sim">No SIM card detected.</string>
+    <string name = "no_signal">Mobile network is not available.</string>
   
     <!-- ACDI/VOCA Settings and Preferences -->
     <string name="acdivocaprefs">ACDI/VOCA Preferences</string>
@@ -192,6 +194,10 @@
     <string name="localeKey">locale</string>
     <string name="locale">Locale</string>
     <string name="localePref">locale</string>
+    <string name="scanner_key">scanner_key</string>
+    <string name="Scanner">Barcode Scanner</string>
+    <string name="bar_on">on</string>
+    <string name="bar_off">off</string>
     
     <!-- ACDI/VOCA Searchable -->
     <string name="app_label">Look up id</string>
@@ -342,6 +348,13 @@
 	<!-- 7/25/11 --> 
      <string name="commune_section_key">commune_section_key</string> <!-- Do not translate -->
     
-    
-    
+    <string name="smsSending">Sending SMS</string>
+    <string name="smsLimit1"> messages will be sent in </string>
+    <string name="smsLimit2"> batches, and it will take more than </string>
+    <string name="smsLimit3"> hour(s) to complete.Please do not turn off the phone during this time.</string>
+    <string name="smsBatch">Sending batch </string>
+    <string name="overLimit">Maximum allowed limit for sending SMS per time is 510. Please contact your administrator.</string>
+    <string name="smsRunning">messages remaining.</string>
+    <string name="smsWaiting">Waiting to send the next batch.</string>
+    <string name="smsTimeOut"> remaining.</string>
 </resources>

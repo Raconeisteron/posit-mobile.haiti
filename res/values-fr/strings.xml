@@ -184,6 +184,9 @@
 <!--     <string name="localeKey">locale</string> -->
     <string name="locale">Locale</string>
     <string name="localePref">locale</string>
+    <string name="Scanner">Lecteur de codes barres</string>
+    <string name="bar_on">sur</string>
+    <string name="bar_off">de</string>
     
     <!-- Alert Dialogs -->
     <string name="acdivoca_exit_findactivity">Etes vous sure de vouloir quitter?.</string>
@@ -296,6 +299,8 @@
 	<string name="general">Generale</string>
 	<string name="send_message">Envoye message est en cours</string> 
 	<string name="check_saving">Sauvegarder les donnees avant de retourner?</string>
+	<string name="no_sim">Pa gen kat SIM deteced.</string>
+    <string name="no_signal">R√©seau mobile n\'est pas disponible</string>
 	
 	
 	<!-- Random translations of toasts and other strings  -->
@@ -328,6 +333,14 @@
 	<string name="io_exc">Oops! Vous ne trouvez pas </string>
 	<string name="string_exc">Exception cordes</string>
 	
-	
+	<string name="smsSending">Envoi de SMS</string>
+    <string name="smsLimit1"> message seront envoy√©s par </string>
+    <string name="smsLimit2"> lots et il faudra plus </string>
+    <string name="smsLimit3"> heure pour terminer. Pendant ce temps, il ne faut pas √©teindre le t√©l√©phone.</string>
+    <string name="smsBatch">Envoi par lots </string>
+    <string name="overLimit">Limite maximale autoris√©e pour l\'envoi de SMS par unit√© de temps est de 510. S\'il vous pla√Æt contactez votre administrateur.</string>
+    <string name="smsRunning">messages restants.</string>
+    <string name="smsWaiting">En attendant d\'envoyer le lot suivant.</string>
+    <string name="smsTimeOut"> restant.</string>
 	
 </resources>
