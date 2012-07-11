@@ -328,6 +328,17 @@
 	<string name="acdivoca_exit_findactivity">Èske ou sèten ou vle sòti? Done ka pèdi pouvwa.
 	</string>
 	
+	<!--  Strings for SMS progress dialog -->
+	<string name="smsSending">voye SMS</string>
+    <string name="smsLimit1"> mesaj yo pral voye nan </string>
+    <string name="smsLimit2"> lo, epi li pral pran plis pase </string>
+    <string name="smsLimit3"> èd tan pou li ale. Pandan sa pa fèmin telefòn nan.</string>
+    <string name="smsBatch">voye pakèt </string>
+    <string name="overLimit">Limit maksimòm pèmèt pou voye SMS pou chak tan se 510. Tanpri, kontakte administratè ou.</string>
+    <string name="smsRunning">mesaj chape.</string>
+    <string name="smsWaiting">Ap tann yo voye pakèt kap vini an.</string>
+    <string name="smsTimeOut"> chape.</string>
+	
 	
 </resources>
 

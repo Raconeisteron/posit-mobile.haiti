@@ -34,6 +34,16 @@
                 android:shouldDisableView="true"
                 android:summary="@string/distribution_point" 
                 android:negativeButtonText="@string/cancelLabel" />
+			    
+			    <ListPreference 
+				android:key="@string/scanner_key"
+				android:title="@string/Scanner" 
+				android:persistent="true"
+				android:defaultValue="off" 
+				android:summary="@string/Scanner"
+				android:entries="@array/bar_scan" 
+				android:entryValues="@array/bar_scan_values"
+				android:negativeButtonText="@string/cancelLabel" />
                 
                 
 			    <ListPreference 

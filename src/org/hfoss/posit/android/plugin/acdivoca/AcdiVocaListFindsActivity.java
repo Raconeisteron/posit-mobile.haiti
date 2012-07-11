@@ -43,8 +43,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -66,7 +69,7 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
  * 
  */
 public class AcdiVocaListFindsActivity extends ListFindsActivity implements
-		ViewBinder, SmsCallBack {
+ViewBinder, SmsCallBack {
 
 	private static final String TAG = "ListActivity";
 	private Cursor mCursor; // Used for DB accesses
@@ -80,7 +83,14 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	private static final int SEND_MSGS_ALERT = AcdiVocaAdminActivity.SEND_DIST_REP;
 	private static final int INVALID_PHONE_NUMBER = AcdiVocaAdminActivity.INVALID_PHONE_NUMBER;
 	private static final int NO_MSGS_ALERT = SMS_REPORT + 1;
+	
+	
 
+	private static final int NO_SIGNAL = 9;
+	private static final int NO_SIM = 10;
+	private static final int SMStooMuch = 11;
+	private static final int contactAdmin =12;
+	
 	private String mAction;
 	private int mStatusFilter;
 	private Activity mActivity;
@@ -100,6 +110,11 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	private boolean mDisplayingSearchResults = false;
 	private boolean mMessageListDisplayed = false;
 	private String mSmsReport;
+	
+	protected static Context mContext;
+	
+	private int MAX_SMS = 85;
+
 
 	/**
 	 * Callback method used by SmsManager to report how many messages were sent.
@@ -123,7 +138,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		mContext = this;
 		mActivity = this;
 		Intent intent = getIntent();
 		mAction = intent.getAction();
@@ -132,9 +147,6 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		mStatusFilter = intent.getIntExtra(AcdiVocaDbHelper.FINDS_STATUS, -1);
 		Log.i(TAG, "onCreate(), action = " + mAction);
 
-		// SharedPreferences sp =
-		// PreferenceManager.getDefaultSharedPreferences(this);
-		// project_id = 0; //sp.getInt("PROJECT_ID", 0);
 	}
 
 	/**
@@ -148,7 +160,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		super.onResume();
 		Log.i(TAG, "onResume()");
 		AcdiVocaLocaleManager.setDefaultLocale(this); // Locale Manager should
-														// be in API
+		// be in API
 
 		// SharedPreferences sp =
 		// PreferenceManager.getDefaultSharedPreferences(this);
@@ -205,11 +217,6 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 				this, R.layout.acdivoca_list_row, avFinds);
 		setListAdapter(adapter);
 
-		// adapter.getView(position, convertView, parent)
-		// Intent intent = new Intent(this, AcdiVocaListFindsActivity.class);
-		// intent.putExtra(AcdiVocaDbHelper.FINDS_TYPE,AcdiVocaDbHelper.FINDS_TYPE_MCHN);
-
-		// startActivityForResult(intent, FIND_FROM_LIST);
 	}
 
 	/**
@@ -219,7 +226,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	 */
 	private void fillData(String order_by) {
 		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-		
+
 		int beneficiary_type = -1;
 		UserType userType = AppControlManager.getUserType();
 		if (userType.equals(UserType.ADMIN) || userType.equals(UserType.USER))
@@ -233,13 +240,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 			Log.e(TAG, "Error: Unexpected user type in List Finds");
 
 		List<AcdiVocaFind> list = this.getHelper().fetchAllBeneficiaries(beneficiary_type);
-//		ContentValues values = new ContentValues();
-//		values.put(AcdiVocaDbHelper.FINDS_FIRSTNAME, "Trishanna");
-//		
-//		AcdiVocaFind find = new AcdiVocaFind(values);
-//		for (int i=0;i<=900;i++)
-//			list.add(find);
-		
+
 		if (list.size() == 0) {
 			setContentView(R.layout.acdivoca_list_beneficiaries);
 			return;
@@ -279,7 +280,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		// lookup the id and check the beneficiary type
 		// based on that prepare the intent
 		// Intent intent = new Intent(this, AcdiVocaFindActivity.class);
-		
+
 		AcdiVocaFind avFind = this.getHelper().fetchFindById(findId, null);
 		if (avFind == null) {
 			Log.e(TAG, "Unable to lookup find with id = " + findId);
@@ -287,35 +288,6 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		}
 
 		startDisplayFindActivity(avFind);
-		// ContentValues values = avFind.toContentValues();
-		//
-		// // ContentValues values = db.fetchFindDataById(id, null);
-		//
-		// Log.i(TAG, "###############################################");
-		// Log.i(TAG, values.toString());
-		// Intent intent = null;
-		// if(values.getAsInteger(AcdiVocaDbHelper.FINDS_TYPE) ==
-		// AcdiVocaDbHelper.FINDS_TYPE_MCHN){
-		// intent = new Intent(this, AcdiVocaMchnFindActivity.class);
-		// intent.putExtra(AcdiVocaDbHelper.FINDS_TYPE,AcdiVocaDbHelper.FINDS_TYPE_MCHN);
-		// }
-		// if(values.getAsInteger(AcdiVocaDbHelper.FINDS_TYPE) ==
-		// AcdiVocaDbHelper.FINDS_TYPE_AGRI){
-		// intent = new Intent(this, AcdiVocaAgriFindActivity.class);
-		// intent.putExtra(AcdiVocaDbHelper.FINDS_TYPE,AcdiVocaDbHelper.FINDS_TYPE_AGRI);
-		// }
-		// // if(values.getAsInteger(AcdiVocaDbHelper.FINDS_TYPE) ==
-		// AcdiVocaDbHelper.FINDS_TYPE_BOTH){
-		// // intent = new Intent(this, AcdiVocaFindActivity.class);
-		// //
-		// intent.putExtra(AcdiVocaDbHelper.FINDS_TYPE,AcdiVocaDbHelper.FINDS_TYPE_BOTH);
-		// // }
-		//
-		// intent.setAction(Intent.ACTION_EDIT);
-		// if (DBG) Log.i(TAG,"id = " + id);
-		// intent.putExtra(AcdiVocaDbHelper.FINDS_ID, (long) findId);
-		//
-		// startActivityForResult(intent, FIND_FROM_LIST);
 	}
 
 	/**
@@ -436,8 +408,8 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		if (mMessageListDisplayed) {
 			if (mNMessagesDisplayed > 0
 					&& (mMessageFilter == SearchFilterActivity.RESULT_SELECT_NEW
-							|| mMessageFilter == SearchFilterActivity.RESULT_SELECT_PENDING
-							|| mMessageFilter == SearchFilterActivity.RESULT_SELECT_UPDATE || mMessageFilter == SearchFilterActivity.RESULT_BULK_UPDATE)) {
+					|| mMessageFilter == SearchFilterActivity.RESULT_SELECT_PENDING
+					|| mMessageFilter == SearchFilterActivity.RESULT_SELECT_UPDATE || mMessageFilter == SearchFilterActivity.RESULT_BULK_UPDATE)) {
 				Log.i(TAG, "Prepare Menus, enabled SYNC");
 				syncItem.setEnabled(true);
 			} else {
@@ -485,7 +457,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 					SearchFindsActivity.ACTION_SEARCH);
 			break;
 
-		// Start a SearchFilterActivity for result
+			// Start a SearchFilterActivity for result
 		case R.id.list_messages:
 			intent = new Intent();
 			intent.setClass(this, SearchFilterActivity.class);
@@ -494,7 +466,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 					SearchFilterActivity.ACTION_SELECT);
 			break;
 
-		// This case sends all messages (if messages are currently displayed)
+			// This case sends all messages (if messages are currently displayed)
 		case R.id.sync_messages:
 			// For regular USER, create the messages and send
 
@@ -563,28 +535,6 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		showDialog(SEND_MSGS_ALERT);
 	}
 
-	// /**
-	// * Helper method to delete SMS messages.
-	// */
-	// private void deleteMessages() {
-	// int nMsgs = mAdapter.getCount();
-	// int nDels = 0;
-	// int k = 0;
-	// while (k < nMsgs) {
-	// AcdiVocaMessage acdiVocaMsg = mAdapter.getItem(k);
-	// int beneficiary_id = acdiVocaMsg.getBeneficiaryId();
-	// Log.i(TAG, "To Delete: " + acdiVocaMsg.getSmsMessage());
-	//
-	// AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-	// if (db.updateMessageStatus(acdiVocaMsg,
-	// AcdiVocaDbHelper.MESSAGE_STATUS_DEL))
-	// ++nDels;
-	// ++k;
-	// }
-	// Toast.makeText(this, getString(R.string.toast_deleted) + nDels +
-	// getString(R.string.toast_messages), Toast.LENGTH_SHORT).show();
-	// }
-
 	/**
 	 * Retrieves the Beneficiary Id from the Message string. TODO: Probably not
 	 * the best way to handle this. A better way would be to have DbHelper
@@ -652,7 +602,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 				List<AcdiVocaFind> list = null;
 				if (firstNameSearch == null)
 					list = this.getHelper()
-							.fetchBeneficiariesByLastName(lastNameSearch + "%");
+					.fetchBeneficiariesByLastName(lastNameSearch + "%");
 				else if (lastNameSearch == null)
 					list = this.getHelper().fetchBeneficiariesByFirstName(firstNameSearch
 							+ "%");
@@ -677,7 +627,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 								this,
 								"Sorry unable to find " + firstNameSearch + " "
 										+ lastNameSearch, Toast.LENGTH_SHORT)
-								.show();
+										.show();
 				}
 			}
 			break;
@@ -698,10 +648,10 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		//AcdiVocaDbHelper db = null;
 		if (filter == SearchFilterActivity.RESULT_SELECT_NEW
 				|| filter == SearchFilterActivity.RESULT_SELECT_UPDATE) { // Second
-																			// arg
-																			// is
-																			// order
-																			// by
+			// arg
+			// is
+			// order
+			// by
 			//db = new AcdiVocaDbHelper(this);
 			acdiVocaMsgs = this.getHelper().createMessagesForBeneficiaries(filter, null,
 					distributionCtr);
@@ -818,51 +768,148 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 		switch (id) {
 		case SEND_MSGS_ALERT:
 			SharedPreferences sp = PreferenceManager
-					.getDefaultSharedPreferences(mActivity);
+			.getDefaultSharedPreferences(mActivity);
 			final String phoneNumber = sp.getString(
 					mActivity.getString(R.string.smsPhoneKey), "");
 			return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.about2)
-					.setTitle(
+			.setIcon(R.drawable.about2)
+			.setTitle(
 					// "#: " + phoneNumber
 					// + "\n" + mAcdiVocaMsgs.size()
 					// + " " + getString(R.string.send_dist_rep))
-							mAcdiVocaMsgs.size() + " "
-									+ getString(R.string.send_dist_rep2)
-									+ " #: " + phoneNumber)
+					mAcdiVocaMsgs.size() + " "
+					+ getString(R.string.send_dist_rep2)
+					+ " #: " + phoneNumber)
 					.setPositiveButton(R.string.alert_dialog_ok,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									AcdiVocaSmsManager mgr = AcdiVocaSmsManager
-											.getInstance(mActivity);
+						public void onClick(DialogInterface dialog,
+								int which) {
+							TelephonyManager tm = (TelephonyManager)getSystemService(android.content.Context.TELEPHONY_SERVICE);
+							if (tm.getSimState() != TelephonyManager.SIM_STATE_ABSENT){
+								ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+								NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+								if(!mobile.isAvailable()){
+									showDialog(NO_SIGNAL);
+								}
+								else{
+									AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance(mActivity);
+									if(mAcdiVocaMsgs.size()>MAX_SMS){
+										showDialog(SMStooMuch);
+									}
+									else{
+									AcdiVocaAdminActivity.totallyDone=true;
+									AcdiVocaAdminActivity.batch=0;									
 									mgr.sendMessages(mActivity, mAcdiVocaMsgs);
 									// mSmsReport = "Sending to " + phoneNumber
 									// + " # : " + mAcdiVocaMsgs.size();
 									mSmsReport = mAcdiVocaMsgs.size() + " "
 											+ getString(R.string.being_sent_to)
 											+ " # : " + phoneNumber;
-									showDialog(SMS_REPORT);
-									// finish();
-								}
-							})
+									//showDialog(SMS_REPORT);
+									finish();
+									}
+								}}
+							else{
+								showDialog(NO_SIGNAL);
+							}
+						}
+					})
 					.setNegativeButton(R.string.alert_dialog_cancel,
 							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-								}
-							}).create();
+						public void onClick(DialogInterface dialog,
+								int which) {
+						}
+					}).create();
 
+		case SMStooMuch:
+			int div = 0;
+			if(mAcdiVocaMsgs.size()>MAX_SMS && mAcdiVocaMsgs.size()<=(2*MAX_SMS)){
+				div = 2;
+			}
+			if(mAcdiVocaMsgs.size()>(2*MAX_SMS) && mAcdiVocaMsgs.size()<=(3*MAX_SMS)){
+				div = 3;	
+			}
+			if(mAcdiVocaMsgs.size()>(3*MAX_SMS) && mAcdiVocaMsgs.size()<=(4*MAX_SMS)){
+				div = 4;
+			}
+			if(mAcdiVocaMsgs.size()>(4*MAX_SMS) && mAcdiVocaMsgs.size()<=(5*MAX_SMS)){
+				div = 5;
+			}
+			if(mAcdiVocaMsgs.size()>(5*MAX_SMS) && mAcdiVocaMsgs.size()<=(6*MAX_SMS)){
+				div = 6;
+			}
+			String message = mAcdiVocaMsgs.size() + " " +getString(R.string.smsLimit1) + " "+
+							div+" "+getString(R.string.smsLimit2)+ " " +(div-1)+ " " + getString(R.string.smsLimit3); 
+			return new AlertDialog.Builder(this).setTitle(R.string.smsSending)
+					.setIcon(R.drawable.alert_dialog_icon)
+					.setMessage(message)
+					.setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							if(mAcdiVocaMsgs.size()>MAX_SMS && mAcdiVocaMsgs.size()<=(2*MAX_SMS)){
+								AcdiVocaAdminActivity.smsSplitter(mAcdiVocaMsgs,2);
+								finish();
+							}
+							if(mAcdiVocaMsgs.size()>(2*MAX_SMS) && mAcdiVocaMsgs.size()<=(3*MAX_SMS)){
+								AcdiVocaAdminActivity.smsSplitter(mAcdiVocaMsgs,3);	
+								finish();
+							}
+							if(mAcdiVocaMsgs.size()>(3*MAX_SMS) && mAcdiVocaMsgs.size()<=(4*MAX_SMS)){
+								AcdiVocaAdminActivity.smsSplitter(mAcdiVocaMsgs,4);
+								finish();
+							}
+							if(mAcdiVocaMsgs.size()>(4*MAX_SMS) && mAcdiVocaMsgs.size()<=(5*MAX_SMS)){
+								AcdiVocaAdminActivity.smsSplitter(mAcdiVocaMsgs,5);
+								finish();
+							}
+							if(mAcdiVocaMsgs.size()>(5*MAX_SMS) && mAcdiVocaMsgs.size()<=(6*MAX_SMS)){
+								AcdiVocaAdminActivity.smsSplitter(mAcdiVocaMsgs,6);
+								finish();
+							}
+							else{
+								showDialog(contactAdmin);
+							}
+							
+						}	
+					}).create();
+		case contactAdmin:
+			return new AlertDialog.Builder(this).setTitle(R.string.smsSending)
+					.setIcon(R.drawable.alert_dialog_icon)
+					.setMessage(R.string.overLimit)
+					.setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							finish();
+						}	
+					}).create();
 		case NO_MSGS_ALERT:
 			return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.about2)
-					.setTitle(R.string.no_messages_to_send)
-					.setPositiveButton(R.string.alert_dialog_ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-								}
-							}).create();
+			.setIcon(R.drawable.about2)
+			.setTitle(R.string.no_messages_to_send)
+			.setPositiveButton(R.string.alert_dialog_ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int which) {
+				}
+			}).create();
+			
+		case NO_SIM:
+			return new AlertDialog.Builder(this).setTitle("WARNING!")
+					.setIcon(R.drawable.warning)
+					.setMessage(R.string.no_sim)
+					.setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							finish();
+						}
+					}).create();
+
+		case NO_SIGNAL:
+			return new AlertDialog.Builder(this).setTitle("WARNING!")
+					.setIcon(R.drawable.warning)
+					.setMessage(R.string.no_signal)
+					.setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+							finish();
+						}
+					}).create();	
 
 		case INVALID_PHONE_NUMBER:
 			// String title = "Invalid phone number: " +
@@ -870,69 +917,48 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 			String title = getString(R.string.invalid_phone_number) + " "
 					+ AcdiVocaSmsManager.getPhoneNumber(mActivity);
 			return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.about2)
-					.setTitle(title)
-					.setPositiveButton(R.string.alert_dialog_ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-								}
-							}).create();
+			.setIcon(R.drawable.about2)
+			.setTitle(title)
+			.setPositiveButton(R.string.alert_dialog_ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int which) {
+				}
+			}).create();
 		case SMS_REPORT:
 			return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.alert_dialog_icon)
-					.setTitle(mSmsReport)
-					.setPositiveButton(R.string.alert_dialog_ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									// User clicked OK so do some stuff
-									finish();
-								}
-							}).create();
-			// case CONFIRM_DELETE_DIALOG:
-			// return new AlertDialog.Builder(this)
-			// .setIcon(R.drawable.alert_dialog_icon)
-			// .setTitle(R.string.confirm_delete_messages)
-			// .setPositiveButton(R.string.alert_dialog_ok,
-			// new DialogInterface.OnClickListener() {
-			// public void onClick(DialogInterface dialog, int whichButton) {
-			// if (mMessageListDisplayed) {
-			// deleteMessages();
-			// mMessageFilter = -1;
-			// fillData(null);
-			// }
-			// dialog.cancel();
-			// }
-			// }).setNegativeButton(R.string.alert_dialog_cancel, new
-			// DialogInterface.OnClickListener() {
-			// public void onClick(DialogInterface dialog, int whichButton) {
-			// /* User clicked Cancel so do nothing */
-			// }
-			// }).create();
-
+			.setIcon(R.drawable.alert_dialog_icon)
+			.setTitle(mSmsReport)
+			.setPositiveButton(R.string.alert_dialog_ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int whichButton) {
+					// User clicked OK so do some stuff
+					finish();
+				}
+			}).create();
 		} // switch
 
 		switch (id) {
 		case confirm_exit:
 			return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.alert_dialog_icon)
-					.setTitle(R.string.exit)
-					.setPositiveButton(R.string.alert_dialog_ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									// User clicked OK so do some stuff
-									finish();
-								}
-							})
-					.setNegativeButton(R.string.alert_dialog_cancel,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-									/* User clicked Cancel so do nothing */
-								}
-							}).create();
+			.setIcon(R.drawable.alert_dialog_icon)
+			.setTitle(R.string.exit)
+			.setPositiveButton(R.string.alert_dialog_ok,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int whichButton) {
+					// User clicked OK so do some stuff
+					finish();
+				}
+			})
+			.setNegativeButton(R.string.alert_dialog_cancel,
+					new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+						int whichButton) {
+					/* User clicked Cancel so do nothing */
+				}
+			}).create();
 
 		default:
 			return null;
@@ -958,10 +984,10 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 			Log.i(TAG, "phonenumber = " + phoneNumber);
 
 			d.setTitle(
-			// "#: " + phoneNumber
-			// + "\n" + mAcdiVocaMsgs.size()
-			// + " " + getString(R.string.send_dist_rep));
-			mAcdiVocaMsgs.size() + " " + getString(R.string.send_dist_rep2)
+					// "#: " + phoneNumber
+					// + "\n" + mAcdiVocaMsgs.size()
+					// + " " + getString(R.string.send_dist_rep));
+					mAcdiVocaMsgs.size() + " " + getString(R.string.send_dist_rep2)
 					+ " #: " + phoneNumber);
 
 			needsabutton = d.getButton(DialogInterface.BUTTON_POSITIVE);
@@ -982,7 +1008,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	 * @param <AcdiVocaFind>
 	 */
 	private class BeneficiaryListAdapter<AcdiVocaFind> extends
-			ArrayAdapter<AcdiVocaFind> {
+	ArrayAdapter<AcdiVocaFind> {
 		private List<AcdiVocaFind> items;
 
 		public BeneficiaryListAdapter(Context context, int textViewResourceId,
@@ -1024,7 +1050,7 @@ public class AcdiVocaListFindsActivity extends ListFindsActivity implements
 	 * @param <AcdiVocaMessage>
 	 */
 	private class MessageListAdapter<AcdiVocaMessage> extends
-			ArrayAdapter<AcdiVocaMessage> {
+	ArrayAdapter<AcdiVocaMessage> {
 
 		private ArrayList<AcdiVocaMessage> items;
 
