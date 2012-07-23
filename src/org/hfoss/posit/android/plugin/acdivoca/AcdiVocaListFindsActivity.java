@@ -83,14 +83,14 @@ ViewBinder, SmsCallBack {
 	private static final int SEND_MSGS_ALERT = AcdiVocaAdminActivity.SEND_DIST_REP;
 	private static final int INVALID_PHONE_NUMBER = AcdiVocaAdminActivity.INVALID_PHONE_NUMBER;
 	private static final int NO_MSGS_ALERT = SMS_REPORT + 1;
-	
-	
+
+
 
 	private static final int NO_SIGNAL = 9;
 	private static final int NO_SIM = 10;
 	private static final int SMStooMuch = 11;
 	private static final int contactAdmin =12;
-	
+
 	private String mAction;
 	private int mStatusFilter;
 	private Activity mActivity;
@@ -110,9 +110,9 @@ ViewBinder, SmsCallBack {
 	private boolean mDisplayingSearchResults = false;
 	private boolean mMessageListDisplayed = false;
 	private String mSmsReport;
-	
+
 	protected static Context mContext;
-	
+
 	private int MAX_SMS = 85;
 
 
@@ -786,17 +786,12 @@ ViewBinder, SmsCallBack {
 								int which) {
 							TelephonyManager tm = (TelephonyManager)getSystemService(android.content.Context.TELEPHONY_SERVICE);
 							if (tm.getSimState() != TelephonyManager.SIM_STATE_ABSENT){
-								ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-								NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-								if(!mobile.isAvailable()){
-									showDialog(NO_SIGNAL);
+
+								AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance(mActivity);
+								if(mAcdiVocaMsgs.size()>MAX_SMS){
+									showDialog(SMStooMuch);
 								}
 								else{
-									AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance(mActivity);
-									if(mAcdiVocaMsgs.size()>MAX_SMS){
-										showDialog(SMStooMuch);
-									}
-									else{
 									AcdiVocaAdminActivity.totallyDone=true;
 									AcdiVocaAdminActivity.batch=0;									
 									mgr.sendMessages(mActivity, mAcdiVocaMsgs);
@@ -807,8 +802,8 @@ ViewBinder, SmsCallBack {
 											+ " # : " + phoneNumber;
 									//showDialog(SMS_REPORT);
 									finish();
-									}
-								}}
+								}
+							}
 							else{
 								showDialog(NO_SIGNAL);
 							}
@@ -839,7 +834,7 @@ ViewBinder, SmsCallBack {
 				div = 6;
 			}
 			String message = mAcdiVocaMsgs.size() + " " +getString(R.string.smsLimit1) + " "+
-							div+" "+getString(R.string.smsLimit2)+ " " +(div-1)+ " " + getString(R.string.smsLimit3); 
+					div+" "+getString(R.string.smsLimit2)+ " " +(div-1)+ " " + getString(R.string.smsLimit3); 
 			return new AlertDialog.Builder(this).setTitle(R.string.smsSending)
 					.setIcon(R.drawable.alert_dialog_icon)
 					.setMessage(message)
@@ -868,7 +863,7 @@ ViewBinder, SmsCallBack {
 							else{
 								showDialog(contactAdmin);
 							}
-							
+
 						}	
 					}).create();
 		case contactAdmin:
@@ -890,7 +885,7 @@ ViewBinder, SmsCallBack {
 						int which) {
 				}
 			}).create();
-			
+
 		case NO_SIM:
 			return new AlertDialog.Builder(this).setTitle("WARNING!")
 					.setIcon(R.drawable.warning)
