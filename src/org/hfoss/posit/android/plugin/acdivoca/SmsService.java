@@ -410,13 +410,13 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 				}
 				else{
 					if(AcdiVocaAdminActivity.batch==0){
-						PositMain.mSMSdialog.setTitle(R.string.smsSending);
-						PositMain.mSMSdialog.show();
+						PositMain.mSMSdialog = ProgressDialog.show(PositMain.mContext, getString(R.string.smsSending), "",true,false);
+						
 					}
 					else{
 						String title = getString(R.string.smsBatch)+AcdiVocaAdminActivity.batch;
-						PositMain.mSMSdialog.setTitle(title);
-						PositMain.mSMSdialog.show();
+						PositMain.mSMSdialog = ProgressDialog.show(PositMain.mContext, title, "",true,false);
+						
 					}
 				}
 			}

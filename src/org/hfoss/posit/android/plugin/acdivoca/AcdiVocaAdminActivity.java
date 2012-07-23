@@ -87,7 +87,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 	public static final String SMS_LOG_FILE = "smslog.txt";
 	public static final String DEFAULT_BENEFICIARY_FILE = "Beneficiare.csv";
 	public static final String DEFAULT_LIVELIHOOD_FILE = "Livelihood.csv";
-	
+
 	public static final String COMMA= ",";
 	public static final int DONE = 0;
 	public static final int ERROR = -1;
@@ -129,7 +129,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 	protected static ArrayList<AcdiVocaMessage> msgDiv5=new ArrayList<AcdiVocaMessage>();
 	protected static ArrayList<AcdiVocaMessage> msgDiv6=new ArrayList<AcdiVocaMessage>();
 	protected static int batch = 0;
-	
+
 	/**
 	 * Callback method used by SmsManager to report how
 	 * many messages were sent. 
@@ -576,9 +576,9 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 	protected static void startTimer(final ArrayList<AcdiVocaMessage> msgList1,final ArrayList<AcdiVocaMessage> msgList2,
 			final ArrayList<AcdiVocaMessage> msgList3, final ArrayList<AcdiVocaMessage> msgList4,
 			final ArrayList<AcdiVocaMessage> msgList5, final boolean done){
-		
+
 		if(msgList1!=null){
-			CountDownTimer ctimer = new CountDownTimer(60000, 1000) 
+			CountDownTimer ctimer = new CountDownTimer(4500000, 1000) 
 			{
 				@Override
 				public void onTick(long l){
@@ -623,7 +623,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 	protected static boolean available(ArrayList<AcdiVocaMessage> msgList){
 		return msgList.size() < MAX_SMS;
 	}
-	
+
 	/**
 	 * resetArrays method 
 	 * reset the arrays that are used to split the message
@@ -636,7 +636,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 		msgDiv5.clear();
 		msgDiv6.clear();
 	}
-	
+
 	/**
 	 * Divides the long sms list into multiple small lists
 	 * @param msgList is an ArrayList containing messages
@@ -690,7 +690,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 			AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance((Activity) mContext);
 			sms_service_done=false;
 			mgr.sendMessages((OrmLiteBaseActivity<AcdiVocaDbHelper>)mContext, msgDiv1);
-			
+
 			if(div==2){
 				startTimer(msgDiv2,null,null,null,null,true);
 			}
@@ -789,26 +789,21 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 										int which) {
 									TelephonyManager tm = (TelephonyManager)getSystemService(android.content.Context.TELEPHONY_SERVICE);
 									if (tm.getSimState() != TelephonyManager.SIM_STATE_ABSENT){
-										ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-										NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-										if(!mobile.isAvailable()){
-											showDialog(NO_SIGNAL);
+
+										AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance((Activity) mContext);
+										if(mAcdiVocaMsgs.size()>MAX_SMS){
+											showDialog(SMStooMuch);
+
 										}
 										else{
-											AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance((Activity) mContext);
-											if(mAcdiVocaMsgs.size()>MAX_SMS){
-												showDialog(SMStooMuch);
-
-											}
-											else{
-												totallyDone = true;
-												batch = 0;
-												mgr.sendMessages((OrmLiteBaseActivity<AcdiVocaDbHelper>)mContext, mAcdiVocaMsgs);
-												AppControlManager.moveToNextDistributionStage(mContext);
-												mSmsReport = "#: " + phoneNumber + "\n" + mAcdiVocaMsgs.size();
-												finish();
-											}
+											totallyDone = true;
+											batch = 0;
+											mgr.sendMessages((OrmLiteBaseActivity<AcdiVocaDbHelper>)mContext, mAcdiVocaMsgs);
+											AppControlManager.moveToNextDistributionStage(mContext);
+											mSmsReport = "#: " + phoneNumber + "\n" + mAcdiVocaMsgs.size();
+											finish();
 										}
+
 									}
 									else{
 										showDialog(NO_SIM);
@@ -858,7 +853,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 				div = 6;
 			}
 			String message = mAcdiVocaMsgs.size() + " " +getString(R.string.smsLimit1) + " "+
-							div+" "+getString(R.string.smsLimit2)+ " " +(div-1)+ " " + getString(R.string.smsLimit3); 
+					div+" "+getString(R.string.smsLimit2)+ " " +(div-1)+ " " + getString(R.string.smsLimit3); 
 			return new AlertDialog.Builder(this).setTitle(R.string.smsSending)
 					.setIcon(R.drawable.alert_dialog_icon)
 					.setMessage(message)
@@ -887,7 +882,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 							else{
 								showDialog(contactAdmin);
 							}
-							
+
 						}	
 					}).create();
 		case contactAdmin:
