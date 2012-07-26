@@ -87,6 +87,8 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 	public static final String SMS_LOG_FILE = "smslog.txt";
 	public static final String DEFAULT_BENEFICIARY_FILE = "Beneficiare.csv";
 	public static final String DEFAULT_LIVELIHOOD_FILE = "Livelihood.csv";
+	public static final int DEFAULT_WAIT_TIME = 4500000;
+	public static final int oneSecond = 1000;
 
 	public static final String COMMA= ",";
 	public static final int DONE = 0;
@@ -578,7 +580,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 			final ArrayList<AcdiVocaMessage> msgList5, final boolean done){
 
 		if(msgList1!=null){
-			CountDownTimer ctimer = new CountDownTimer(4500000, 1000) 
+			CountDownTimer ctimer = new CountDownTimer(DEFAULT_WAIT_TIME, oneSecond)
 			{
 				@Override
 				public void onTick(long l){
