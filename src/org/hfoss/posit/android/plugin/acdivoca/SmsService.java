@@ -70,6 +70,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 	private SendMessagesTask sendMessagesTask;
 
 	private ArrayList<String> mMessages;
+	private ArrayList<AcdiVocaMessage> mAcdiVocaMsgs;
 	private String mPhoneNumber;
 
 	private int limit_counter = 0;

@@ -113,7 +113,7 @@ ViewBinder, SmsCallBack {
 
 	protected static Context mContext;
 
-	private int MAX_SMS = 85;
+	private int MAX_SMS = 10000;
 
 
 	/**
