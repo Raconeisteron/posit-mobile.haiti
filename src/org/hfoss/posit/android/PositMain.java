@@ -172,7 +172,17 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 			// Change visibility of buttons based on UserType
 
 			Log.i(TAG, "POSIT Start, distrStage = " + AppControlManager.displayDistributionStage(this));
-						
+			//if(AppControlManager.displayDistributionStage(this).equals("Stop distribution event")){
+			if(AppControlManager.displayDistributionStage(this).equals(getString(R.string.stop_distribution_event))){
+				AppControlManager.setDistributionStage(this, AppControlManager.STOP_DISTRIBUTION_EVENT);
+			}
+			if(AppControlManager.displayDistributionStage(this).equals(getString(R.string.start_distribution_event))){
+				AppControlManager.setDistributionStage(this, AppControlManager.START_DISTRIBUTION_EVENT);
+			}
+			if(AppControlManager.displayDistributionStage(this).equals(getString(R.string.send_distribution_report))){
+				AppControlManager.setDistributionStage(this, AppControlManager.SEND_DISTRIBUTION_REPORT);
+			}
+			
 			if (FindPluginManager.mMainIcon != null) {
 				final ImageView mainLogo = (ImageView) findViewById(R.id.Logo);
 				int resID = getResources().getIdentifier(FindPluginManager.mMainIcon, "drawable", "org.hfoss.posit.android");
@@ -231,8 +241,10 @@ public class PositMain  extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements
 				
 				// Button is gone for USER and ADMIN users except during distribution events
 				if (AppControlManager.isRegularUser() || AppControlManager.isAdminUser()) {
-					if (AppControlManager.isDuringDistributionEvent()) 
+					if (AppControlManager.isDuringDistributionEvent()){ 
 						extraButton.setVisibility(View.VISIBLE);
+						Log.i(TAG, "Distribution event is ongoing");
+					}
 					else
 						extraButton.setVisibility(View.GONE);
 					

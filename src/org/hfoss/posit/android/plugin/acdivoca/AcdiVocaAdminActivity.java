@@ -79,7 +79,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 
 	public static String TAG = "AdminActivity";
 	public static final int MAX_BENEFICIARIES = 20000;  // Max readable
-	public static final int MAX_SMS = 85;
+	public static final int MAX_SMS = 10000;
 	public static final String DEFAULT_DIRECTORY = "acdivoca";
 	public static final String DEFAULT_MCHN_DIRECTORY = "acdivoca/mchn";
 	public static final String DEFAULT_AGRI_DIRECTORY = "acdivoca/agri";
