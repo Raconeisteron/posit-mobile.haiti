@@ -651,7 +651,11 @@ public class AcdiVocaDbHelper extends OrmLiteSqliteOpenHelper  {
 		boolean result = false;
 		int rows = 0;
 		String dossiers[] = msg.split(AttributeManager.LIST_SEPARATOR);
-	
+		String first[] = dossiers[0].split(AttributeManager.PAIRS_SEPARATOR);
+		if(first[1]!=null)
+			{dossiers[0] = first[1];}
+		Log.i(TAG, "What's coming in : " + msg);
+		Log.i(TAG, "got splited into : " + dossiers[0] + " and " + dossiers[dossiers.length-1]);
 		for (int k = 0; k < dossiers.length; k++) {
 			
 			AcdiVocaFind avFind = fetchBeneficiaryByDossier(dossiers[k], null);

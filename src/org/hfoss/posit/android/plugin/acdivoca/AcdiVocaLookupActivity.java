@@ -1,7 +1,7 @@
 /*
  * File: AcdiVocaFindActivity.java
  * 
- * Copyright (C) 2011 The Humanitarian FOSS Project (http://www.hfoss.org)
+ * Copyright (C) 2012 The Humanitarian FOSS Project (http://www.hfoss.org)
  * 
  * This file is part of the ACDI/VOCA plugin for POSIT, Portable Open Search 
  * and Identification Tool.
@@ -42,14 +42,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,12 +57,11 @@ import android.widget.Toast;
 public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper> implements OnClickListener, TextWatcher {
 	public static final String TAG = "AcdiVocaLookupActivity";
 
-//	private Spinner lookupSpinner;
-	private ArrayAdapter<String> mAdapter;
+	//	private Spinner lookupSpinner;
 	private String dossiers[];
 	private EditText eText;
 
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,20 +69,20 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 		setContentView(R.layout.acdivoca_lookup);
 		Log.i(TAG, "onCreate");
 		Log.i(TAG, PreferenceManager.getDefaultSharedPreferences(this).getAll().toString());
-		
+
 		// load up the suggestion texts for the id lookup
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String distrKey = this.getResources().getString(R.string.distribution_point_key);
 		String distributionCtr = sharedPrefs.getString(distrKey, "");
 		Log.i(TAG, distrKey +"="+ AttributeManager.getMapping(distributionCtr));
-		
+
 		//added code to handle autoCompleteTextView
 		dossiers = this.getHelper().fetchAllBeneficiaryIdsByDistributionSite(distributionCtr);
 		if(dossiers!=null){
 			AutoCompleteTextView autoTextView = (AutoCompleteTextView) findViewById(R.id.autoDossier);
-		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
-		    autoTextView.setThreshold(0);
-		    autoTextView.setAdapter(adapter);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
+			autoTextView.setThreshold(0);
+			autoTextView.setAdapter(adapter);
 		}		
 		else {
 			Toast.makeText(this, getString(R.string.toast_sorry_empty), Toast.LENGTH_SHORT).show();
@@ -96,7 +91,7 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 			((Button)findViewById(R.id.update_lookup_button)).setEnabled(false);
 		}
 	}
-	
+
 
 
 	@Override
@@ -105,7 +100,7 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 		super.onPause();
 	}
 
-	
+
 	/**
 	 * Creates the menu options.
 	 * 
@@ -117,22 +112,22 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 		inflater.inflate(R.menu.acdi_voca_lookup_menu, menu);
 		return true;
 	}
-	
+
 	/**
 	 * Localizes already created menu items.
 	 */
 	@Override	
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		
+
 		// Re-inflate to force localization.
 		Log.i(TAG, "onPrepareOptionsMenu");
 		menu.clear();
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.acdi_voca_lookup_menu, menu);
-		
+
 		return super.onPrepareOptionsMenu(menu);
 	}
-	
+
 	/**
 	 * Manages the selection of menu items.
 	 * 
@@ -145,10 +140,10 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 			startActivity(new Intent(this, SettingsActivity.class));
 			break;
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -156,28 +151,23 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 	protected void onResume() {
 		super.onResume();
 		Log.i(TAG, "onResume");
-		
+
 		AcdiVocaLocaleManager.setDefaultLocale(this);  // Locale Manager should be in API
 
 		setContentView(R.layout.acdivoca_lookup);  // Should be done after locale configuration
 
 		((Button)findViewById(R.id.update_lookup_button)).setOnClickListener(this);
 		((Button)findViewById(R.id.cancel_lookup_button)).setOnClickListener(this);
-		//((Button)findViewById(R.id.read_qr_code)).setOnClickListener(this);
-		//lookupSpinner = ((Spinner)findViewById(R.id.lookupSpinner));
 
-
-		
-		
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		String distrKey = this.getResources().getString(R.string.distribution_point_key);
 		String distributionCtr = sharedPrefs.getString(distrKey, "");
 		Log.i(TAG, distrKey +"="+ AttributeManager.getMapping(distributionCtr));
-		
+
 		((TextView)findViewById(R.id.distribution_label)).setText(AttributeManager.getMapping(distributionCtr));
 
 		dossiers = this.getHelper().fetchAllBeneficiaryIdsByDistributionSite(distributionCtr);
-		
+
 		if (dossiers == null) {
 			Toast.makeText(this, getString(R.string.toast_sorry_empty), Toast.LENGTH_SHORT).show();
 			dossiers = new String[1];
@@ -185,78 +175,38 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 			((Button)findViewById(R.id.update_lookup_button)).setEnabled(false);
 		}
 		else{
-		//added code to handle AutoCompleteTextView
-		AutoCompleteTextView atextView = (AutoCompleteTextView) findViewById(R.id.autoDossier);
-	    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
-	    atextView.setThreshold(0);
-	    atextView.setAdapter(adapter);
+			//added code to handle AutoCompleteTextView
+			AutoCompleteTextView atextView = (AutoCompleteTextView) findViewById(R.id.autoDossier);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dossiers);
+			atextView.setThreshold(0);
+			atextView.setAdapter(adapter);
 		}
-//		setUpSpinnerAdapter(dossiers);
 	}
-	
-//	private void setUpSpinnerAdapter(final String[] data) {
-//		mAdapter = 
-//			new ArrayAdapter<String>(
-//					this,
-//					android.R.layout.simple_spinner_item,
-//					data );
-//		mAdapter.sort(String.CASE_INSENSITIVE_ORDER);
-//		mAdapter.setDropDownViewResource(
-//				android.R.layout.simple_spinner_dropdown_item);
-//		lookupSpinner.setAdapter(mAdapter);
-//		lookupSpinner.setOnItemSelectedListener(
-//				new AdapterView.OnItemSelectedListener() {
-//					public void onItemSelected(
-//							AdapterView<?> parent, 
-//							View view, 
-//							int position, 
-//							long id) {
-//						String d = data[position];
-//
-//						//eText.setText(d);
-//					}
-//
-//					public void onNothingSelected(AdapterView<?> parent) {
-//					}
-//				}
-//		);
-//		eText = ((EditText)findViewById(R.id.dossierEdit));
-//		eText.addTextChangedListener(this);
-////		eText.setText(""); 
-//	}
-	
+
+
+
 	/**
 	 * Required as part of OnClickListener interface. Handles button clicks.
 	 */
 	public void onClick(View v) {
 		Log.i(TAG, "onClick");
-	    Intent returnIntent = new Intent();
-	
+		Intent returnIntent = new Intent();
+
 		if (v.getId() == R.id.update_lookup_button) {
-//			String id = (String)lookupSpinner.getSelectedItem();
+
 			eText = (EditText) findViewById(R.id.autoDossier);
-    		String id = eText.getText().toString();
-//			EditText etext = ((EditText)findViewById(R.id.dossierEdit));
-//			String id = etext.getText().toString();
-//			returnIntent.putExtra("Id",id);
-//			setResult(RESULT_OK,returnIntent); 
-//			Log.i(TAG, "Returning selected id = " + id);
+			String id = eText.getText().toString();
+
 			Intent intent = new Intent(this, AcdiVocaUpdateFindActivity.class);
 			intent.putExtra("Id",id);
 			this.startActivity(intent);
 			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
 		}
-//		else if (v.getId() == R.id.read_qr_code) {
-//			IntentIntegrator zxing;
-//        	zxing = new IntentIntegrator(this);
-//        	zxing.setTargetApplications(IntentIntegrator.TARGET_BARCODE_SCANNER_ONLY);
-//        	zxing.initiateScan();	
-//        	return;
-//		}
+
 		else {
 			setResult(Activity.RESULT_CANCELED, returnIntent);
 		}
-	    finish();
+		finish();
 	}
 
 	/**
@@ -266,64 +216,48 @@ public class AcdiVocaLookupActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		Log.i(TAG, "onActivityResult, requestCode = " + requestCode);
 		super.onActivityResult(requestCode, resultCode, intent);
-    	if (resultCode == Activity.RESULT_CANCELED) {
-    		Log.i(TAG, "Scan barcode cancelled");
-    	} else {
-    		IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-    		if (scanResult != null) {
-    			String contents = scanResult.getContents();
-    			Log.i(TAG, "Scan result = " + contents);
-    			
-    			// Lookup beneficiary
+		if (resultCode == Activity.RESULT_CANCELED) {
+			Log.i(TAG, "Scan barcode cancelled");
+		} else {
+			IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+			if (scanResult != null) {
+				String contents = scanResult.getContents();
+				Log.i(TAG, "Scan result = " + contents);
 
-    			String id = contents;
-    		    Intent returnIntent = new Intent();
-    			returnIntent.putExtra("Id",id);
-    			setResult(RESULT_OK,returnIntent); 
-    			Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
-    			finish();
-    		} else {
-    			Toast toast = Toast.makeText(this, "Scanner error", Toast.LENGTH_LONG);
-    			toast.show();
-    		}
-    	}
+				// Lookup beneficiary
+
+				String id = contents;
+				Intent returnIntent = new Intent();
+				returnIntent.putExtra("Id",id);
+				setResult(RESULT_OK,returnIntent); 
+				Toast.makeText(this, getString(R.string.toast_id) + id, Toast.LENGTH_SHORT).show();
+				finish();
+			} else {
+				Toast toast = Toast.makeText(this, "Scanner error", Toast.LENGTH_LONG);
+				toast.show();
+			}
+		}
 	}
 
 	public void afterTextChanged(Editable s) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
-//	public void onTextChanged(CharSequence s, int start, int before, int count) {
-//		if(dossiers == null){
-//			return;
-//		}
-//		int k = 0;
-//		String prefix = s.toString();
-//		Log.i(TAG, "Prefix = " + prefix);
-//		String item = dossiers[k];
-//		while (!item.startsWith(prefix.toUpperCase()) && k < dossiers.length) {
-//			k += 1;
-//			if (k < dossiers.length)
-//				item = dossiers[k];
-//		}
-//		Log.i(TAG, "onTextChanged " + prefix + " " + k);
-//		if (k < dossiers.length)
-//			lookupSpinner.setSelection(k);				
-//	}
+	
 }

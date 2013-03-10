@@ -1,7 +1,7 @@
 /*
  * File: AcdiVocaFindActivity.java
  * 
- * Copyright (C) 2011 The Humanitarian FOSS Project (http://www.hfoss.org)
+ * Copyright (C) 2012 The Humanitarian FOSS Project (http://www.hfoss.org)
  * 
  * This file is part of the ACDI/VOCA plugin for POSIT, Portable Open Search 
  * and Identification Tool.
@@ -26,7 +26,6 @@ import java.util.Calendar;
 import org.hfoss.posit.android.R;
 import org.hfoss.posit.android.api.FindActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
@@ -34,7 +33,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -75,6 +73,10 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 	//private AcdiVocaDbHelper mDbHelper;
 	private ContentValues mContentValues;
 	private boolean inEditableMode = false;
+	
+	private boolean isPresent = false;
+	private boolean isChanged = false;
+	private int spinNum = -1;
 
 
 	/** Called when the activity is first created. */
@@ -231,7 +233,8 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 		//    	}
 
 		//  New button - 6/17/11          
-
+		// setting up present or not radio buttons
+				
 		Spinner spinner = (Spinner)findViewById(R.id.statuschangeSpinner);
 		((Spinner)findViewById(R.id.statuschangeSpinner)).setOnItemSelectedListener(this);
 		//    	AcdiVocaFindActivity.setSpinner(spinner, contentValues, AcdiVocaDbHelper.FINDS_CHANGE_TYPE);
@@ -266,6 +269,17 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 				findViewById(R.id.statuschange).setVisibility(View.GONE);
 				findViewById(R.id.statuschangeSpinner).setVisibility(View.GONE);
 				aRb.setChecked(true);
+			}
+		}
+		
+		if(isPresent == true){
+			((RadioButton)findViewById(R.id.radio_present_yes)).setChecked(true);
+		}
+		if(isChanged == true){
+			((RadioButton)findViewById(R.id.radio_change_in_status_yes)).setChecked(true);
+			if(spinNum != -1){
+				spinner.setVisibility(1);
+				spinner.setSelection(spinNum);
 			}
 		}
 	}
@@ -311,7 +325,8 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 		((RadioButton)findViewById(R.id.radio_change_in_status_yes)).setOnClickListener(this);
 		((RadioButton)findViewById(R.id.radio_change_in_status_no)).setOnClickListener(this);
 		((Spinner)findViewById(R.id.statuschangeSpinner)).setOnItemSelectedListener(this);
-
+		
+		
 		final Intent intent = getIntent();
 		mAction = intent.getAction();
 		Log.i(TAG, "mAction = " + mAction);
@@ -592,6 +607,23 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 	 */
 	public void onClick(View v) {
 		Log.i(TAG, "onClick");
+		
+		RadioButton presentRB = (RadioButton)findViewById(R.id.radio_present_yes);
+		if (presentRB.isChecked()) 
+			isPresent = true;
+		presentRB = (RadioButton)findViewById(R.id.radio_present_no);
+		if (presentRB.isChecked()) 
+			isPresent = false;
+
+		RadioButton changeRB = (RadioButton)findViewById(R.id.radio_change_in_status_yes);
+		if (changeRB.isChecked()) 
+			isChanged = true;
+		changeRB = (RadioButton)findViewById(R.id.radio_change_in_status_no);
+		if (changeRB.isChecked()) 
+			isChanged = false;
+	
+		Log.i(TAG, isPresent+"");
+		Log.i(TAG, isChanged+"");
 		// If a RadioButton was clicked, mark the form as edited.
 		//Toast.makeText(this, "Clicked on a " + v.getClass().toString(), Toast.LENGTH_SHORT).show();
 		try {
@@ -662,10 +694,6 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 		Log.i(TAG, "onKeyDown keyCode = " + keyCode);
 		if(keyCode==KeyEvent.KEYCODE_BACK && isProbablyEdited){  // 
 			Toast.makeText(this, getString(R.string.toast_Backkey_isEdited) +  isProbablyEdited, Toast.LENGTH_SHORT).show();
-
-
-
-
 			showDialog(CONFIRM_EXIT);
 			return true;
 		}
@@ -799,7 +827,7 @@ TextWatcher, OnItemSelectedListener { //, OnKeyListener {
 			findViewById(R.id.otherReason).setVisibility(View.VISIBLE);
 			break;
 		}
-
+		spinNum = position;
 		//isProbablyEdited = true;
 	}
 

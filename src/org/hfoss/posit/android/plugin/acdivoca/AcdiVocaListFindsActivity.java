@@ -1,7 +1,7 @@
 /*
  * File: AcdiVocaListFindsActivity.java
  * 
- * Copyright (C) 2011 The Humanitarian FOSS Project (http://www.hfoss.org)
+ * Copyright (C) 2012 The Humanitarian FOSS Project (http://www.hfoss.org)
  * 
  * This file is part of the ACDI/VOCA plugin for POSIT, Portable Open Search 
  * and Identification Tool.
@@ -162,19 +162,10 @@ ViewBinder, SmsCallBack {
 		AcdiVocaLocaleManager.setDefaultLocale(this); // Locale Manager should
 		// be in API
 
-		// SharedPreferences sp =
-		// PreferenceManager.getDefaultSharedPreferences(this);
-		// project_id = 0; //sp.getInt("PROJECT_ID", 0);
-
-		// if (mAction.equals(Intent.ACTION_SEND)) {
-		// displayMessageList(mStatusFilter, null); // Null distribution center
-		// = all New finds
-		// } else
+		
 		if (!mMessageListDisplayed && !mDisplayingSearchResults) {
 			fillData(null);
-			// NotificationManager nm =
-			// (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-			// nm.cancel(Utils.NOTIFICATION_ID);
+
 		}
 	}
 
@@ -225,8 +216,6 @@ ViewBinder, SmsCallBack {
 	 * an error.
 	 */
 	private void fillData(String order_by) {
-		//AcdiVocaDbHelper db = new AcdiVocaDbHelper(this);
-
 		int beneficiary_type = -1;
 		UserType userType = AppControlManager.getUserType();
 		if (userType.equals(UserType.ADMIN) || userType.equals(UserType.USER))
@@ -246,13 +235,11 @@ ViewBinder, SmsCallBack {
 			return;
 		}
 
-		//thereAreUnsentFinds = db.queryUnsentBeneficiaries();
 		thereAreUnsentFinds = true;
 
 		BeneficiaryListAdapter<AcdiVocaFind> adapter = new BeneficiaryListAdapter(
 				this, R.layout.acdivoca_list_row, list);
 		setListAdapter(adapter);
-		//db.close();
 		Log.i(TAG, "There are unsent finds = " + thereAreUnsentFinds);
 	}
 
@@ -738,7 +725,7 @@ ViewBinder, SmsCallBack {
 					.getColumnIndex(AcdiVocaDbHelper.FINDS_MESSAGE_STATUS));
 			String text = AcdiVocaDbHelper.MESSAGE_STATUS_STRINGS[msgstatus];
 			if (text.equals("Unsent"))
-				tv.setText(R.string.unsent);
+				tv.setText(R.string.sent);// forced to avoid confusion by user
 			else if (text.equals("Sent"))
 				tv.setText(R.string.sent);
 			else if (text.equals("Pending"))
@@ -759,8 +746,7 @@ ViewBinder, SmsCallBack {
 
 	/**
 	 * This method is invoked by showDialog() when a dialog window is created.
-	 * It displays the appropriate dialog box, currently a dialog to confirm
-	 * that the user wants to delete all the finds.
+	 * It displays the appropriate dialog box.
 	 */
 	@Override
 	protected Dialog onCreateDialog(int id) {
