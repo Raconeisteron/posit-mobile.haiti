@@ -1,7 +1,7 @@
 /*
  * File: TutorialActivity.java
  * 
- * Copyright (C) 2009 The Humanitarian FOSS Project (http://www.hfoss.org)
+ * Copyright (C) 2012 The Humanitarian FOSS Project (http://www.hfoss.org)
  * 
  * This file is part of POSIT, Portable Open Search and Identification Tool.
  *
@@ -124,6 +124,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 
 	//Split the SMS if they go over max limit. Now supporting up to 340 messages
 	private ArrayList<AcdiVocaMessage> mAcdiVocaMsgs;
+	private ArrayList<String> logMsgs;
 	protected static ArrayList<AcdiVocaMessage> msgDiv1=new ArrayList<AcdiVocaMessage>();
 	protected static ArrayList<AcdiVocaMessage> msgDiv2=new ArrayList<AcdiVocaMessage>();
 	protected static ArrayList<AcdiVocaMessage> msgDiv3=new ArrayList<AcdiVocaMessage>();
@@ -321,7 +322,8 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 			displayDistributionSummary();
 			break;
 		case R.id.send_distribution_report:
-			sendDistributionReport();
+			//sendDistributionReport();
+			showDialog(SEND_DIST_REP);
 			break;
 		}
 		return true;
@@ -370,8 +372,8 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 		// Now create bulk absences messages
 		mAcdiVocaMsgs.addAll(this.getHelper().createBulkUpdateMessages(distributionCtr));
 		Log.i(TAG, "nMsgs to send " + mAcdiVocaMsgs.size());
-		// Prompt the user
-		showDialog(SEND_DIST_REP);
+		
+		
 	}
 
 
@@ -742,6 +744,11 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 								int whichButton) {
 							// User clicked OK so do some stuff
 							//finish();
+							sendDistributionReport();
+							AcdiVocaSmsManager mgr = AcdiVocaSmsManager.getInstance((Activity) mContext);
+							SmsService ss = new SmsService();
+							logMsgs = mgr.getMessagesAsArray(mContext, mAcdiVocaMsgs);
+							ss.logMessages(logMsgs);
 						}
 					}).create();
 		case SUMMARY_OF_IMPORT:
@@ -800,6 +807,7 @@ public class AcdiVocaAdminActivity extends OrmLiteBaseActivity<AcdiVocaDbHelper>
 										else{
 											totallyDone = true;
 											batch = 0;
+											
 											mgr.sendMessages((OrmLiteBaseActivity<AcdiVocaDbHelper>)mContext, mAcdiVocaMsgs);
 											AppControlManager.moveToNextDistributionStage(mContext);
 											mSmsReport = "#: " + phoneNumber + "\n" + mAcdiVocaMsgs.size();

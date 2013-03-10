@@ -191,7 +191,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 			mErrorMsg = "Texting is off";
 			break;
 		}
-		logMessage(smsMsg + ", " + mErrorMsg);
+		//logMessage(smsMsg + ", " + mErrorMsg);
 	}
 
 	/**
@@ -209,13 +209,14 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 			// FileWriter writer = new FileWriter(file);
 			PrintWriter writer = new PrintWriter(new BufferedWriter(
 					new FileWriter(file, true)));
-
+			writer.println("*****|||  "+new Date()+"   |||*****");	
 			Iterator<String> it = msgs.iterator();
 			while (it.hasNext()) {
 				String msg = it.next();
-				writer.println(new Date() + ": " + msg);
+				writer.println(msg);
 				Log.i(TAG, "Wrote to file: " + msg);
 			}
+			writer.println("~~~~~ END ~~~~~");
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
@@ -257,7 +258,7 @@ public class SmsService extends OrmLiteBaseService<AcdiVocaDbHelper> {
 		protected String doInBackground(Context... contexts) {
 			Log.i(TAG, "doInBackground");
 			this.context = contexts[0];
-			logMessages(mMessages);
+			//logMessages(mMessages);
 			transmitMessages(context, mMessages);
 			return null;
 		}

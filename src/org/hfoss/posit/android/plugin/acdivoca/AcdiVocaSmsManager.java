@@ -1,7 +1,7 @@
 /*
  * File: AcdiVocaSmsManager.java
  * 
- * Copyright (C) 2011 The Humanitarian FOSS Project (http://www.hfoss.org)
+ * Copyright (C) 2012 The Humanitarian FOSS Project (http://www.hfoss.org)
  * 
  * This file is part of the ACDI/VOCA plugin for POSIT, Portable Open Search 
  * and Identification Tool.
@@ -23,7 +23,11 @@
 
 package org.hfoss.posit.android.plugin.acdivoca;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -52,6 +56,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -62,46 +67,47 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class AcdiVocaSmsManager extends BroadcastReceiver {
-	
+
 	public static final String TAG = "AcdiVocaSmsManager";
 	public static final String SENT = "SMS_SENT";
 	public static final String DELIVERED = "SMS_DELIVERED";
-	
-	public static final String INCOMING_PREFIX = 
-		AcdiVocaMessage.ACDI_VOCA_PREFIX 
-		+ AttributeManager.ATTR_VAL_SEPARATOR;
 
-	
+	public static final String INCOMING_PREFIX = 
+			AcdiVocaMessage.ACDI_VOCA_PREFIX 
+			+ AttributeManager.ATTR_VAL_SEPARATOR;
+
+
 	public static final int MAX_MESSAGE_LENGTH = 140;
 	public static final int MAX_PHONE_NUMBER_LENGTH = 13;
 	public static final int MIN_PHONE_NUMBER_LENGTH = 5;
 	public static final int DONE = 0;
-	
+	private static final String DEFAULT_LOG_FILE = "positHaiti-log.txt";
+
 	public int msgId = 0;
 	private static Context mContext = null;
 	private static AcdiVocaSmsManager mInstance = null; 
-	
+
 	private static String mAcdiVocaPhone = null;
 	private static Activity mActivity;
-	
+
 	private String mErrorMsg = ""; // Set to last error by BroadcastReceiver
-	
+
 	public AcdiVocaSmsManager()  {
 	}
-	
+
 	public static AcdiVocaSmsManager getInstance(Activity activity){
 		mActivity = activity;
 		mInstance = new AcdiVocaSmsManager();
 		AcdiVocaSmsManager.initInstance(activity);
 		return mInstance;
 	}
-	
+
 	public static void initInstance(Context context) {
 		mContext = context;
 		mInstance = new AcdiVocaSmsManager();
-		
-        mAcdiVocaPhone = 
-			PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.smsPhoneKey), ""); 
+
+		mAcdiVocaPhone = 
+				PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.smsPhoneKey), ""); 
 	}
 
 
@@ -111,13 +117,13 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	 * 
 	 * Requires Manifest:
 	 * <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
-     * <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
- 	 */
+	 * <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+	 */
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.i(TAG, "Intent action = " + intent.getAction());
 		Log.i(TAG, "CONTEXT: " +context);
-		
+
 		Bundle bundle = intent.getExtras();
 
 		ArrayList<SmsMessage> messages = new ArrayList<SmsMessage>();
@@ -165,6 +171,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		Log.i(TAG, "Processing incoming SMS: " + msg);
 		boolean isAck  = false;
 		String attrvalPairs[] = msg.split(AttributeManager.PAIRS_SEPARATOR);
+		Log.i(TAG, attrvalPairs[0]);
 		SmsService.logMessage(msg + " Received");
 		// The message has the format AV=ACK,IDS=1/2/3/.../,  so just two pairs
 		for (int k = 0; k < attrvalPairs.length; k++) {
@@ -189,7 +196,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			}
 		}
 	}
-	
+
 	/**
 	 * Helper method to process of list of IDs as tokens.
 	 * @param val
@@ -201,6 +208,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		StreamTokenizer t = new StreamTokenizer(new StringReader(val));
 		t.resetSyntax( );
 		t.parseNumbers( );
+
 		try {
 
 			//  While not end-of-file, get the next token and extract number
@@ -215,7 +223,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 					int ackId = (int)t.nval;
 					Log.i(TAG, "ACKing, ackId: " + ackId);
 					AcdiVocaMessage avMsg = null;
-					
+
 					// Message for bulk messages, where IDs < 0 and represent message Ids
 					if (ackId < 0)  {   // Check for bulk 
 						avMsg = new AcdiVocaMessage(
@@ -226,7 +234,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 								"",   // SmsMessage N/A
 								"",    // Header  N/A
 								!AcdiVocaMessage.EXISTING, true
-						);
+								);
 					} else {
 						// Message for normal messages, where IDs > 0 and represent beneficiary IDs
 						avMsg = new AcdiVocaMessage(
@@ -237,7 +245,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 								"",   // SmsMessage N/A
 								"",    // Header  N/A
 								!AcdiVocaMessage.EXISTING, false
-						);
+								);
 					}
 					AcdiVocaDbHelper db = new AcdiVocaDbHelper(context);
 					db.recordAcknowledgedMessage(avMsg);
@@ -250,7 +258,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Checks for a validly-formatted phone number, which 
 	 * takes the form: [+]1234567890
@@ -261,7 +269,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		if (number.length() < MIN_PHONE_NUMBER_LENGTH
 				|| number.length() > MAX_PHONE_NUMBER_LENGTH)
 			return false;
-		
+
 		// Check for valid digits
 		for(int i = 0; i < number.length(); i++) {
 			if(number.charAt(i)<'0'|| number.charAt(i)>'9')
@@ -270,7 +278,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Publicly exposed method for processing Sms messages.  It starts a thread to
 	 * handle the details. 
@@ -280,7 +288,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	 */
 	public void sendMessages(Context context, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
 		mContext = context;
-		
+
 		Log.i(TAG, "sendMessages,  n =" + acdiVocaMsgs.size());
 
 		// Build a list of messages (with updates to the Db) to pass
@@ -290,8 +298,8 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 				new BuildMessagesHandler(), acdiVocaMsgs);
 		thread.start();				
 	}
-	
-	
+
+
 	/**
 	 * Utility method to test that the phone number preference is set before
 	 * trying to send messages. 
@@ -307,12 +315,12 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		}
 		return true;
 	}
-	
+
 	public static String getPhoneNumber(Context context) {
 		String phone = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.smsPhoneKey), "");
 		return phone;
 	}
-	
+
 	/**
 	 * Helper method to convert the message objects into a flat list of strings.
 	 * @param context
@@ -320,7 +328,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 	 * @param bulk whether or not this is a batch of bulk messages
 	 * @return
 	 */
-	private ArrayList<String> getMessagesAsArray (Context context, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
+	protected ArrayList<String> getMessagesAsArray (Context context, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
 		ArrayList<String> messages = new ArrayList<String>();
 		AcdiVocaMessage acdiVocaMsg = null;
 		Iterator<AcdiVocaMessage> it = acdiVocaMsgs.iterator();
@@ -355,11 +363,11 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 					acdiVocaMsg.setMessageId(msgId);
 					// acdiVocaMsg.setExisting(true);
 				} else { // We're resending an existing message, update statuses
-							// to sending.. wow this is convoluted
+					// to sending.. wow this is convoluted
 					if (context instanceof OrmLiteBaseListActivity<?>) {
 						OrmLiteBaseListActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseListActivity<AcdiVocaDbHelper>) context;
 						if (acdiVocaMsg.isBulk()) // if its a bulk
-															// message
+							// message
 							helper.getHelper().updateMessageStatusForBulkMsg(acdiVocaMsg,
 									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
 						else
@@ -368,7 +376,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 					} else if (context instanceof OrmLiteBaseActivity<?>) {
 						OrmLiteBaseActivity<AcdiVocaDbHelper> helper = (OrmLiteBaseActivity<AcdiVocaDbHelper>) context;
 						if (acdiVocaMsg.isBulk()) // if its a bulk
-															// message
+							// message
 							helper.getHelper().updateMessageStatusForBulkMsg(acdiVocaMsg,
 									AcdiVocaDbHelper.MESSAGE_STATUS_SENDING);
 						else
@@ -382,7 +390,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		}
 		return messages;
 	}
-	
+
 	class BuildMessagesHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
@@ -391,7 +399,7 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			}
 		}
 	}
-	
+
 	/**
 	 * Thread to build text messages. 
 	 *
@@ -400,21 +408,21 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 		private Context mContext;
 		private Handler mHandler;
 		private  ArrayList<AcdiVocaMessage> mAcdiVocaMsgs;
-		
+
 		public BuildMessagesThread(Context context, 
 				Handler handler, ArrayList<AcdiVocaMessage> acdiVocaMsgs) {
 			mHandler = handler;
 			mContext = context;
 			mAcdiVocaMsgs = acdiVocaMsgs;
 		}
-	
+
 		@Override
 		public void run() {
 			// We pass the service a list of messages. It handles the rest.
 			Intent smsService = new Intent(mContext, SmsService.class);
-//			for (AcdiVocaMessage message : mAcdiVocaMsgs) {
-//				if ()
-//			}
+			//			for (AcdiVocaMessage message : mAcdiVocaMsgs) {
+			//				if ()
+			//			}
 			ArrayList<String> messagesToSend = getMessagesAsArray(mContext, mAcdiVocaMsgs);
 
 			Log.i(TAG, "Starting background service");
@@ -424,6 +432,6 @@ public class AcdiVocaSmsManager extends BroadcastReceiver {
 			mHandler.sendEmptyMessage(AcdiVocaAdminActivity.DONE);
 		}
 	}
-	
-	
+
+
 }
